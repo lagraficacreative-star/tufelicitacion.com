@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Postal de Navidad - Personalizada</title>
+    <meta name="description" content="Crea y personaliza tus postales y vídeos navideños.">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Lato:wght@400;700&family=Lobster&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600&family=Oswald:wght@400;700&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Satisfy&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <!-- Left: Links -->
+                <ul class="nav-links">
+                    <li><a href="#" onclick="router.navigate('home')">Inicio</a></li>
+                    <li><a href="#" onclick="router.navigate('christmas-home')">Navidad</a></li>
+                    <li><a href="#" onclick="router.navigate('coming-soon', { title: 'Año Nuevo' })">Año Nuevo</a></li>
+                    <li><a href="#"
+                            onclick="router.navigate('coming-soon', { title: 'Reyes Magos y otros eventos' })">Reyes
+                            Magos y otros eventos</a></li>
+                    <li><a href="#" onclick="router.navigate('about')">Sobre nosotros</a></li>
+                    <li><a href="#" onclick="router.navigate('contact')">Contacto</a></li>
+                </ul>
+
+                <!-- Center: Logo -->
+                <a href="#" class="logo" onclick="router.navigate('home')">
+                    Tu Postal de ...
+                </a>
+
+                <!-- Right: Icons -->
+                <div class="user-actions" style="align-items: center;">
+                    <a href="#" class="btn-outline" style="margin-top: 0; margin-right: 1rem; font-size: 0.7rem;">Acceso
+                        empresas</a>
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-regular fa-user"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-bag-shopping"></i></a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content">
+            <!-- Views will be rendered here by app.js -->
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#" onclick="router.navigate('postcards')">Postales</a></li>
+                        <li><a href="#" onclick="router.navigate('videos')">Vídeos</a></li>
+                        <li><a href="#" onclick="router.navigate('sectors')">Sectores</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>About us</h3>
+                    <ul>
+                        <li><a href="#">Nuestra Historia</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">info@tupostaldenavidad.com</a></li>
+                        <li><a href="#">Soporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Suscríbete para recibir novedades.</p>
+                    <a href="#" style="text-decoration: underline;">Suscribirse</a>
+                </div>
+            </div>
+
+            <div class="footer-big-text">
+                Tu postal de Navidad
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tu Postal de Navidad. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+        <!-- Data -->
+        <script src="products_data.js"></script>
+        <script src="presets_data.js"></script>
+        <!-- Main App -->
+        <script src="app.js?v=3"></script>
+</body>
+
+</html>

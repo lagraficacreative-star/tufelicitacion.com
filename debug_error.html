@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Debug Error</title>
+    <script>
+        window.onerror = function (msg, url, line, col, error) {
+            const div = document.createElement('div');
+            div.style.color = 'red';
+            div.style.fontSize = '24px';
+            div.style.padding = '20px';
+            div.innerText = 'ERROR: ' + msg + '\nURL: ' + url + '\nLine: ' + line + ':' + col;
+            document.body.appendChild(div);
+            return false;
+        };
+        console.log = function () {
+            const div = document.createElement('div');
+            div.style.color = 'blue';
+            div.innerText = 'LOG: ' + Array.from(arguments).join(' ');
+            document.body.appendChild(div);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Debugging Page</h1>
+    <script src="products_data.js"></script>
+    <script src="presets_data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

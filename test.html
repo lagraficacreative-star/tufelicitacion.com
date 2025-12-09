@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Debug</title>
+</head>
+<body>
+    <h1>Test Page</h1>
+    <div id="main-content"></div>
+    <script>
+        console.log("Inline script 1 running");
+    </script>
+    <script src="products_data.js"></script>
+    <script src="presets_data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        console.log("Inline script 2 running");
+        console.log("Router defined?", typeof window.router);
+    </script>
+</body>
+</html>

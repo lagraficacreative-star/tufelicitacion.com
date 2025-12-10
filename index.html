@@ -13,19 +13,11 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
-        gtag('config', 'G-BSRLEM3WSL');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Lato:wght@400;700&family=Lobster&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600&family=Oswald:wght@400;700&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Satisfy&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -60,54 +52,60 @@
                     <a href="#" class="icon-btn"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
             </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </nav>
 
-        <!-- Main Content Area -->
+        <!-- Main Content (Dynamic) -->
         <main id="main-content">
-            <!-- Views will be rendered here by app.js -->
+            <!-- Content injected by app.js -->
         </main>
 
         <!-- Footer -->
-        <footer>
-            <div class="footer-content">
+        <footer class="main-footer">
+            <div class="footer-content grid-4">
                 <div class="footer-section">
-                    <h3>Shop</h3>
-                    <ul>
-                        <li><a href="#" onclick="router.navigate('postcards')">Postales</a></li>
-                        <li><a href="#" onclick="router.navigate('videos')">Vídeos</a></li>
-                        <li><a href="#" onclick="router.navigate('sectors')">Sectores</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>About us</h3>
-                    <ul>
-                        <li><a href="#">Nuestra Historia</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p><i class="fa-solid fa-envelope"></i> info@tufelicitacion.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +34 639 087 024</p>
+                    <h3>Tu Postal de ...</h3>
+                    <p style="font-size: 0.9rem; color: #ccc;">
+                        Creando magia digital para tus momentos especiales.
+                    </p>
                     <div class="social-links" style="margin-top: 1rem;">
-                        <a href="https://wa.me/34639087024" target="_blank"
-                            style="color: white; margin-right: 1rem; font-size: 1.5rem;"><i
+                        <a href="https://wa.me/34639087024" target="_blank" aria-label="WhatsApp"><i
                                 class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" style="color: white; margin-right: 1rem;"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" style="color: white;"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Suscríbete para recibir novedades.</p>
-                    <a href="#" style="text-decoration: underline;">Suscribirse</a>
+                    <h3>Explora</h3>
+                    <ul>
+                        <li><a href="#" onclick="router.navigate('home')">Inicio</a></li>
+                        <li><a href="#" onclick="router.navigate('christmas-home')">Navidad</a></li>
+                        <li><a href="#" onclick="router.navigate('postcards')">Postales</a></li>
+                        <li><a href="#" onclick="router.navigate('videos')">Vídeos</a></li>
+                    </ul>
                 </div>
+
                 <div class="footer-section">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#" onclick="router.navigate('terms')">Términos y Condiciones</a></li>
+                        <li><a href="#" onclick="router.navigate('legal-notice')">Aviso Legal</a></li>
                         <li><a href="#" onclick="router.navigate('privacy')">Política de Privacidad</a></li>
+                        <li><a href="#" onclick="router.navigate('cookies')">Política de Cookies</a></li>
+                        <li><a href="#" onclick="router.navigate('terms')">Términos y Condiciones</a></li>
                     </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fa-solid fa-envelope"></i> info@tufelicitacion.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +34 639 087 024</p>
+                    <a href="https://wa.me/34639087024" class="cta-button app-btn-success"
+                        style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;"><i
+                            class="fa-brands fa-whatsapp"></i> Chat WhatsApp</a>
                 </div>
             </div>
 
@@ -116,14 +114,15 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Tu Felicitación. Todos los derechos reservados.</p>
+                &copy; 2025 Tu Postal de Navidad. Todos los derechos reservados.
             </div>
         </footer>
-        <!-- Data -->
-        <script src="products_data.js"></script>
-        <script src="presets_data.js"></script>
-        <!-- Main App -->
-        <script src="app.js?v=3"></script>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="products_data.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

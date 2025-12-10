@@ -47,7 +47,11 @@ def index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    return send_from_directory('.', path)
+    response = send_from_directory('.', path)
+    # Add cache headers for images and css
+    if path.endswith(('.jpg', '.jpeg', '.png', '.webp', '.css', '.js')):
+        response.headers['Cache-Control'] = 'public, max-age=86400'
+    return response
 
 @app.route('/api/poll', methods=['GET'])
 def poll():

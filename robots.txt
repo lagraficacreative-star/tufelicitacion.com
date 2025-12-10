@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tufelicitacion-com.onrender.com/sitemap.xml

@@ -61,6 +61,12 @@ const router = {
             case 'search':
                 this.renderSearch(main);
                 break;
+            case 'cookies':
+                this.renderCookies(mainContent);
+                break;
+            case 'legal-notice':
+                this.renderLegalNotice(mainContent);
+                break;
             case 'coming-soon':
                 this.renderComingSoon(mainContent, this.params.title);
                 break;
@@ -331,6 +337,39 @@ const router = {
                     <br>
                     <h3>5. Tus Derechos</h3>
                     <p>Tienes derecho a acceder, rectificar y suprimir tus datos. Para ejercer estos derechos, envíanos un email a info@tufelicitacion.com.</p>
+                </div>
+            </div>
+        `;
+    },
+
+    renderCookies(container) {
+        container.innerHTML = `
+            <div class="fade-in section-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
+                <h1 class="section-title centered">Política de Cookies</h1>
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios y analizar sus hábitos de navegación.</p>
+                    <h3>¿Qué son las cookies?</h3>
+                    <p>Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web.</p>
+                    <h3>Tipos de cookies utilizadas</h3>
+                    <ul>
+                        <li><strong>Cookies de análisis:</strong> Son aquellas que nos permiten cuantificar el número de usuarios y realizar la medición y análisis estadístico. (Google Analytics).</li>
+                        <li><strong>Cookies técnicas:</strong> Permiten la navegación a través de la web y la utilización de las diferentes opciones o servicios.</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    },
+
+    renderLegalNotice(container) {
+        container.innerHTML = `
+            <div class="fade-in section-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
+                <h1 class="section-title centered">Aviso Legal</h1>
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <h3>Datos Identificativos</h3>
+                    <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, se reflejan los siguientes datos:</p>
+                    <p><strong>Titular:</strong> Montse Torrelles (Tu Felicitación)</p>
+                    <p><strong>Correo electrónico:</strong> info@tufelicitacion.com</p>
+                    <p><strong>Actividad:</strong> Diseño gráfico y servicios digitales.</p>
                 </div>
             </div>
         `;

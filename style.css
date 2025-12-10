@@ -640,19 +640,63 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
 
     .grid-3,
     .grid-4 {
         grid-template-columns: 1fr;
+        /* Stack single column on mobile */
     }
 
     .grid-6 {
         grid-template-columns: repeat(3, 1fr);
-        /* 3 cols on mobile for sectors */
+        /* 3 columns on mobile as requested */
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .footer-content.grid-4 {
+        grid-template-columns: 1fr;
+        /* Stack footer on mobile */
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Sector Cards smaller on mobile 3-col */
+    .sector-card .card-image-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
     }
 
     .footer-content {

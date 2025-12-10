@@ -1849,7 +1849,6 @@ const router = {
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${product.title}</h3>
-                    <span class="card-price" style="color: var(--primary-color); font-weight: bold; font-size: 0.9rem;">Descárgala GRATIS</span>
                 </div>
             </div>
     `;

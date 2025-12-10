@@ -73,6 +73,18 @@ ul {
     color: var(--text-muted);
 }
 
+/* Hide price in product cards as requested */
+.card-price {
+    display: none !important;
+}
+
+/* If we want to show 'Descárgala GRATIS' we can re-enable it with a specific class if needed,
+   but user asked to 'quitar los precios'.
+   If they want 'Descárgala GRATIS' text to remain, we should not hide .card-price if it contains text.
+   But .card-price usually contains the number.
+   Wait, I previously changed the JS to output 'Descárgala GRATIS' instead of the number.
+   If the user now says "quitar los precio", maybe they don't want to see that text either on the grid?
+   I will hide it. */
 .logo {
     font-family: var(--font-heading);
     font-size: 1.8rem;

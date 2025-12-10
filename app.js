@@ -715,9 +715,9 @@ const router = {
                                 ${faceInputsHtml}
 
                                 <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
-                                    ✨ Pagar 2.00€ y Generar (Intercambiar Cara)
+                                    ✨ Generar (Intercambiar Cara)
                                 </button>
-                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Pago seguro. Solo se cobra si la IA genera el resultado.</p>
+                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
                             </div>
 
                             <!-- Tab 2: Fondo (Background Swap) -->
@@ -734,9 +734,9 @@ const router = {
 
                                 <!-- 2. Remove BG Action -->
                                 <button type="button" class="btn-outline" onclick="router.handleAIAction('removebg')" style="width: 100%; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Pagar 2.00€ y Quitar Fondo (IA)
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
                                 </button>
-                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">Pago único por generación.</p>
+                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
 
                                 <!-- 3. Preset Gallery -->
                                 <label style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; display: block;">3. Elige Escenario</label>
@@ -766,9 +766,9 @@ const router = {
                             </p>
                             <textarea id="input-animate-prompt" class="form-control" rows="2" placeholder="Describe el movimiento (ej: nieve cayendo, luces parpadeando...)" style="margin-bottom: 0.5rem;"></textarea>
                             <button type="button" class="btn-outline" onclick="router.handleAIAction('animate')" style="width: 100%; border-color: #9C27B0; color: #9C27B0;">
-                                <i class="fa-solid fa-film"></i> Pagar 2.00€ y Generar Animación
+                                <i class="fa-solid fa-film"></i> Generar Animación
                             </button>
-                            <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">El vídeo se generará tras el pago.</p>
+                            <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
                         </div>
 
                         <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
@@ -784,9 +784,9 @@ const router = {
                         </p>
                         <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Ej: Un paisaje nevado con un árbol de navidad gigante..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
                         <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
-                            🎨 Pagar 2.00€ y Generar Nueva Imagen
+                            🎨 Generar Nueva Imagen
                         </button>
-                        <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea imágenes únicas con IA.</p>
+                        <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
                     </div>
                     ` : ''}
                 </div>
@@ -921,8 +921,8 @@ const router = {
                         </div>
                     </div>
 
-                    <button class="cta-button" onclick="router.handlePurchase()" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-cart-shopping"></i> Comprar y Descargar
+                    <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-download"></i> Descargar Gratis
                     </button>
                 </div>
             </div>
@@ -985,11 +985,9 @@ const router = {
         const statusDiv = document.getElementById('ai-status-msg');
         statusDiv.style.display = 'block';
 
-        // 1. Simulate Payment (Mock)
-        statusDiv.innerHTML = '<i class="fa-solid fa-credit-card fa-bounce"></i> Procesando pago de 2.00€...';
-        await new Promise(resolve => setTimeout(resolve, 2000)); // 2s delay
-        statusDiv.innerHTML = '<i class="fa-solid fa-check-circle" style="color: green;"></i> Pago recibido. Iniciando IA...';
-        await new Promise(resolve => setTimeout(resolve, 1000)); // 1s delay
+        // 1. Simulate Processing
+        statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Iniciando IA...';
+        await new Promise(resolve => setTimeout(resolve, 500)); // 0.5s delay
 
         statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando... esto puede tardar unos minutos.';
 
@@ -1281,6 +1279,14 @@ const router = {
 
                     // If video was showing, hide it
                     document.getElementById('video-container').style.display = 'none';
+                }
+
+                // UPDATE MAIN BUTTON TO PAID MODE
+                const mainBtn = document.getElementById('btn-main-action');
+                if (mainBtn) {
+                    mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Comprar Resultado (2.00€)';
+                    mainBtn.onclick = () => router.handlePurchase();
+                    mainBtn.classList.add('pulse-animation'); // Optional: Add a CSS animation to highlight it
                 }
 
             } else {

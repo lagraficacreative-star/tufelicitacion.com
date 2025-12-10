@@ -64,6 +64,12 @@ const router = {
             case 'contact':
                 this.renderContact(mainContent);
                 break;
+            case 'terms':
+                this.renderTerms(mainContent);
+                break;
+            case 'privacy':
+                this.renderPrivacy(mainContent);
+                break;
             default:
                 this.renderHome(mainContent);
         }
@@ -157,6 +163,67 @@ const router = {
                     <a href="https://wa.me/34639087024" target="_blank" class="cta-button" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1.1rem; padding: 1rem 2rem;">
                         <i class="fa-brands fa-whatsapp"></i> Iniciar Chat
                     </a>
+                </div>
+            </div>
+        `;
+    },
+
+    renderTerms(container) {
+        container.innerHTML = `
+            <div class="fade-in section-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
+                <h1 class="section-title centered" style="margin-bottom: 3rem;">Términos y Condiciones</h1>
+                
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <h3>1. Introducción</h3>
+                    <p>Bienvenido a <strong>Tu Felicitación</strong>. Al acceder y utilizar nuestro sitio web, aceptas cumplir con los siguientes términos y condiciones. Si no estás de acuerdo con alguna parte, no debes usar nuestros servicios.</p>
+                    <br>
+                    <h3>2. Servicios</h3>
+                    <p>Ofrecemos un servicio de generación de imágenes y vídeos personalizados mediante Inteligencia Artificial (IA) para felicitaciones navideñas y otros eventos.</p>
+                    <br>
+                    <h3>3. Pagos y Precios</h3>
+                    <p>Los precios de nuestros productos se indican claramente en la web (normalmente 2.00€ por descarga de alta calidad). Los pagos se procesan de forma segura a través de <strong>Stripe</strong>. Nos reservamos el derecho de modificar los precios en cualquier momento.</p>
+                    <br>
+                    <h3>4. Política de Reembolso</h3>
+                    <p>Dado que vendemos productos digitales personalizados que se entregan de forma inmediata (descarga o visualización), <strong>no ofrecemos reembolsos</strong> una vez que el servicio de IA ha sido ejecutado y el resultado entregado, salvo en casos de fallo técnico demostrable.</p>
+                    <br>
+                    <h3>5. Propiedad Intelectual</h3>
+                    <p>Al subir tus fotos, declaras que tienes los derechos necesarios sobre ellas. Las imágenes generadas por nuestra IA son para tu uso personal y no comercial, a menos que se acuerde lo contrario.</p>
+                    <br>
+                    <h3>6. Limitación de Responsabilidad</h3>
+                    <p>No nos hacemos responsables del mal uso de las imágenes generadas ni de la calidad de la imagen si la foto original proporcionada por el usuario es de baja calidad.</p>
+                    <br>
+                    <h3>7. Contacto</h3>
+                    <p>Para cualquier duda legal, puedes contactarnos en: info@tufelicitacion.com</p>
+                </div>
+            </div>
+        `;
+    },
+
+    renderPrivacy(container) {
+        container.innerHTML = `
+            <div class="fade-in section-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
+                <h1 class="section-title centered" style="margin-bottom: 3rem;">Política de Privacidad</h1>
+                
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <h3>1. Responsable del Tratamiento</h3>
+                    <p>El responsable de los datos es Montse Torrelles (Tu Felicitación).<br>Correo de contacto: info@tufelicitacion.com</p>
+                    <br>
+                    <h3>2. Datos que Recopilamos</h3>
+                    <p>Recopilamos la siguiente información:</p>
+                    <ul>
+                        <li>Imágenes que subes para la personalización (se eliminan periódicamente).</li>
+                        <li>Datos de pago (gestionados íntegramente por Stripe, nosotros no guardamos tu tarjeta).</li>
+                        <li>Datos de navegación (cookies de Google Analytics) para mejorar el servicio.</li>
+                    </ul>
+                    <br>
+                    <h3>3. Uso de las Imágenes</h3>
+                    <p>Las fotos que subes se utilizan <strong>exclusivamente</strong> para generar tu felicitación mediante IA. No las usamos para entrenar modelos públicos ni las compartimos con terceros excepto con nuestro proveedor de IA (Replicate) estrictamente para la generación.</p>
+                    <br>
+                    <h3>4. Cookies</h3>
+                    <p>Utilizamos cookies de Google Analytics para analizar el tráfico. Puedes desactivarlas en la configuración de tu navegador.</p>
+                    <br>
+                    <h3>5. Tus Derechos</h3>
+                    <p>Tienes derecho a acceder, rectificar y suprimir tus datos. Para ejercer estos derechos, envíanos un email a info@tufelicitacion.com.</p>
                 </div>
             </div>
         `;

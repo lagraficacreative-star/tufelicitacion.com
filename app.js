@@ -411,14 +411,25 @@ const router = {
 
             // 1.5 Intro Text Block
             const introBlock = document.createElement('section');
-            introBlock.className = 'section-container fade-in';
+            introBlock.className = 'fade-in';
+            // Styling to make it full width and beautiful
+            introBlock.style.background = 'linear-gradient(to right, #fdfbfb, #ebedee)'; // Subtle gradient
+            introBlock.style.width = '100%';
+            introBlock.style.padding = '3rem 1rem';
             introBlock.style.textAlign = 'center';
-            introBlock.style.padding = '2rem 1rem';
+            introBlock.style.borderBottom = '1px solid #e1e4e8';
+            introBlock.style.marginBottom = '3rem';
             introBlock.innerHTML = `
-                <p style="font-size: 1.1rem; line-height: 1.6; max-width: 900px; margin: 0 auto; color: var(--text-color);">
-                    <strong>PERSONALIZA TU POSTAL: ESCOGE LA TEMATICA - SI QUIERES FOTOGRAFIA - VIDEO - O CON IA</strong>, 
-                    escoge tu sector de negocio y tendrás tu postal <strong>GRATIS</strong> para enviar a tus clientes, amigos o a quien quieras.
-                </p>
+                <div style="max-width: 1200px; margin: 0 auto;">
+                    <h2 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                        ¡Diseña tu Felicitación Única!
+                    </h2>
+                    <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-color); margin-bottom: 0;">
+                        Escoge si prefieres <strong>FOTOGRAFÍA</strong>, <strong>VÍDEO</strong> o usar nuestra <strong>IA Mágica</strong>.
+                        <br>
+                        Selecciona tu sector y obtén una postal profesional <span style="background: #25D366; color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: bold; font-size: 0.9em;">GRATIS</span> para sorprender a quien tú quieras.
+                    </p>
+                </div>
             `;
             container.appendChild(introBlock);
 
@@ -596,25 +607,31 @@ const router = {
 `;
         container.appendChild(hero);
 
-        // Intro Text Section
+        // Intro Text Section (Styled Full Width)
         const introSection = document.createElement('section');
-        introSection.className = 'section-container fade-in';
+        introSection.className = 'fade-in';
+        introSection.style.background = 'linear-gradient(to right, #fdfbfb, #ebedee)';
+        introSection.style.width = '100%';
+        introSection.style.padding = '3rem 1rem';
         introSection.style.textAlign = 'center';
-        introSection.style.maxWidth = '800px';
-        introSection.style.marginTop = '4rem';
-        introSection.style.marginBottom = '2rem';
+        introSection.style.borderBottom = '1px solid #e1e4e8';
+        introSection.style.marginBottom = '3rem';
         introSection.innerHTML = `
-    <p style="font-size: 1.1rem; line-height: 1.6; max-width: 900px; margin: 0 auto; color: var(--text-color);">
-        <strong>PERSONALIZA TU POSTAL: ESCOGE SI QUIERES FOTOGRAFIA - VIDEO - O CON IA</strong>, 
-        escoge tu sector de negocio y tendrás tu postal <strong>GRATIS</strong> para enviar a tus clientes, amigos o a quien quieras.
-    </p>
-    <br>
-    <p style="font-size: 1rem; line-height: 1.8; color: var(--text-muted);">
-        Nuestra plataforma permite a cualquier empresa crear contenidos totalmente personalizados de forma rápida, intuitiva y profesional.
-                <br>
-                Transforma tus ideas en piezas visuales únicas y adapta cada imagen, mensaje o vídeo a tu identidad corporativa sin necesidad de conocimientos técnicos.
-            </p>
-`;
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                    Personalización sin Límites
+                </h2>
+                <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1.5rem;">
+                     Escoge si prefieres <strong>FOTOGRAFÍA</strong>, <strong>VÍDEO</strong> o usar nuestra <strong>IA</strong>.
+                    <br>
+                    Selecciona tu sector y obtén una postal profesional <span style="background: #25D366; color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: bold; font-size: 0.9em;">GRATIS</span> para enviar a tus clientes, amigos o equipo.
+                </p>
+                <p style="font-size: 1rem; line-height: 1.8; color: var(--text-muted); max-width: 900px; margin: 0 auto;">
+                    Nuestra plataforma permite a cualquier empresa crear contenidos totalmente personalizados de forma rápida, intuitiva y profesional.
+                    Transforma tus ideas en piezas visuales únicas y adapta cada imagen a tu identidad corporativa.
+                </p>
+            </div>
+        `;
         container.appendChild(introSection);
 
         // Main Categories Section (Top)

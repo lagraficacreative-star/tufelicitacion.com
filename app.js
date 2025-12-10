@@ -363,12 +363,25 @@ const router = {
             hero.innerHTML = `
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones personalizadas<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
-            <button class="cta-button" onclick="router.navigate('christmas-home')">Empieza a personalizar</button>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
+            <button class="cta-button app-btn-success" onclick="router.navigate('christmas-home')">Empieza a personalizar</button>
         </div>
     `;
             container.appendChild(hero);
             console.log('Hero section appended');
+
+            // 1.5 Intro Text Block
+            const introBlock = document.createElement('section');
+            introBlock.className = 'section-container fade-in';
+            introBlock.style.textAlign = 'center';
+            introBlock.style.padding = '2rem 1rem';
+            introBlock.innerHTML = `
+                <p style="font-size: 1.1rem; line-height: 1.6; max-width: 900px; margin: 0 auto; color: var(--text-color);">
+                    <strong>PERSONALIZA TU POSTAL: ESCOGE LA TEMATICA - SI QUIERES FOTOGRAFIA - VIDEO - O CON IA</strong>, 
+                    escoge tu sector de negocio y tendrás tu postal <strong>GRATIS</strong> para enviar a tus clientes, amigos o a quien quieras.
+                </p>
+            `;
+            container.appendChild(introBlock);
 
             // 2. Main Categories (Events)
             const eventsSection = document.createElement('section');
@@ -552,9 +565,14 @@ const router = {
         introSection.style.marginTop = '4rem';
         introSection.style.marginBottom = '2rem';
         introSection.innerHTML = `
-    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color);">
+    <p style="font-size: 1.1rem; line-height: 1.6; max-width: 900px; margin: 0 auto; color: var(--text-color);">
+        <strong>PERSONALIZA TU POSTAL: ESCOGE SI QUIERES FOTOGRAFIA - VIDEO - O CON IA</strong>, 
+        escoge tu sector de negocio y tendrás tu postal <strong>GRATIS</strong> para enviar a tus clientes, amigos o a quien quieras.
+    </p>
+    <br>
+    <p style="font-size: 1rem; line-height: 1.8; color: var(--text-muted);">
         Nuestra plataforma permite a cualquier empresa crear contenidos totalmente personalizados de forma rápida, intuitiva y profesional.
-                <br> <br>
+                <br>
                 Transforma tus ideas en piezas visuales únicas y adapta cada imagen, mensaje o vídeo a tu identidad corporativa sin necesidad de conocimientos técnicos.
             </p>
 `;
@@ -603,7 +621,7 @@ const router = {
             <!-- Feature 1: Design -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color);">🎨</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Diseño a medida Gratis</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">DISEÑO A TU MEDIDA</h3>
                 <ul style="text-align: left; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; list-style: none; padding: 0;">
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Edita Títulos y Subtítulos</li>
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Elige entre +10 tipografías</li>
@@ -626,7 +644,7 @@ const router = {
             <!-- Feature 3: Business -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--secondary-color);">💼</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Ideal para empresas Gratis</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Ideal para empresas GRATIS</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
                     ¿Necesitas felicitar a clientes o empleados?<br><br>
                         Crea postales profesionales con tu identidad corporativa en segundos. Descarga el resultado en alta calidad lista para compartir por WhatsApp o Redes.
@@ -1737,17 +1755,10 @@ const router = {
                     <div class="card">
                         <div class="card-content">
                             <h3 class="card-title">Mis Favoritos</h3>
-                            <p>0 artículos</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <h3 class="card-title">Descargas Disponibles</h3>
-                            <p>No tienes descargas pendientes.</p>
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
     `;
     },
 
@@ -1782,7 +1793,7 @@ const router = {
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${product.title}</h3>
-                    <span class="card-price">${product.price.toFixed(2)}€</span>
+                    <span class="card-price" style="color: var(--primary-color); font-weight: bold; font-size: 0.9rem;">Descárgala GRATIS</span>
                 </div>
             </div>
     `;

@@ -1473,8 +1473,8 @@ const router = {
         const btn = document.querySelector('.cta-button');
         const originalText = btn.innerHTML;
 
-        // Initialize Stripe
-        const stripe = Stripe('pk_test_51ScgiIJ91EIzEkQw3cvrYfqMQoq3Y7cjBwpxj0vSwrjckhR168ERvs8RWm3397VBXSlovOCgHdMyJVlb9jV3clII00dezC5Rg4');
+        // Initialize Stripe with the Live Public Key
+        const stripe = Stripe('pk_live_51Scgi9JJut2I3vTZYWiuKIMdQRifeY2G4xNMCi9cEzvbRKD7fD3YLRRZQM9h6mGWG0sU53Osv3D8ljLUwK5yAilG00lY7TLDCQ');
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando con Stripe...';

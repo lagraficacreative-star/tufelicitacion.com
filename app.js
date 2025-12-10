@@ -1916,6 +1916,12 @@ document.addEventListener('DOMContentLoaded', () => {
     populateMenu('videos-sectors-menu');
     populateMenu('all-sectors-menu');
 
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
+
+    // Initialize Cookie Banner
+    initCookieBanner();
+
     // Start Router with persisted state if available
     const savedPage = localStorage.getItem('christmas_app_page');
     const savedParams = localStorage.getItem('christmas_app_params');
@@ -1947,3 +1953,35 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(warning);
     }
 });
+
+function initCookieBanner() {
+    const banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.innerHTML = `
+        <div class="cookie-content">
+            <p>
+                Utilizamos cookies propias y de terceros para mejorar su experiencia y nuestros servicios, analizando la navegación en nuestro sitio web. 
+                Si continua navegando, consideramos que acepta su uso. Puede obtener más información en nuestra 
+                <a href="#" onclick="router.navigate('cookies'); return false;" style="text-decoration: underline; color: var(--primary-color);">Política de Cookies</a>.
+            </p>
+            <div class="cookie-actions">
+                <button class="btn-accept" onclick="acceptCookies()">Aceptar</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(banner);
+
+    if (!localStorage.getItem('cookiesAccepted')) {
+        setTimeout(() => {
+            banner.style.display = 'block';
+        }, 1000);
+    }
+}
+
+window.acceptCookies = function() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.style.display = 'none';
+    }
+};

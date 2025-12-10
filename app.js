@@ -1297,8 +1297,8 @@ const router = {
         const btn = document.querySelector('.cta-button');
         const originalText = btn.innerHTML;
 
-        // Initialize Stripe (Placeholder Key)
-        const stripe = Stripe('pk_test_PLACEHOLDER');
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_51ScgiIJ91EIzEkQw3cvrYfqMQoq3Y7cjBwpxj0vSwrjckhR168ERvs8RWm3397VBXSlovOCgHdMyJVlb9jV3clII00dezC5Rg4');
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando con Stripe...';

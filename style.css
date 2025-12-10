@@ -210,6 +210,12 @@ ul {
     gap: 2rem;
 }
 
+.grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+}
+
 /* Cards */
 .card {
     background: transparent;
@@ -234,6 +240,26 @@ ul {
     transition: transform 0.5s ease;
     display: block;
     /* Remove inline-block spacing */
+}
+
+/* Home Page Specific Product Cards (Hide Price) */
+.home-product-card .card-price {
+    display: none;
+}
+
+/* Specific styling for smaller sector circles */
+.sector-card .card-image-container {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 100%;
+    margin: 0 auto 0.5rem;
+    max-width: 150px;
+    /* Limit size */
+}
+
+.sector-card .card-title {
+    font-size: 0.9rem;
+    text-transform: capitalize;
 }
 
 .card:hover .card-image {
@@ -578,7 +604,8 @@ footer {
         white-space: nowrap;
         padding-bottom: 0.5rem;
         gap: 1.5rem;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
     }
 
     /* Hide scrollbar for cleaner look */
@@ -610,6 +637,11 @@ footer {
     .grid-3,
     .grid-4 {
         grid-template-columns: 1fr;
+    }
+
+    .grid-6 {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cols on mobile for sectors */
     }
 
     .hero h1 {

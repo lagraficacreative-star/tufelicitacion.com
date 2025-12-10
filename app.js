@@ -497,7 +497,7 @@ const router = {
 `;
         container.appendChild(categoriesSection);
 
-        // Features Section
+        // Features Section (MOVED UP)
         const featuresSection = document.createElement('section');
         featuresSection.className = 'section-container fade-in';
         featuresSection.innerHTML = `
@@ -506,7 +506,7 @@ const router = {
             <!-- Feature 1: Design -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color);">🎨</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Diseño a tu medida</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Diseño a medida Gratis</h3>
                 <ul style="text-align: left; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; list-style: none; padding: 0;">
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Edita Títulos y Subtítulos</li>
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Elige entre +10 tipografías</li>
@@ -518,7 +518,7 @@ const router = {
             <!-- Feature 2: AI Magic -->
             <div style="background: linear-gradient(135deg, #fff5f5 0%, #fff 100%); padding: 2rem; border-radius: 1rem; border: 1px solid #ffd7d7; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #ff4081;">🪄</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Estudio Magic AI</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Estudio Magic AI (Compra créditos)</h3>
                 <ul style="text-align: left; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; list-style: none; padding: 0;">
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color: #ff4081; margin-right: 0.5rem;"></i> <strong>Cambio de Cara</strong>: ¡Sé el protagonista!</li>
                     <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-image" style="color: #ff4081; margin-right: 0.5rem;"></i> <strong>Cambio de Fondo</strong>: Elige escenario o sube el tuyo.</li>
@@ -529,7 +529,7 @@ const router = {
             <!-- Feature 3: Business -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--secondary-color);">💼</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Ideal Empresas</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Ideal para empresas Gratis</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
                     ¿Necesitas felicitar a clientes o empleados?<br><br>
                         Crea postales profesionales con tu identidad corporativa en segundos. Descarga el resultado en alta calidad lista para compartir por WhatsApp o Redes.
@@ -538,6 +538,39 @@ const router = {
             </div>
             `;
         container.appendChild(featuresSection);
+
+        // All Sectors Section (Moved Up + Grid-6 Layout)
+        const allSectorsSection = document.createElement('section');
+        allSectorsSection.className = 'section-container fade-in';
+        allSectorsSection.innerHTML = `
+            <h2 class="section-title centered">Todos los Sectores</h2>
+            <div class="grid-6" style="text-align: center;">
+                ${SECTORS.map(s => `
+                        <div class="sector-card" onclick="router.navigate('sector-detail', {sectorId: '${s.id}'})" style="cursor: pointer;">
+                            <div class="card-image-container">
+                                <img src="${s.image}" class="card-image" style="object-fit:cover;">
+                            </div>
+                            <h3 class="card-title">${s.name}</h3>
+                        </div>
+                `).join('')}
+            </div>
+            `;
+        container.appendChild(allSectorsSection);
+
+        // Featured Postcards Section (Cambia tu cara - Limited to 4)
+        const faceSwapProducts = PRODUCTS.filter(p => p.sector === 'faceswap_special' || p.sector === 'moda').slice(0, 4);
+        if (faceSwapProducts.length > 0) {
+            const faceSwapSection = document.createElement('section');
+            faceSwapSection.className = 'section-container fade-in';
+            faceSwapSection.innerHTML = `
+                <h2 class="section-title centered">Cambia tu cara</h2>
+                <div class="grid-4">
+                    ${faceSwapProducts.map(p => this.createProductCard(p, false)).join('')} 
+                </div> 
+                <!-- Passed false to hide price -->
+            `;
+            container.appendChild(faceSwapSection);
+        }
 
         // Banner Section
         const banner = document.createElement('section');
@@ -549,54 +582,27 @@ const router = {
             `;
         container.appendChild(banner);
 
-        // Featured Products Section (General)
-        const productsSection = document.createElement('section');
-        productsSection.className = 'section-container fade-in';
-        productsSection.innerHTML = `
-            <h2 class="section-title centered">Destacados</h2>
-            <div class="grid-4">
-                ${PRODUCTS.filter(p => [58, 59, 60, 61].includes(p.id)).map(p => this.createProductCard(p)).join('')}
-            </div>
-            `;
-        container.appendChild(productsSection);
-
-        // Featured Postcards Section
-        const postcardsSection = document.createElement('section');
-        postcardsSection.className = 'section-container fade-in';
-        postcardsSection.innerHTML = `
-            <h2 class="section-title">Postales Navideñas</h2>
-            <div class="grid-4">
-                ${PRODUCTS.filter(p => p.type === 'postcard').slice(0, 4).map(p => this.createProductCard(p)).join('')}
-            </div>
-            `;
-        container.appendChild(postcardsSection);
-
         // Featured Videos Section
         const videosSection = document.createElement('section');
         videosSection.className = 'section-container fade-in';
         videosSection.innerHTML = `
             <h2 class="section-title">Vídeos Navideños</h2>
             <div class="grid-4">
-                ${PRODUCTS.filter(p => p.type === 'video').slice(0, 4).map(p => this.createProductCard(p)).join('')}
+                ${PRODUCTS.filter(p => p.type === 'video').slice(0, 4).map(p => this.createProductCard(p, false)).join('')}
             </div>
-            `;
+        `;
         container.appendChild(videosSection);
 
-        // All Sectors Section (Icons)
-        const allSectorsSection = document.createElement('section');
-        allSectorsSection.className = 'section-container fade-in';
-        allSectorsSection.innerHTML = `
-            <h2 class="section-title">Todos los Sectores</h2>
-            <div class="grid-4" style="text-align: center;">
-                ${SECTORS.map(s => `
-                        <div class="card" onclick="router.navigate('sector-detail', {sectorId: '${s.id}'})" style="padding: 2rem; border: 1px solid var(--border-color); border-radius: 1rem; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
-                            <i class="fa-solid ${s.icon}" style="font-size: 3rem; color: var(--text-color);"></i>
-                            <h3 class="card-title" style="margin: 0; font-family: var(--font-heading); font-size: 1.2rem;">${s.name}</h3>
-                        </div>
-                `).join('')}
+        // More Products Section
+        const moreProductsSection = document.createElement('section');
+        moreProductsSection.className = 'section-container fade-in';
+        moreProductsSection.innerHTML = `
+            <h2 class="section-title centered">Coleccion 2025</h2>
+            <div class="grid-4">
+                ${PRODUCTS.filter(p => p.type === 'postcard' && p.sector !== 'faceswap_special').slice(0, 8).map(p => this.createProductCard(p, false)).join('')}
             </div>
-            `;
-        container.appendChild(allSectorsSection);
+        `;
+        container.appendChild(moreProductsSection);
     },
 
     renderCatalog(container, type) {
@@ -1661,42 +1667,20 @@ const router = {
     `;
     },
 
-    createProductCard(product) {
-        const sectorName = SECTORS.find(s => s.id === product.sector)?.name || product.sector;
-        // Encode the URL to handle spaces and special characters
-        const encodedImage = encodeURI(product.image);
-
-        let mediaHtml;
-        if (product.type === 'video') {
-            // Render video tag for video products
-            mediaHtml = `
-    <video
-src="${encodedImage}"
-class="card-image"
-muted
-loop
-playsinline
-preload="metadata"
-onmouseover="this.play()"
-onmouseout="this.pause(); this.currentTime = 0;"
-style="object-fit: cover; width: 100%; height: 100%;"
-    ></video>
-        <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(0,0,0,0.6); color: white; padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; pointer-events: none;">
-            <i class="fa-solid fa-video"></i>
-        </div>
-`;
-        } else {
-            // Render img tag for standard products
-            mediaHtml = `<img src="${encodedImage}" alt="${product.title}" class="card-image">`;
-        }
-
+    createProductCard(product, showPrice = true) {
         return `
-    <div class="card" onclick="router.navigate('product', {productId: ${product.id}})">
-                <div class="card-image-container" style="position: relative;">
-                    ${mediaHtml}
+            <div class="card ${showPrice ? '' : 'home-product-card'}" onclick="router.navigate('product', {productId: ${product.id}})">
+                <div class="card-image-container">
+                    ${product.type === 'video' ? `
+                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.2rem 0.5rem; border-radius: 0.2rem; font-size: 0.7rem;">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <img src="${product.image}" loading="lazy" alt="${product.title}" class="card-image">
+                    ` : `
+                        <img src="${product.image}" loading="lazy" alt="${product.title}" class="card-image">
+                    `}
                 </div>
                 <div class="card-content">
-                    <span class="card-category" style="font-size: 0.7rem; color: var(--secondary-color); text-transform: uppercase;">${sectorName}</span>
                     <h3 class="card-title">${product.title}</h3>
                     <span class="card-price">${product.price.toFixed(2)}€</span>
                 </div>

@@ -552,10 +552,37 @@ footer {
 /* Responsive */
 @media (max-width: 1024px) {
     .nav-container {
-        grid-template-columns: auto 1fr auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .logo {
+        order: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    .user-actions {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
     }
 
     .nav-links {
+        order: 3;
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.5rem;
+        gap: 1.5rem;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
+    /* Hide scrollbar for cleaner look */
+    .nav-links::-webkit-scrollbar {
         display: none;
     }
 

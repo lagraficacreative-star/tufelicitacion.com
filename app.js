@@ -416,28 +416,18 @@ const router = {
             sectorsSection.className = 'section-container fade-in';
             sectorsSection.innerHTML = `
                 <h2 class="section-title centered">Elige tu sector</h2>
-                    <div class="grid-4" id="home-sectors-grid">
-                        <!-- Sectors will be populated here -->
-                    </div>
+                <div class="grid-6" style="text-align: center;">
+                    ${SECTORS.map(s => `
+                            <div class="sector-card" onclick="router.navigate('sector-detail', {sectorId: '${s.id}'})" style="cursor: pointer;">
+                                <div class="card-image-container">
+                                    <img src="${s.image}" class="card-image" style="object-fit:cover;">
+                                </div>
+                                <h3 class="card-title">${s.name}</h3>
+                            </div>
+                    `).join('')}
+                </div>
             `;
             container.appendChild(sectorsSection);
-
-            // Populate Sectors Grid
-            const sectorsGrid = sectorsSection.querySelector('#home-sectors-grid');
-            SECTORS.forEach(sector => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.onclick = () => router.navigate('sector-detail', { sectorId: sector.id });
-                card.innerHTML = `
-                <div class="card-image-container" style="aspect-ratio: 1/1; border-radius: 50%;">
-                <img src="${sector.image}" alt="${sector.name}" class="card-image">
-            </div>
-            <div class="card-content" style="text-align: center;">
-                <h3 class="card-title">${sector.name}</h3>
-            </div>
-            `;
-                sectorsGrid.appendChild(card);
-            });
 
             // 3.5 Face Swap Special Section (Cambia tu cara)
             const faceSwapProducts = PRODUCTS.filter(p => p.sector === 'faceswap_special' || p.sector === 'moda');

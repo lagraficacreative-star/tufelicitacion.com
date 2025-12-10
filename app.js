@@ -602,7 +602,8 @@ const router = {
         hero.innerHTML = `
     <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Tu Postal de Navidad personalizada</h1>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones de Navidad personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
+            <button class="cta-button app-btn-success" onclick="document.getElementById('postcards-sectors-menu').scrollIntoView({behavior: 'smooth'})">Empieza a personalizar</button>
         </div>
 `;
         container.appendChild(hero);
@@ -1978,7 +1979,7 @@ function initCookieBanner() {
     }
 }
 
-window.acceptCookies = function() {
+window.acceptCookies = function () {
     localStorage.setItem('cookiesAccepted', 'true');
     const banner = document.getElementById('cookie-banner');
     if (banner) {

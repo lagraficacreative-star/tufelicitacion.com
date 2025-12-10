@@ -1765,6 +1765,9 @@ const router = {
     },
 
     createProductCard(product, showPrice = true) {
+        // Encode the URL to handle spaces and special characters in filenames
+        const encodedImage = encodeURI(product.image);
+
         return `
             <div class="card ${showPrice ? '' : 'home-product-card'}" onclick="router.navigate('product', {productId: ${product.id}})">
                 <div class="card-image-container">
@@ -1772,9 +1775,9 @@ const router = {
                         <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.2rem 0.5rem; border-radius: 0.2rem; font-size: 0.7rem;">
                             <i class="fa-solid fa-video"></i>
                         </div>
-                        <img src="${product.image}" loading="lazy" alt="${product.title}" class="card-image">
+                        <img src="${encodedImage}" loading="lazy" alt="${product.title}" class="card-image">
                     ` : `
-                        <img src="${product.image}" loading="lazy" alt="${product.title}" class="card-image">
+                        <img src="${encodedImage}" loading="lazy" alt="${product.title}" class="card-image">
                     `}
                 </div>
                 <div class="card-content">

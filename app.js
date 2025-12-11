@@ -948,9 +948,10 @@ const router = {
                         <!-- AI Studio Section (Tabs: Face, BG, Motion) - Hidden for Videos -->
                         ${product.type !== 'video' ? `
                         <div class="form-group" style="background: #ffffff; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-top: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
                             </h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. Descarga tu obra maestra por solo <strong>2,00€</strong></p>
 
                             <div style="margin-bottom: 1rem; padding: 0.5rem; background: #e8f5e9; border-radius: 0.5rem; color: #2e7d32; font-size: 0.8rem; text-align: center;">
                                 <i class="fa-solid fa-check-circle"></i> IA Activada y lista para usar.
@@ -1954,6 +1955,46 @@ const router = {
         this.renderAccountShop(container);
     },
 
+    promptEmail() {
+        const existingModal = document.getElementById('email-modal');
+        if (existingModal) existingModal.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'email-modal';
+        modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);';
+
+        modal.innerHTML = `
+            <div class="fade-in" style="background: white; padding: 2rem; border-radius: 1rem; max-width: 400px; width: 90%; position: relative;">
+                <button onclick="document.getElementById('email-modal').remove()" style="position: absolute; top: 1rem; right: 1rem; border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                
+                <h3 style="text-align: center; margin-bottom: 1rem;">¡Casi listo!</h3>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Introduce tu email para descargar tu felicitación gratis.</p>
+                
+                <form onsubmit="event.preventDefault(); router.saveEmailAndContinue();">
+                    <div class="form-group">
+                        <input type="email" id="input-email-collect" class="form-control" placeholder="tu@email.com" required>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Continuar</button>
+                    <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">
+                        No te enviaremos spam. Solo novedades importantes.
+                    </p>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    },
+
+    saveEmailAndContinue() {
+        const emailInput = document.getElementById('input-email-collect');
+        if (emailInput && emailInput.value) {
+            localStorage.setItem('user_email', emailInput.value);
+            document.getElementById('email-modal').remove();
+
+            // Retry download
+            router.downloadComposite();
+        }
+    },
+
     createProductCard(product, showPrice = true) {
         // Encode the URL to handle spaces and special characters in filenames
         const encodedImage = encodeURI(product.image);
@@ -1977,6 +2018,13 @@ const router = {
     `;
     },
     downloadComposite() {
+        // Enforce Email Collection
+        const userEmail = localStorage.getItem('user_email');
+        if (!userEmail) {
+            router.promptEmail();
+            return;
+        }
+
         const previewArea = document.getElementById('preview-area');
         if (!previewArea) return;
 

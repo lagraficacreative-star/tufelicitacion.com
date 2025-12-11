@@ -880,6 +880,7 @@ const router = {
         const faceCount = product.faceCount || 0;
         const showFaceTab = faceCount > 0;
         const defaultTab = showFaceTab ? 'face' : 'bg';
+        const isMagic = showFaceTab || product.is_face_swap;
 
         // Generate Face Inputs HTML based on count
         let faceInputsHtml = '';
@@ -931,7 +932,7 @@ const router = {
                                     <img id="preview-logo" class="preview-logo-img" src="" alt="Logo">
                                 </div>
                             </div>
-                            ${!hasPaid ? `
+                            ${(isMagic && !hasPaid) ? `
                             <div class="watermark-overlay" id="watermark-layer">
                                 <div class="watermark-pattern">
                                     ${Array(100).fill('<div class="watermark-text">Tu Felicitación</div>').join('')}
@@ -1176,18 +1177,24 @@ const router = {
                     </div>
 
                     <div id="action-buttons-container" style="margin-top: 1rem;">
-                        ${!hasPaid ? `
-                            <button class="cta-button" onclick="router.handlePurchase()" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
-                                <i class="fa-solid fa-star"></i> Quitar marca de agua (2€)
+                        ${isMagic ? (`
+                            ${!hasPaid ? `
+                            <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
+                                <i class="fa-solid fa-star"></i> Descargar (2.00€)
                             </button>
                             <button class="btn-outline" onclick="router.downloadComposition()" style="width: 100%; border-color: var(--text-muted); color: var(--text-muted);">
                                 <i class="fa-solid fa-download"></i> Descargar (con marca de agua)
                             </button>
-                        ` : `
+                            ` : `
                             <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; border: none;">
                                 <i class="fa-solid fa-download"></i> Descargar Original
                             </button>
-                        `}
+                            `}
+                        `) : (`
+                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; margin-bottom: 1rem; border: none; background: var(--success-color, #28a745); color: #fff;">
+                                <i class="fa-solid fa-download"></i> Descargar GRATIS
+                            </button>
+                        `)}
                     </div>
                 </div>
             </div>
@@ -1550,7 +1557,7 @@ const router = {
                 const mainBtn = document.getElementById('btn-main-action');
                 if (mainBtn) {
                     mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Comprar Resultado (2.00€)';
-                    mainBtn.onclick = () => router.handlePurchase();
+                    mainBtn.onclick = () => router.renderPaymentSelection(this.params.productId);
                     mainBtn.classList.add('pulse-animation'); // Optional: Add a CSS animation to highlight it
                 }
 
@@ -1562,6 +1569,63 @@ const router = {
             console.error('HandleAIAction Error:', error);
             statusDiv.innerHTML = `<span style="color: red;">Error: ${error.message || error}</span>`;
         }
+    },
+
+    renderPaymentSelection(productId) {
+        // Create Modal Overlay
+        const existingModal = document.getElementById('payment-modal');
+        if (existingModal) existingModal.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'payment-modal';
+        modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);';
+
+        modal.innerHTML = `
+            <div class="fade-in" style="background: white; padding: 2rem; border-radius: 1rem; max-width: 500px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto;">
+                <button onclick="document.getElementById('payment-modal').remove()" style="position: absolute; top: 1rem; right: 1rem; border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">Elige tu método de pago</h2>
+                
+                <!-- Method 1: Card/Stripe -->
+                <div style="margin-bottom: 1.5rem; border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#eee'" onclick="router.handlePurchase()">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                        <div style="font-size: 1.5rem; color: #6772e5;"><i class="fa-brands fa-stripe"></i></div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Tarjeta de Crédito / Débito</h3>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago seguro inmediato. Descarga automática.</p>
+                </div>
+
+                <!-- Method 2: Bizum -->
+                <div style="border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#00D1D6'" onmouseout="this.style.borderColor='#eee'" onclick="router.showBizumInstructions()">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                        <div style="font-size: 1.5rem; color: #00D1D6;"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Bizum</h3>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago manual. Requiere verificación.</p>
+                </div>
+
+                <div id="bizum-instructions" style="display: none; margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+                    <h4 style="margin-bottom: 1rem; color: var(--text-color);">Instrucciones Bizum:</h4>
+                    <ol style="padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
+                        <li>Haz un Bizum de <strong>2,00€</strong> al número: <br><strong style="font-size: 1.1rem;">639 087 024</strong></li>
+                        <li>En el concepto escribe: <strong>Navidad IA</strong></li>
+                        <li>Envíanos el comprobante por WhatsApp al mismo número.</li>
+                    </ol>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                        <i class="fa-solid fa-clock"></i> Una vez verificado (aprox. 1-2h), te enviaremos tu archivo sin marca de agua por WhatsApp.
+                    </p>
+                    <a href="https://wa.me/34639087024" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 1rem; background: #25D366; color: white; border: none;">
+                        <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante
+                    </a>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    },
+
+    showBizumInstructions() {
+        const el = document.getElementById('bizum-instructions');
+        if (el) el.style.display = 'block';
     },
 
     async handlePurchase() {

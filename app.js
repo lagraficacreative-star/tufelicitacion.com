@@ -1024,8 +1024,8 @@ const router = {
                                 </div>
 
                                 <!-- 4. Download Result -->
-                                <button id="btn-download-composite" type="button" class="btn-outline" onclick="router.downloadComposite()" style="width: 100%; margin-top: 1.5rem; border-color: #2e7d32; color: #2e7d32; font-weight: bold;">
-                                    <i class="fa-solid fa-download"></i> Descargar Postal
+                                <button id="btn-download-composite" type="button" class="btn-outline" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-top: 1.5rem; border-color: #FFD700; color: #000; background-color: #FFF8E1;">
+                                    <i class="fa-solid fa-star"></i> Pagar y Descargar (2.00€)
                                 </button>
                             </div>
 
@@ -1205,16 +1205,16 @@ const router = {
                             <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
                                 <i class="fa-solid fa-star"></i> Pagar 2€ por descarga
                             </button>
-                            <button class="btn-outline" onclick="router.downloadComposition()" style="width: 100%; border-color: var(--text-muted); color: var(--text-muted);">
+                            <button class="btn-outline" onclick="router.downloadComposite()" style="width: 100%; border-color: var(--text-muted); color: var(--text-muted);">
                                 <i class="fa-solid fa-download"></i> Descargar (con marca de agua)
                             </button>
                             ` : `
-                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; border: none;">
+                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none;">
                                 <i class="fa-solid fa-download"></i> Descargar Original
                             </button>
                             `}
                         `) : (`
-                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; margin-bottom: 1rem; border: none; background: var(--success-color, #28a745); color: #fff;">
+                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; margin-bottom: 1rem; border: none; background: var(--success-color, #28a745); color: #fff;">
                                 <i class="fa-solid fa-download"></i> Descargar GRATIS
                             </button>
                         `)}

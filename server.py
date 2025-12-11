@@ -8,38 +8,9 @@ import ssl
 app = Flask(__name__, static_folder='.', static_url_path='')
 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN", "r8_WfyFEUjbkNB6oOiQiq0hvGtz3mN5iec2m9jZm")
-STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY", "sk_test_PLACEHOLDER")
 
-import stripe
-stripe.api_key = STRIPE_API_KEY
 
-@app.route('/api/create-checkout-session', methods=['POST'])
-def create_checkout_session():
-    try:
-        data = request.json
-        # In a real app, validate price and product details on backend
-        
-        session = stripe.checkout.Session.create(
-            # Use the specific configuration ID provided by the user
-            payment_method_configuration="cpmt_1Sd2ihJJut2I3vTZcnedBawx",
-            line_items=[{
-                'price_data': {
-                    'currency': 'eur',
-                    'product_data': {
-                        'name': 'Generación Postal Navidad IA',
-                        'description': 'Crédito para generar imagen/video personalizado.',
-                    },
-                    'unit_amount': 200, # 2.00 EUR
-                },
-                'quantity': 1,
-            }],
-            mode='payment',
-            success_url=request.host_url + '?payment_success=true',
-            cancel_url=request.host_url + '?payment_canceled=true',
-        )
-        return jsonify({'id': session.id})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
+
 
 
 @app.route('/')

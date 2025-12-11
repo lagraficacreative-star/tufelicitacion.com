@@ -22,15 +22,53 @@ const SECTORS = [
     { id: 'restauracion', name: 'Restauración', icon: 'fa-utensils', image: 'sectores/restauracionimagenes/restaurantenavidad4.png' },
     { id: 'salud', name: 'Salud', icon: 'fa-heart-pulse', image: 'sectores/salud imagenes/unnamed copia 2.jpg' },
     { id: 'servicios', name: 'Servicios', icon: 'fa-handshake', image: 'sectores/ciudades imagenes/sagradafamilia.jpg' },
+    // New Sectors for Other Events
+    { id: 'fiesta', name: 'Fiesta', icon: 'fa-cake-candles', image: 'sectores/estetica imagenes/chicamaquillajenav.jpg' },
+    { id: 'boda', name: 'Bodas', icon: 'fa-ring', image: 'sectores/moda imagenes/moda.png' },
+    { id: 'aniversario', name: 'Aniversarios', icon: 'fa-heart', image: 'sectores/restauracionimagenes/restaurantenavidad4.png' },
 ];
 
 const PRODUCTS = [
+    // Placeholder Products for New Events
+    {
+        id: 1001,
+        title: "Felicitación Cumpleaños 1",
+        type: "postcard",
+        sector: "fiesta",
+        price: 0.00,
+        image: "sectores/estetica imagenes/chicamaquillajenav.jpg",
+        description: "¡Feliz Cumpleaños! Un diseño especial para celebrar.",
+        faceCount: 1,
+        tags: ["birthday"]
+    },
+    {
+        id: 1002,
+        title: "Boda Elegante",
+        type: "postcard",
+        sector: "boda",
+        price: 0.00,
+        image: "sectores/moda imagenes/moda.png",
+        description: "Una felicitación elegante para bodas.",
+        faceCount: 0,
+        tags: ["wedding"]
+    },
+    {
+        id: 1003,
+        title: "Aniversario Romántico",
+        type: "postcard",
+        sector: "aniversario",
+        price: 0.00,
+        image: "sectores/restauracionimagenes/restaurantenavidad4.png",
+        description: "Celebra el amor en este aniversario.",
+        faceCount: 0,
+        tags: ["anniversary"]
+    },
     {
         id: 1,
         title: "Bombillanavidad",
         type: "postcard",
         sector: "industria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/industriales/bombillanavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector industria.",
         faceCount: 0
@@ -40,7 +78,7 @@ const PRODUCTS = [
         title: "Diseño 9",
         type: "postcard",
         sector: "industria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/industriales/unnamed-9.jpg",
         description: "Felicitación navideña exclusiva para el sector industria.",
         faceCount: 0
@@ -50,7 +88,7 @@ const PRODUCTS = [
         title: "Diseño 22",
         type: "postcard",
         sector: "industria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/industriales/unnamed-22.jpg",
         description: "Felicitación navideña exclusiva para el sector industria.",
         faceCount: 0
@@ -60,7 +98,7 @@ const PRODUCTS = [
         title: "Diseño 20",
         type: "postcard",
         sector: "industria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/industriales/unnamed-20.jpg",
         description: "Felicitación navideña exclusiva para el sector industria.",
         faceCount: 0
@@ -70,7 +108,7 @@ const PRODUCTS = [
         title: "Diseño 16",
         type: "postcard",
         sector: "industria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/industriales/unnamed-16.jpg",
         description: "Felicitación navideña exclusiva para el sector industria.",
         faceCount: 0
@@ -80,7 +118,7 @@ const PRODUCTS = [
         title: "Diseño 15",
         type: "postcard",
         sector: "limpieza",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/limpieza imagenes/unnamed-15.jpg",
         description: "Felicitación navideña exclusiva para el sector limpieza.",
         faceCount: 0
@@ -90,7 +128,7 @@ const PRODUCTS = [
         title: "Diseño Arte 7",
         type: "postcard",
         sector: "arte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/arte imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector arte.",
         faceCount: 0
@@ -100,7 +138,7 @@ const PRODUCTS = [
         title: "Arteestrella",
         type: "postcard",
         sector: "arte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/arte imagenes/arteestrella.jpg",
         description: "Felicitación navideña exclusiva para el sector arte.",
         faceCount: 0
@@ -110,7 +148,7 @@ const PRODUCTS = [
         title: "Arte Mujer",
         type: "postcard",
         sector: "arte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/arte imagenes/arte mujer.jpg",
         description: "Felicitación navideña exclusiva para el sector arte.",
         faceCount: 0
@@ -120,7 +158,7 @@ const PRODUCTS = [
         title: "Diseño 14",
         type: "postcard",
         sector: "arte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/arte imagenes/unnamed-14.jpg",
         description: "Felicitación navideña exclusiva para el sector arte.",
         faceCount: 0
@@ -130,7 +168,7 @@ const PRODUCTS = [
         title: "Alimentacion",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/alimentacion.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -140,7 +178,7 @@ const PRODUCTS = [
         title: "Arbolfrutasanta",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/arbolfrutasanta.jpg",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -150,7 +188,7 @@ const PRODUCTS = [
         title: "Frutasnavidad",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/frutasnavidad.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -160,7 +198,7 @@ const PRODUCTS = [
         title: "Frutaarbo2",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/frutaarbo2.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -170,7 +208,7 @@ const PRODUCTS = [
         title: "Mandarinasantaclaus",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/mandarinasantaclaus.jpg",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -180,7 +218,7 @@ const PRODUCTS = [
         title: "Peranavidad2",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/peranavidad2.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -190,7 +228,7 @@ const PRODUCTS = [
         title: "Peranavidad1",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/peranavidad1.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -200,7 +238,7 @@ const PRODUCTS = [
         title: "Fruita 3",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/fruita-3.webp",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -210,7 +248,7 @@ const PRODUCTS = [
         title: "Santa Clausfruta",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/santa clausfruta.webp",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -220,7 +258,7 @@ const PRODUCTS = [
         title: "Estrellafruta",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/estrellafruta.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -230,7 +268,7 @@ const PRODUCTS = [
         title: "Arbolfruta",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/arbolfruta.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -240,7 +278,7 @@ const PRODUCTS = [
         title: "Manzana Navidad",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/manzana-navidad.webp",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -250,7 +288,7 @@ const PRODUCTS = [
         title: "Pavosantaclaus",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/pavosantaclaus.jpg",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -260,7 +298,7 @@ const PRODUCTS = [
         title: "Arbolfruta Png",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/arbolfruta.png.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -270,7 +308,7 @@ const PRODUCTS = [
         title: "ManzanamontañA",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/manzanamontaña.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -280,7 +318,7 @@ const PRODUCTS = [
         title: "Frutasnavidad2",
         type: "postcard",
         sector: "alimentacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/alimentacionimagenes/frutasnavidad2.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -290,7 +328,7 @@ const PRODUCTS = [
         title: "Peluquerianubes",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peluquerianubes.jpg",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -300,7 +338,7 @@ const PRODUCTS = [
         title: "Peluqueraarbol",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peluqueraarbol.jpg",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -310,7 +348,7 @@ const PRODUCTS = [
         title: "Peluquerianavidad",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peluquerianavidad.png",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -320,7 +358,7 @@ const PRODUCTS = [
         title: "Peluquerianavidad2",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peluquerianavidad2.png",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -330,7 +368,7 @@ const PRODUCTS = [
         title: "PeluqueriamuñEca",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peluqueriamuñeca.jpg",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -340,7 +378,7 @@ const PRODUCTS = [
         title: "Dall·E 2024 11 21 07 52 49   A Highly Realistic Portrait Of A Young Woman With Her Hair Styled Into A High Bun Shaped Like A Christmas Tree  The Bun Features Intricate Details Of",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/DALL·E 2024-11-21 07.52.49 - A highly realistic portrait of a young woman with her hair styled into a high bun shaped like a Christmas tree. The bun features intricate details of .webp",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -350,7 +388,7 @@ const PRODUCTS = [
         title: "Peinearbol",
         type: "postcard",
         sector: "peluqueria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/peluqueria imagenes/peinearbol.png",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -360,7 +398,7 @@ const PRODUCTS = [
         title: "Sagradafamilia",
         type: "postcard",
         sector: "servicios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ciudades imagenes/sagradafamilia.jpg",
         description: "Felicitación navideña exclusiva para el sector servicios.",
         faceCount: 0
@@ -370,7 +408,7 @@ const PRODUCTS = [
         title: "Barcelonasantaclaus",
         type: "postcard",
         sector: "servicios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ciudades imagenes/barcelonasantaclaus.jpg",
         description: "Felicitación navideña exclusiva para el sector servicios.",
         faceCount: 0
@@ -380,7 +418,7 @@ const PRODUCTS = [
         title: "Lleida Santa Claus",
         type: "postcard",
         sector: "servicios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ciudades imagenes/lleida santa claus.jpg",
         description: "Felicitación navideña exclusiva para el sector servicios.",
         faceCount: 0
@@ -390,7 +428,7 @@ const PRODUCTS = [
         title: "Barcelona Santa Claus",
         type: "postcard",
         sector: "servicios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ciudades imagenes/barcelona santa claus.jpg",
         description: "Felicitación navideña exclusiva para el sector servicios.",
         faceCount: 0
@@ -400,7 +438,7 @@ const PRODUCTS = [
         title: "Lleidapistahielo",
         type: "postcard",
         sector: "servicios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ciudades imagenes/lleidapistahielo.jpg",
         description: "Felicitación navideña exclusiva para el sector servicios.",
         faceCount: 0
@@ -410,7 +448,7 @@ const PRODUCTS = [
         title: "Optica 6",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica-6.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -420,7 +458,7 @@ const PRODUCTS = [
         title: "Optica 7",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica-7.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -430,7 +468,7 @@ const PRODUCTS = [
         title: "PestañAnavidad",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/pestañanavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -440,7 +478,7 @@ const PRODUCTS = [
         title: "Optica18",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica18.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -450,7 +488,7 @@ const PRODUCTS = [
         title: "Optica19",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica19.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -460,7 +498,7 @@ const PRODUCTS = [
         title: "Optica21",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica21.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -470,7 +508,7 @@ const PRODUCTS = [
         title: "Optica20",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica20.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -480,7 +518,7 @@ const PRODUCTS = [
         title: "Optica9",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica9.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -490,7 +528,7 @@ const PRODUCTS = [
         title: "Optica8",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica8.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -500,7 +538,7 @@ const PRODUCTS = [
         title: "Optica12",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica12.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -510,7 +548,7 @@ const PRODUCTS = [
         title: "Optica5",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica5.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -520,7 +558,7 @@ const PRODUCTS = [
         title: "Optica4",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica4.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -530,7 +568,7 @@ const PRODUCTS = [
         title: "Optica13",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica13.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -540,7 +578,7 @@ const PRODUCTS = [
         title: "Optica11",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica11.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -550,7 +588,7 @@ const PRODUCTS = [
         title: "Optica10",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica10.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -560,7 +598,7 @@ const PRODUCTS = [
         title: "Optica14",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica14.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -570,7 +608,7 @@ const PRODUCTS = [
         title: "Optica3",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica3.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -580,7 +618,7 @@ const PRODUCTS = [
         title: "Optica2",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica2.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -590,7 +628,7 @@ const PRODUCTS = [
         title: "Optica15",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica15.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -600,7 +638,7 @@ const PRODUCTS = [
         title: "Optica17",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica17.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -610,7 +648,7 @@ const PRODUCTS = [
         title: "Optica1",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica1.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -620,7 +658,7 @@ const PRODUCTS = [
         title: "Optica16",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/optica16.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -630,7 +668,7 @@ const PRODUCTS = [
         title: "Ojosnavidad",
         type: "postcard",
         sector: "opticas",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/opticaimagenes/ojosnavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
@@ -640,7 +678,7 @@ const PRODUCTS = [
         title: "PerronavideñO",
         type: "postcard",
         sector: "humor",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/humor imagenes/perronavideño.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
@@ -650,7 +688,7 @@ const PRODUCTS = [
         title: "Oso NavideñO",
         type: "postcard",
         sector: "humor",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/humor imagenes/oso navideño.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
@@ -660,7 +698,7 @@ const PRODUCTS = [
         title: "Perronavidad Calle",
         type: "postcard",
         sector: "humor",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/humor imagenes/perronavidad-calle.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
@@ -670,7 +708,7 @@ const PRODUCTS = [
         title: "Gato NavideñO",
         type: "postcard",
         sector: "humor",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/humor imagenes/gato navideño.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
@@ -680,7 +718,7 @@ const PRODUCTS = [
         title: "Edificioluces",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/edificioluces.webp",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -690,7 +728,7 @@ const PRODUCTS = [
         title: "Inmobiliarianavidad",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/inmobiliarianavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -700,7 +738,7 @@ const PRODUCTS = [
         title: "Edificioarbol",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/edificioarbol.png",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -710,7 +748,7 @@ const PRODUCTS = [
         title: "Ventananavidad",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/ventananavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -720,7 +758,7 @@ const PRODUCTS = [
         title: "Arbolinmobiliaria",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/arbolinmobiliaria.png",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -730,7 +768,7 @@ const PRODUCTS = [
         title: "Regalocasa",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/regalocasa.jpg",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -740,7 +778,7 @@ const PRODUCTS = [
         title: "Ciudadestrella",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/ciudadestrella.png",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -750,7 +788,7 @@ const PRODUCTS = [
         title: "Diseño 1",
         type: "postcard",
         sector: "inmobiliaria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/inmobiliaria imagenes/unnamed-1.jpg",
         description: "Felicitación navideña exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -760,7 +798,7 @@ const PRODUCTS = [
         title: "Maniquis Bailarines",
         type: "video",
         sector: "moda",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/moda videos/PixVerse_V5_Image_Text_360P_hacer_que_estos_ma.mp4",
         description: "Vídeo navideño exclusiva para el sector moda.",
         faceCount: 1
@@ -770,7 +808,7 @@ const PRODUCTS = [
         title: "Diseño 24",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-24.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -780,7 +818,7 @@ const PRODUCTS = [
         title: "Diseño 23",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-23.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -790,7 +828,7 @@ const PRODUCTS = [
         title: "Diseño 10",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-10.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -800,7 +838,7 @@ const PRODUCTS = [
         title: "Diseño 11",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-11.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -810,7 +848,7 @@ const PRODUCTS = [
         title: "Diseño 13",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-13.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -820,7 +858,7 @@ const PRODUCTS = [
         title: "Diseño 12",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-12.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -830,7 +868,7 @@ const PRODUCTS = [
         title: "Coponieve",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/coponieve.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -840,7 +878,7 @@ const PRODUCTS = [
         title: "Diseño 4",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-4.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -850,7 +888,7 @@ const PRODUCTS = [
         title: "Diseño 5",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-5.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -860,7 +898,7 @@ const PRODUCTS = [
         title: "Diseño 7",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-7.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -870,7 +908,7 @@ const PRODUCTS = [
         title: "Belennevera",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/belennevera.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -880,7 +918,7 @@ const PRODUCTS = [
         title: "Diseño 6",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-6.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -890,7 +928,7 @@ const PRODUCTS = [
         title: "Diseño 3",
         type: "postcard",
         sector: "negocios",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/negocios imagenes/unnamed-3.jpg",
         description: "Felicitación navideña exclusiva para el sector negocios.",
         faceCount: 0
@@ -900,7 +938,7 @@ const PRODUCTS = [
         title: "Chicamaquillajenav",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/chicamaquillajenav.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -910,7 +948,7 @@ const PRODUCTS = [
         title: "Paloscera",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/paloscera.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -920,7 +958,7 @@ const PRODUCTS = [
         title: "Chicamaquillajenavidad",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/chicamaquillajenavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -930,7 +968,7 @@ const PRODUCTS = [
         title: "Piernascera",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/piernascera.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -940,7 +978,7 @@ const PRODUCTS = [
         title: "Lenguaboca",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/lenguaboca.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -950,7 +988,7 @@ const PRODUCTS = [
         title: "Nieveestetica2",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/nieveestetica2.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -960,7 +998,7 @@ const PRODUCTS = [
         title: "Masaje",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/masaje.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -970,7 +1008,7 @@ const PRODUCTS = [
         title: "UñAsnavidad",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/uñasnavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -980,7 +1018,7 @@ const PRODUCTS = [
         title: "Esteticanav2",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/esteticanav2.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -990,7 +1028,7 @@ const PRODUCTS = [
         title: "Esteticanav2 Jpg",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/esteticanav2.jpg.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1000,7 +1038,7 @@ const PRODUCTS = [
         title: "Arbolcera",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/arbolcera.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1010,7 +1048,7 @@ const PRODUCTS = [
         title: "Chicabellezacabello",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/chicabellezacabello.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1020,7 +1058,7 @@ const PRODUCTS = [
         title: "Santaclauscita",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/santaclauscita.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1030,7 +1068,7 @@ const PRODUCTS = [
         title: "Mascarillaesteticanav2 Jpg",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/mascarillaesteticanav2.jpg.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1040,7 +1078,7 @@ const PRODUCTS = [
         title: "Ceranav",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/ceranav.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1050,7 +1088,7 @@ const PRODUCTS = [
         title: "Nieveestetica",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/nieveestetica.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1060,7 +1098,7 @@ const PRODUCTS = [
         title: "Piernasnavidad",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/piernasnavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1070,7 +1108,7 @@ const PRODUCTS = [
         title: "Brazocera",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/brazocera.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1080,7 +1118,7 @@ const PRODUCTS = [
         title: "Cejasnav",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/cejasnav.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1090,7 +1128,7 @@ const PRODUCTS = [
         title: "Luposuccionnav",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/luposuccionnav.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1100,7 +1138,7 @@ const PRODUCTS = [
         title: "UñAsadvientonavidad",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/uñasadvientonavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1110,7 +1148,7 @@ const PRODUCTS = [
         title: "Esteticaarbol",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica imagenes/esteticaarbol.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -1120,7 +1158,7 @@ const PRODUCTS = [
         title: "Pixverse V5 5 Image Text 360P Este Medico Bail",
         type: "video",
         sector: "salud",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/salud videos/PixVerse_V5.5_Image_Text_360P_este_medico_bail.mp4",
         description: "Vídeo navideño exclusiva para el sector salud.",
         faceCount: 0
@@ -1130,7 +1168,7 @@ const PRODUCTS = [
         title: "Adn Arbrol",
         type: "video",
         sector: "salud",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/salud videos/adn-arbrol.mp4",
         description: "Vídeo navideño exclusiva para el sector salud.",
         faceCount: 0
@@ -1140,7 +1178,7 @@ const PRODUCTS = [
         title: "Restaurantenavidad4",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantenavidad4.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1150,7 +1188,7 @@ const PRODUCTS = [
         title: "Gemini Generated Image Syzyc0Syzyc0Syzy",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/Gemini_Generated_Image_syzyc0syzyc0syzy.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1160,7 +1198,7 @@ const PRODUCTS = [
         title: "Cafeteria",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/cafeteria.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1170,7 +1208,7 @@ const PRODUCTS = [
         title: "Restaurantenavidad5",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantenavidad5.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1180,7 +1218,7 @@ const PRODUCTS = [
         title: "Cafenavidad",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/cafenavidad.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1190,7 +1228,7 @@ const PRODUCTS = [
         title: "Restaurantenavidad2",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantenavidad2.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1200,7 +1238,7 @@ const PRODUCTS = [
         title: "Pizza 1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pizza 1.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1210,7 +1248,7 @@ const PRODUCTS = [
         title: "Marisco",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/marisco.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1220,7 +1258,7 @@ const PRODUCTS = [
         title: "Restaurantenavidad3",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantenavidad3.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1230,7 +1268,7 @@ const PRODUCTS = [
         title: "Restaurantenavidad1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantenavidad1.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1240,7 +1278,7 @@ const PRODUCTS = [
         title: "Restauracion",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restauracion.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1250,7 +1288,7 @@ const PRODUCTS = [
         title: "Pizza1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pizza1.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1260,7 +1298,7 @@ const PRODUCTS = [
         title: "Cage2",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/cage2.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1270,7 +1308,7 @@ const PRODUCTS = [
         title: "Pizzanavidad2Png",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/Pizzanavidad2png.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1280,7 +1318,7 @@ const PRODUCTS = [
         title: "Diseño 1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/unnamed-1 copia.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1290,7 +1328,7 @@ const PRODUCTS = [
         title: "Bombones1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/bombones1.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1300,7 +1338,7 @@ const PRODUCTS = [
         title: "Dulces",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/dulces.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1310,7 +1348,7 @@ const PRODUCTS = [
         title: "Pavo Navidad",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pavo navidad.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1320,7 +1358,7 @@ const PRODUCTS = [
         title: "Mandarinasarbol",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/mandarinasarbol.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1330,7 +1368,7 @@ const PRODUCTS = [
         title: "Platonavidad",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/platonavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1340,7 +1378,7 @@ const PRODUCTS = [
         title: "Pizza3",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pizza3.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1350,7 +1388,7 @@ const PRODUCTS = [
         title: "Pizza2",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pizza2.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1360,7 +1398,7 @@ const PRODUCTS = [
         title: "Pasta 2T",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pasta 2t.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1370,7 +1408,7 @@ const PRODUCTS = [
         title: "Cafe3",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/cafe3.jpeg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1380,7 +1418,7 @@ const PRODUCTS = [
         title: "Diseño Restauracion 136",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1390,7 +1428,7 @@ const PRODUCTS = [
         title: "Arbolfrutasantaclaus",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/arbolfrutasantaclaus.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1400,7 +1438,7 @@ const PRODUCTS = [
         title: "Santaclaus Cafe",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/santaclaus cafe.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1410,7 +1448,7 @@ const PRODUCTS = [
         title: "Platopasta",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/platopasta.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1420,7 +1458,7 @@ const PRODUCTS = [
         title: "Pasta",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pasta.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1430,7 +1468,7 @@ const PRODUCTS = [
         title: "Pizza 2",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pizza-2.webp",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1440,7 +1478,7 @@ const PRODUCTS = [
         title: "Santaclaus Volando",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/santaclaus volando.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1450,7 +1488,7 @@ const PRODUCTS = [
         title: "Diseño 1",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/unnamed-1.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1460,7 +1498,7 @@ const PRODUCTS = [
         title: "Restaurantepasta Navidad",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/restaurantepasta-navidad.png",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1470,7 +1508,7 @@ const PRODUCTS = [
         title: "Pastaerizo",
         type: "postcard",
         sector: "restauracion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/restauracionimagenes/pastaerizo.jpg",
         description: "Felicitación navideña exclusiva para el sector restauracion.",
         faceCount: 0
@@ -1480,7 +1518,7 @@ const PRODUCTS = [
         title: "Pixverse V5 5 Image Text 360P Un Plano De Una",
         type: "video",
         sector: "construccion",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/contrucion videos/PixVerse_V5.5_Image_Text_360P_un_plano_de_una_.mp4",
         description: "Vídeo navideño exclusiva para el sector construccion.",
         faceCount: 0
@@ -1490,7 +1528,7 @@ const PRODUCTS = [
         title: "Pixverse V5 5 Image Text 360P Este Arbol De Na",
         type: "video",
         sector: "inmobiliaria",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/inmobiliaria videos/PixVerse_V5.5_Image_Text_360P_este_arbol_de_na.mp4",
         description: "Vídeo navideño exclusiva para el sector inmobiliaria.",
         faceCount: 0
@@ -1500,7 +1538,7 @@ const PRODUCTS = [
         title: "Diseño 8",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-8.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1510,7 +1548,7 @@ const PRODUCTS = [
         title: "Diseño 9",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-9.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1520,7 +1558,7 @@ const PRODUCTS = [
         title: "Arbolcarretera",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/arbolcarretera.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1530,7 +1568,7 @@ const PRODUCTS = [
         title: "Cochebola",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/cochebola.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1540,7 +1578,7 @@ const PRODUCTS = [
         title: "Diseño 10",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-10.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1550,7 +1588,7 @@ const PRODUCTS = [
         title: "Diseño Automocion 153",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed copia.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1560,7 +1598,7 @@ const PRODUCTS = [
         title: "Automocionnavidad1",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad1.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1570,7 +1608,7 @@ const PRODUCTS = [
         title: "Automocionnavidad3",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad3.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1580,7 +1618,7 @@ const PRODUCTS = [
         title: "Automocionnavidad2",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad2.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1590,7 +1628,7 @@ const PRODUCTS = [
         title: "Automocionnavidad6",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad6.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1600,7 +1638,7 @@ const PRODUCTS = [
         title: "Diseño Automocion 158",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1610,7 +1648,7 @@ const PRODUCTS = [
         title: "Automocionnavidad7",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad7.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1620,7 +1658,7 @@ const PRODUCTS = [
         title: "Automocionnavidad5",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad5.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1630,7 +1668,7 @@ const PRODUCTS = [
         title: "Gemini Generated Image Gmpv6Ygmpv6Ygmpv",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/Gemini_Generated_Image_gmpv6ygmpv6ygmpv.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1640,7 +1678,7 @@ const PRODUCTS = [
         title: "Automocionnavidad4",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/automocionnavidad4.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1650,7 +1688,7 @@ const PRODUCTS = [
         title: "Diseño 4",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-4.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1660,7 +1698,7 @@ const PRODUCTS = [
         title: "Diseño 5",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-5.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1670,7 +1708,7 @@ const PRODUCTS = [
         title: "Diseño 7",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-7.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1680,7 +1718,7 @@ const PRODUCTS = [
         title: "Carretera Arbol",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/carretera arbol.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1690,7 +1728,7 @@ const PRODUCTS = [
         title: "Diseño 6",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-6.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1700,7 +1738,7 @@ const PRODUCTS = [
         title: "Cocheregalo",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/cocheregalo.png",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1710,7 +1748,7 @@ const PRODUCTS = [
         title: "Diseño 3",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-3.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1720,7 +1758,7 @@ const PRODUCTS = [
         title: "Diseño 1",
         type: "postcard",
         sector: "automocion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/automocion imagenes/unnamed-1.jpg",
         description: "Felicitación navideña exclusiva para el sector automocion.",
         faceCount: 0
@@ -1730,7 +1768,7 @@ const PRODUCTS = [
         title: "Lapiceronavidad",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/lapiceronavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1740,7 +1778,7 @@ const PRODUCTS = [
         title: "Ventanaescuela",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/ventanaescuela.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1750,7 +1788,7 @@ const PRODUCTS = [
         title: "Santaclausparque",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/santaclausparque.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1760,7 +1798,7 @@ const PRODUCTS = [
         title: "Estrellaescuela",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/estrellaescuela.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1770,7 +1808,7 @@ const PRODUCTS = [
         title: "EstrellaniñOs",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/estrellaniños.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1780,7 +1818,7 @@ const PRODUCTS = [
         title: "SantaclausniñOs",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/santaclausniños.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1790,7 +1828,7 @@ const PRODUCTS = [
         title: "Formacion",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/formacion.png",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1800,7 +1838,7 @@ const PRODUCTS = [
         title: "Formacionaulapizarra",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/formacionaulapizarra.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1810,7 +1848,7 @@ const PRODUCTS = [
         title: "Librosescuela",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/librosescuela.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1820,7 +1858,7 @@ const PRODUCTS = [
         title: "Esculaexterior",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/esculaexterior.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1830,7 +1868,7 @@ const PRODUCTS = [
         title: "Santa Claus Professor2",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/santa claus professor2.png",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1840,7 +1878,7 @@ const PRODUCTS = [
         title: "Pizarranavidad",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/pizarranavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1850,7 +1888,7 @@ const PRODUCTS = [
         title: "Formacionaula",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/formacionaula.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1860,7 +1898,7 @@ const PRODUCTS = [
         title: "Santa Claus Professor",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/santa claus professor.png",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1870,7 +1908,7 @@ const PRODUCTS = [
         title: "Santaclausaula",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/santaclausaula.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1880,7 +1918,7 @@ const PRODUCTS = [
         title: "Formacionchico",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/formacionchico.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1890,7 +1928,7 @@ const PRODUCTS = [
         title: "Pizarraescuela",
         type: "postcard",
         sector: "formacion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/formacion imagenes/pizarraescuela.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
@@ -1900,7 +1938,7 @@ const PRODUCTS = [
         title: "Mandarinaarbre",
         type: "video",
         sector: "alimentacion",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/alimentacion video/mandarinaarbre.mp4",
         description: "Vídeo navideño exclusiva para el sector alimentacion.",
         faceCount: 0
@@ -1910,7 +1948,7 @@ const PRODUCTS = [
         title: "Arbolherramientas Ferreria",
         type: "postcard",
         sector: "ferreteria",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/ferreteria imagenes/arbolherramientas ferreria.jpg",
         description: "Felicitación navideña exclusiva para el sector ferreteria.",
         faceCount: 0
@@ -1920,7 +1958,7 @@ const PRODUCTS = [
         title: "Pastanavidad",
         type: "postcard",
         sector: "particulares",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/particular imagenes/pastanavidad.png",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
@@ -1930,7 +1968,7 @@ const PRODUCTS = [
         title: "Diseño Particulares 191",
         type: "postcard",
         sector: "particulares",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/particular imagenes/unnamed copia.jpg",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
@@ -1940,7 +1978,7 @@ const PRODUCTS = [
         title: "Diseño Particulares 192",
         type: "postcard",
         sector: "particulares",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/particular imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
@@ -1950,7 +1988,7 @@ const PRODUCTS = [
         title: "Estrellafugaz",
         type: "postcard",
         sector: "particulares",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/particular imagenes/estrellafugaz.jpg",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
@@ -1960,7 +1998,7 @@ const PRODUCTS = [
         title: "SantaclausyniñOs",
         type: "postcard",
         sector: "particulares",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/particular imagenes/santaclausyniños.jpg",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
@@ -1970,7 +2008,7 @@ const PRODUCTS = [
         title: "Diseño  2",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed copia 2.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -1980,7 +2018,7 @@ const PRODUCTS = [
         title: "Diseño  3",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed copia 3.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -1990,7 +2028,7 @@ const PRODUCTS = [
         title: "Regalossalud",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/regalossalud.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2000,7 +2038,7 @@ const PRODUCTS = [
         title: "Diseño Salud 198",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed copia.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2010,7 +2048,7 @@ const PRODUCTS = [
         title: "Diseño Salud 199",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2020,7 +2058,7 @@ const PRODUCTS = [
         title: "Adnsalud",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/adnsalud.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2030,7 +2068,7 @@ const PRODUCTS = [
         title: "Adnhogar",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/adnhogar.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2040,7 +2078,7 @@ const PRODUCTS = [
         title: "Diseño 4",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed-4.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2050,7 +2088,7 @@ const PRODUCTS = [
         title: "Diseño 5",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed-5.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2060,7 +2098,7 @@ const PRODUCTS = [
         title: "Diseño 2",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed-2.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2070,7 +2108,7 @@ const PRODUCTS = [
         title: "Diseño 3",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed-3.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2080,7 +2118,7 @@ const PRODUCTS = [
         title: "Saludmedico",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/saludmedico.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2090,7 +2128,7 @@ const PRODUCTS = [
         title: "Diseño 1",
         type: "postcard",
         sector: "salud",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/salud imagenes/unnamed-1.jpg",
         description: "Felicitación navideña exclusiva para el sector salud.",
         faceCount: 0
@@ -2100,7 +2138,7 @@ const PRODUCTS = [
         title: "Santaclausgimnasio",
         type: "postcard",
         sector: "deporte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/deporte imagenes/santaclausgimnasio.jpg",
         description: "Felicitación navideña exclusiva para el sector deporte.",
         faceCount: 0
@@ -2110,7 +2148,7 @@ const PRODUCTS = [
         title: "Diseño Deporte 209",
         type: "postcard",
         sector: "deporte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/deporte imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector deporte.",
         faceCount: 0
@@ -2120,7 +2158,7 @@ const PRODUCTS = [
         title: "Gimansio Santa Claus",
         type: "postcard",
         sector: "deporte",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/deporte imagenes/gimansio Santa Claus .jpg",
         description: "Felicitación navideña exclusiva para el sector deporte.",
         faceCount: 0
@@ -2130,7 +2168,7 @@ const PRODUCTS = [
         title: "Vestido Dulce",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Vestido Dulce.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2140,7 +2178,7 @@ const PRODUCTS = [
         title: "Arbol Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Arbol regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2150,7 +2188,7 @@ const PRODUCTS = [
         title: "Vestido Golosinas",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Vestido golosinas.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2160,7 +2198,7 @@ const PRODUCTS = [
         title: "Moda",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/moda.png",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2170,7 +2208,7 @@ const PRODUCTS = [
         title: "Regalo Pareja",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Regalo Pareja.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 2
@@ -2180,7 +2218,7 @@ const PRODUCTS = [
         title: "Vestido Roscon",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Vestido Roscon.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2190,7 +2228,7 @@ const PRODUCTS = [
         title: "4 Personas Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/4 Personas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 4
@@ -2200,7 +2238,7 @@ const PRODUCTS = [
         title: "Dulce Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/dulce regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2210,7 +2248,7 @@ const PRODUCTS = [
         title: "5 Personas Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/5 Personas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 5
@@ -2220,7 +2258,7 @@ const PRODUCTS = [
         title: "Chicos Chicas Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Chicos Chicas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2230,7 +2268,7 @@ const PRODUCTS = [
         title: "Tres Amigos Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Tres amigos regalo.png",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2240,7 +2278,7 @@ const PRODUCTS = [
         title: "Vestido Chocolate NiñO",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/vestido chocolate Niño.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2250,7 +2288,7 @@ const PRODUCTS = [
         title: "Vestido Arbol Chico",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Vestido Arbol Chico.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2260,7 +2298,7 @@ const PRODUCTS = [
         title: "Chocolate Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Chocolate regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2270,7 +2308,7 @@ const PRODUCTS = [
         title: "Turron Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Turron regalo .jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2280,7 +2318,7 @@ const PRODUCTS = [
         title: "Turron Chocolate Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Turron Chocolate Regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2290,7 +2328,7 @@ const PRODUCTS = [
         title: "Roscon Regalo",
         type: "postcard",
         sector: "moda",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/moda imagenes/Roscon regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
@@ -2300,7 +2338,7 @@ const PRODUCTS = [
         title: "ChicamoñO",
         type: "video",
         sector: "peluqueria",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/peluqueria videos/chicamoño.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -2310,7 +2348,7 @@ const PRODUCTS = [
         title: "ChicamoñO3",
         type: "video",
         sector: "peluqueria",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/peluqueria videos/chicamoño3.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -2320,7 +2358,7 @@ const PRODUCTS = [
         title: "ChicamoñO2",
         type: "video",
         sector: "peluqueria",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/peluqueria videos/chicamoño2.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
@@ -2330,7 +2368,7 @@ const PRODUCTS = [
         title: "Pixverse V5 5 Transition 360P Imagen En Vertic",
         type: "video",
         sector: "estetica",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/estetica videos/PixVerse_V5.5_Transition_360P_imagen_en_vertic.mp4",
         description: "Vídeo navideño exclusiva para el sector estetica.",
         faceCount: 0
@@ -2340,7 +2378,7 @@ const PRODUCTS = [
         title: "Mujerlengua",
         type: "postcard",
         sector: "estetica",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/estetica videos/mujerlengua.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
@@ -2350,7 +2388,7 @@ const PRODUCTS = [
         title: "Pixverse V5 Image Text 360P Un Paquete De Rega",
         type: "video",
         sector: "comercio",
-        price: 25.00,
+        price: 0.00,
         image: "sectores/comercio videos/PixVerse_V5_Image_Text_360P_un_paquete_de_rega.mp4",
         description: "Vídeo navideño exclusiva para el sector comercio.",
         faceCount: 0
@@ -2360,7 +2398,7 @@ const PRODUCTS = [
         title: "Comercio1 Jpg",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio1.jpg.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2370,7 +2408,7 @@ const PRODUCTS = [
         title: "Comercionavidad",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidad.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2380,7 +2418,7 @@ const PRODUCTS = [
         title: "Comercio9",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio9.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2390,7 +2428,7 @@ const PRODUCTS = [
         title: "Comercio",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2400,7 +2438,7 @@ const PRODUCTS = [
         title: "Comercio8",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio8.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2410,7 +2448,7 @@ const PRODUCTS = [
         title: "Comercioedificioregalo",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercioedificioregalo.webp",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2420,7 +2458,7 @@ const PRODUCTS = [
         title: "Comercio14",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio14.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2430,7 +2468,7 @@ const PRODUCTS = [
         title: "Comercio5",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio5.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2440,7 +2478,7 @@ const PRODUCTS = [
         title: "Comercio4",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio4.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2450,7 +2488,7 @@ const PRODUCTS = [
         title: "Comercionavidad 5",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidad.5.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2460,7 +2498,7 @@ const PRODUCTS = [
         title: "Comercionavidad Png3",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidad.png3.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2470,7 +2508,7 @@ const PRODUCTS = [
         title: "Comercio6",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio6.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2480,7 +2518,7 @@ const PRODUCTS = [
         title: "Comercionavidaregalos",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidaregalos.webp",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2490,7 +2528,7 @@ const PRODUCTS = [
         title: "Comercio7",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio7.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2500,7 +2538,7 @@ const PRODUCTS = [
         title: "Comercionavidad Png2",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidad.png2.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2510,7 +2548,7 @@ const PRODUCTS = [
         title: "Comercio12",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio12.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2520,7 +2558,7 @@ const PRODUCTS = [
         title: "Comercio3",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio3.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2530,7 +2568,7 @@ const PRODUCTS = [
         title: "Comercio2",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio2.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2540,7 +2578,7 @@ const PRODUCTS = [
         title: "Comercio13",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio13.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2550,7 +2588,7 @@ const PRODUCTS = [
         title: "Comercio11",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio11.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2560,7 +2598,7 @@ const PRODUCTS = [
         title: "Comercio1",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio1.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2570,7 +2608,7 @@ const PRODUCTS = [
         title: "Comercio10",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercio10.jpg",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2580,7 +2618,7 @@ const PRODUCTS = [
         title: "Comercionavidad Png4",
         type: "postcard",
         sector: "comercio",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/comercio imagenes/comercionavidad.png4.png",
         description: "Felicitación navideña exclusiva para el sector comercio.",
         faceCount: 0
@@ -2590,7 +2628,7 @@ const PRODUCTS = [
         title: "Construccioferreteria",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccioferreteria.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2600,7 +2638,7 @@ const PRODUCTS = [
         title: "Planoestrella",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/planoestrella.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2610,7 +2648,7 @@ const PRODUCTS = [
         title: "Construccio Grua",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccio-grua.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2620,7 +2658,7 @@ const PRODUCTS = [
         title: "Boladenavida Contruccion",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/boladenavida-contruccion.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2630,7 +2668,7 @@ const PRODUCTS = [
         title: "Edificiosantaclaus",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/edificiosantaclaus.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2640,7 +2678,7 @@ const PRODUCTS = [
         title: "Construccion Navidad Arbol",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccion navidad-arbol.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2650,7 +2688,7 @@ const PRODUCTS = [
         title: "Construccion Navidad",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccion navidad.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2660,7 +2698,7 @@ const PRODUCTS = [
         title: "Arbolgruas",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/arbolgruas.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2670,7 +2708,7 @@ const PRODUCTS = [
         title: "Planonavidad",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/planonavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2680,7 +2718,7 @@ const PRODUCTS = [
         title: "Diseño Construccion 266",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/unnamed.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2690,7 +2728,7 @@ const PRODUCTS = [
         title: "Construccion1",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccion1.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2700,7 +2738,7 @@ const PRODUCTS = [
         title: "Diseño 17",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/unnamed-17.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2710,7 +2748,7 @@ const PRODUCTS = [
         title: "Construcciopastes",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construcciopastes.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2720,7 +2758,7 @@ const PRODUCTS = [
         title: "Diseño 2",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/unnamed-2.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2730,7 +2768,7 @@ const PRODUCTS = [
         title: "ConstruccionmuñEcos",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccionmuñecos.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2740,7 +2778,7 @@ const PRODUCTS = [
         title: "Construccioferreteria",
         type: "postcard",
         sector: "construccion",
-        price: 15.00,
+        price: 0.00,
         image: "sectores/construccion imagenes/construccioferreteria copia.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
@@ -2750,7 +2788,7 @@ const PRODUCTS = [
         title: "Vestido Dulce",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Vestido Dulce.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2760,7 +2798,7 @@ const PRODUCTS = [
         title: "Arbol Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Arbol regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2770,7 +2808,7 @@ const PRODUCTS = [
         title: "Vestido Golosinas",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Vestido golosinas.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2780,7 +2818,7 @@ const PRODUCTS = [
         title: "Regalo Pareja",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Regalo Pareja.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 2
@@ -2790,7 +2828,7 @@ const PRODUCTS = [
         title: "Vestido Roscon",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Vestido Roscon.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2800,7 +2838,7 @@ const PRODUCTS = [
         title: "4 Personas Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/4 Personas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 4
@@ -2810,7 +2848,7 @@ const PRODUCTS = [
         title: "Dulce Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/dulce regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2820,7 +2858,7 @@ const PRODUCTS = [
         title: "5 Personas Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/5 Personas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 5
@@ -2830,7 +2868,7 @@ const PRODUCTS = [
         title: "Chicos Chicas Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Chicos Chicas Regalo.png",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2840,7 +2878,7 @@ const PRODUCTS = [
         title: "Tres Amigos Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Tres amigos regalo.png",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2850,7 +2888,7 @@ const PRODUCTS = [
         title: "Peluquerianavidad",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/peluquerianavidad.png",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2860,7 +2898,7 @@ const PRODUCTS = [
         title: "Vestido Chocolate NiñO",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/vestido chocolate Niño.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2870,7 +2908,7 @@ const PRODUCTS = [
         title: "Vestido Arbol Chico",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Vestido Arbol Chico.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2880,7 +2918,7 @@ const PRODUCTS = [
         title: "Chocolate Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Chocolate regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2890,7 +2928,7 @@ const PRODUCTS = [
         title: "Turron Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Turron regalo .jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2900,7 +2938,7 @@ const PRODUCTS = [
         title: "Turron Chocolate Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Turron Chocolate Regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2910,7 +2948,7 @@ const PRODUCTS = [
         title: "Dall·E 2024 11 21 07 52 49   A Highly Realistic Portrait Of A Young Woman With Her Hair Styled Into A High Bun Shaped Like A Christmas Tree  The Bun Features Intricate Details Of",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/DALL·E 2024-11-21 07.52.49 - A highly realistic portrait of a young woman with her hair styled into a high bun shaped like a Christmas tree. The bun features intricate details of .webp",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
@@ -2920,7 +2958,7 @@ const PRODUCTS = [
         title: "Roscon Regalo",
         type: "postcard",
         sector: "faceswap_special",
-        price: 15.00,
+        price: 0.00,
         image: "canvia tu cara/Roscon regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1

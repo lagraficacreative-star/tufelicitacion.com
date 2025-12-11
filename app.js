@@ -61,6 +61,21 @@ const router = {
             case 'search':
                 this.renderSearch(main);
                 break;
+            case 'new-year':
+                this.renderNewYear(mainContent);
+                break;
+            case 'kings-day':
+                this.renderKingsDay(mainContent);
+                break;
+            case 'birthday':
+                this.renderBirthday(mainContent);
+                break;
+            case 'weddings':
+                this.renderWeddings(mainContent);
+                break;
+            case 'anniversaries':
+                this.renderAnniversaries(mainContent);
+                break;
             case 'cookies':
                 this.renderCookies(mainContent);
                 break;
@@ -96,33 +111,33 @@ const router = {
                 </p>
                 
                 <div class="grid-3">
-                    <div class="card">
-                        <div class="card-image-container">
-                            <img src="sectores/estetica imagenes/chicamaquillajenav.jpg" class="card-image" style="filter: grayscale(100%);">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Cumpleaños</h3>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Próximamente</p>
-                        </div>
+                    <div class="card" onclick="router.navigate('birthday')" style="cursor: pointer;">
+                    <div class="card-image-container">
+                        <img src="sectores/estetica imagenes/chicamaquillajenav.jpg" class="card-image">
                     </div>
-                    <div class="card">
-                        <div class="card-image-container">
-                            <img src="sectores/moda imagenes/moda.png" class="card-image" style="filter: grayscale(100%);">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Bodas</h3>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Próximamente</p>
-                        </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Cumpleaños</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);"></p>
                     </div>
-                    <div class="card">
-                        <div class="card-image-container">
-                            <img src="sectores/restauracionimagenes/restaurantenavidad4.png" class="card-image" style="filter: grayscale(100%);">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Aniversarios</h3>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Próximamente</p>
-                        </div>
+                </div>
+                <div class="card" onclick="router.navigate('weddings')" style="cursor: pointer;">
+                    <div class="card-image-container">
+                        <img src="sectores/moda imagenes/moda.png" class="card-image">
                     </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bodas</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);"></p>
+                    </div>
+                </div>
+                <div class="card" onclick="router.navigate('anniversaries')" style="cursor: pointer;">
+                    <div class="card-image-container">
+                        <img src="sectores/restauracionimagenes/restaurantenavidad4.png" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Aniversarios</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);"></p>
+                    </div>
+                </div>
                 </div>
             </div>
         `;
@@ -243,7 +258,7 @@ const router = {
                     </div>
                     <div style="text-align: center;">
                         <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-brain"></i></div>
-                        <h4 style="font-weight: 600;">Tecnología IA</h4>
+                        <h4 style="font-weight: 600;'>Tecnología IA</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted);">Generación y edición avanzada.</p>
                     </div>
                     <div style="text-align: center;">
@@ -449,25 +464,25 @@ const router = {
                     </div>
                 </div>
 
-                <!-- Año Nuevo (Inactive) -->
-                <div class="card" style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 1rem; overflow: hidden; opacity: 0.9; cursor: not-allowed; height: 100%; display: flex; flex-direction: column;">
+                <!-- Año Nuevo (Active) -->
+                <div class="card" onclick="router.navigate('new-year')" style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; overflow: hidden; cursor: pointer; transition: transform 0.2s; height: 100%; display: flex; flex-direction: column;">
                     <div class="card-image-container" style="height: 250px; width: 100%; padding: 0;">
                         <img src="2026 home.jpg" alt="Año Nuevo" class="card-image" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="card-content" style="padding: 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
                         <h3 class="card-title" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-color);">Año Nuevo</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Próximamente disponible</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Celebra el 2026 con estilo.</p>
                     </div>
                 </div>
 
-                <!-- Reyes Magos (Inactive) -->
-                <div class="card" style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 1rem; overflow: hidden; opacity: 0.9; cursor: not-allowed; height: 100%; display: flex; flex-direction: column;">
+                <!-- Reyes Magos (Active) -->
+                <div class="card" onclick="router.navigate('kings-day')" style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; overflow: hidden; cursor: pointer; transition: transform 0.2s; height: 100%; display: flex; flex-direction: column;">
                     <div class="card-image-container" style="height: 250px; width: 100%; padding: 0;">
                         <img src="reyesmagos.jpg" alt="Reyes Magos" class="card-image" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="card-content" style="padding: 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
                         <h3 class="card-title" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-color);">Reyes Magos</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Próximamente disponible</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">La magia de los Reyes.</p>
                     </div>
                 </div>
             </div>
@@ -673,7 +688,7 @@ const router = {
         const featuresSection = document.createElement('section');
         featuresSection.className = 'section-container fade-in';
         featuresSection.innerHTML = `
-    <h2 class="section-title centered">✨ Herramientas de Personalización</h2>
+    <h2 class="section-title centered">Herramientas de Personalización</h2>
         <div class="grid-3" style="gap: 2rem;">
             <!-- Feature 1: Design -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
@@ -775,6 +790,71 @@ const router = {
             </div>
         `;
         container.appendChild(moreProductsSection);
+    },
+
+    renderNewYear(container) {
+        // Hero Section
+        const hero = document.createElement('section');
+        hero.className = 'hero fade-in';
+        hero.style.backgroundImage = "url('2026 home.jpg')";
+        hero.style.height = "85vh";
+        hero.style.backgroundPosition = "center";
+        hero.innerHTML = `
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Feliz 2026<br><span style="font-size: 1.5rem; font-weight: normal;">Crea tus felicitaciones de Año Nuevo</span></h1>
+                <button class="cta-button app-btn-success" onclick="document.getElementById('newyear-content').scrollIntoView({behavior: 'smooth'})">Empezar</button>
+            </div>
+        `;
+        container.appendChild(hero);
+
+        // Content Section
+        const contentSection = document.createElement('section');
+        contentSection.id = 'newyear-content';
+        contentSection.className = 'section-container fade-in';
+        contentSection.innerHTML = `
+            <h2 class="section-title centered">Colección de Año Nuevo</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                Próximamente añadiremos más diseños exclusivos para celebrar la llegada del nuevo año.
+            </p>
+            <div class="grid-4">
+                ${PRODUCTS.filter(p => (p.sector === 'fiesta' || p.sector === 'negocios' || p.tags?.includes('newyear'))).map(p => this.createProductCard(p)).join('')}
+            </div>
+            ${PRODUCTS.filter(p => (p.sector === 'fiesta' || p.sector === 'negocios' || p.tags?.includes('newyear'))).length === 0 ?
+                '<p style="text-align: center; padding: 2rem;">Estamos preparando los diseños de Año Nuevo. ¡Vuelve pronto!</p>' : ''}
+        `;
+        container.appendChild(contentSection);
+    },
+
+    renderKingsDay(container) {
+        // Hero Section
+        const hero = document.createElement('section');
+        hero.className = 'hero fade-in';
+        hero.style.backgroundImage = "url('reyesmagos.jpg')";
+        hero.style.height = "85vh";
+        hero.style.backgroundPosition = "center";
+        hero.innerHTML = `
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ya Vienen los Reyes Magos<br><span style="font-size: 1.5rem; font-weight: normal;">Sorprende con una carta o felicitación mágica</span></h1>
+                <button class="cta-button app-btn-success" onclick="document.getElementById('kings-content').scrollIntoView({behavior: 'smooth'})">Empezar</button>
+            </div>
+        `;
+        container.appendChild(hero);
+
+        // Content Section
+        const contentSection = document.createElement('section');
+        contentSection.id = 'kings-content';
+        contentSection.className = 'section-container fade-in';
+        contentSection.innerHTML = `
+            <h2 class="section-title centered">Especial Reyes Magos</h2>
+            <div class="grid-4">
+                ${PRODUCTS.filter(p => (p.sector === 'infantil' || p.tags?.includes('reyes'))).map(p => this.createProductCard(p)).join('')}
+            </div>
+             ${PRODUCTS.filter(p => (p.sector === 'infantil' || p.tags?.includes('reyes'))).length === 0 ?
+                '<p style="text-align: center; padding: 2rem;">Diseños de Reyes Magos en camino...</p>' : ''}
+        `;
+        container.appendChild(contentSection);
     },
 
     renderCatalog(container, type) {
@@ -953,7 +1033,7 @@ const router = {
                             </h3>
                             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
                             <div style="background: linear-gradient(to right, #fff, #fdfbf7); padding: 0.8rem; border-left: 3px solid #FFD700; margin-bottom: 1.5rem; font-size: 0.85rem; color: #555;">
-                                <i class="fa-solid fa-crown" style="color: #FFD700;"></i> Para guardar el resultado sin marca de agua, deberás realizar el pago único de <strong>2.00€</strong> al finalizar.
+                                <i class="fa-solid fa-crown" style="color: #FFD700;"></i> Deberás realizar el pago único de <strong>2.00€</strong> al finalizar.
                             </div>
 
                             <div style="margin-bottom: 1rem; padding: 0.5rem; background: #e8f5e9; border-radius: 0.5rem; color: #2e7d32; font-size: 0.8rem; text-align: center;">
@@ -977,9 +1057,9 @@ const router = {
                                 ${faceInputsHtml}
 
                                 <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
-                                    ✨ Generar (Intercambiar Cara)
+                                    Generar (Intercambiar Cara)
                                 </button>
-                                    ✨ Generar (Intercambiar Cara)
+                                    Generar (Intercambiar Cara)
                                 </button>
                                 <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
                                     <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
@@ -1193,7 +1273,7 @@ const router = {
                         <div style="background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 0.5rem;">
                             <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
                                 <input type="checkbox" id="input-logo-remove-bg" onchange="router.updatePreview()">
-                                    <label for="input-logo-remove-bg" style="margin: 0; font-size: 0.9rem; color: var(--secondary-color); cursor: pointer;">✨ Quitar Fondo (IA)</label>
+                                    <label for="input-logo-remove-bg" style="margin: 0; font-size: 0.9rem; color: var(--secondary-color); cursor: pointer;">Quitar Fondo (IA)</label>
                             </div>
                             <p style="font-size: 0.7rem; color: var(--text-muted);">Elimina automáticamente el fondo de tu imagen.</p>
                         </div>

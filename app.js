@@ -2044,10 +2044,14 @@ const router = {
         if (!previewArea) return;
 
         // Visual feedback
-        const btn = document.getElementById('btn-download-composite');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando...';
-        btn.disabled = true;
+        // Visual feedback
+        const btn = document.getElementById('btn-download-composite') || document.getElementById('btn-main-action');
+        let originalText = '';
+        if (btn) {
+            originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generando...';
+            btn.disabled = true;
+        }
 
         html2canvas(previewArea, { scale: 2, useCORS: true }).then(canvas => {
             const link = document.createElement('a');
@@ -2055,13 +2059,17 @@ const router = {
             link.href = canvas.toDataURL('image/png');
             link.click();
 
-            btn.innerHTML = originalText;
-            btn.disabled = false;
+            if (btn) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         }).catch(err => {
             console.error('Error al generar imagen:', err);
             alert('Error detallado: ' + (err.message || err));
-            btn.innerHTML = originalText;
-            btn.disabled = false;
+            if (btn) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         });
     }
 };

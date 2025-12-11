@@ -1180,7 +1180,7 @@ const router = {
                         ${isMagic ? (`
                             ${!hasPaid ? `
                             <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
-                                <i class="fa-solid fa-star"></i> Descargar (2.00€)
+                                <i class="fa-solid fa-star"></i> Pagar 2€ por descarga
                             </button>
                             <button class="btn-outline" onclick="router.downloadComposition()" style="width: 100%; border-color: var(--text-muted); color: var(--text-muted);">
                                 <i class="fa-solid fa-download"></i> Descargar (con marca de agua)
@@ -1556,7 +1556,7 @@ const router = {
                 // UPDATE MAIN BUTTON TO PAID MODE
                 const mainBtn = document.getElementById('btn-main-action');
                 if (mainBtn) {
-                    mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Descargar (2.00€)';
+                    mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Pagar 2€ por descarga';
                     mainBtn.onclick = () => router.renderPaymentSelection(this.params.productId);
                     mainBtn.classList.add('pulse-animation'); // Optional: Add a CSS animation to highlight it
                 }

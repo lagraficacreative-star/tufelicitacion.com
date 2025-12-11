@@ -1613,9 +1613,9 @@ const router = {
                 <div style="margin-bottom: 1.5rem; border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#eee'" onclick="router.handlePurchase()">
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
                         <div style="font-size: 1.5rem; color: #6772e5;"><i class="fa-brands fa-stripe"></i></div>
-                        <h3 style="margin: 0; font-size: 1.1rem;">Tarjeta de Crédito / Débito</h3>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Tarjeta / Bizum Automático</h3>
                     </div>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago seguro inmediato. Descarga automática.</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago seguro inmediato. <strong>Incluye Bizum y Apple Pay.</strong> Descarga al momento.</p>
                 </div>
 
                 <!-- Method 2: Bizum -->
@@ -1624,7 +1624,8 @@ const router = {
                         <div style="font-size: 1.5rem; color: #00D1D6;"><i class="fa-solid fa-mobile-screen-button"></i></div>
                         <h3 style="margin: 0; font-size: 1.1rem;">Bizum</h3>
                     </div>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago manual. Requiere verificación.</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago manual a móvil personal. <strong>Requiere espera de confirmación.</strong></p>
+                </div>
                 </div>
 
                 <div id="bizum-instructions" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: #fff; border-radius: 0.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">

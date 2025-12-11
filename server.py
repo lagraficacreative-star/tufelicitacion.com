@@ -20,8 +20,8 @@ def create_checkout_session():
         # In a real app, validate price and product details on backend
         
         session = stripe.checkout.Session.create(
-            # Enable all automatic payment methods configured in the Dashboard (including Bizum if active)
-            automatic_payment_methods={'enabled': True},
+            # Use the specific configuration ID provided by the user
+            payment_method_configuration="cpmt_1Sd2ihJJut2I3vTZcnedBawx",
             line_items=[{
                 'price_data': {
                     'currency': 'eur',

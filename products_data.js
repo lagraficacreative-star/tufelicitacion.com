@@ -757,7 +757,7 @@ const PRODUCTS = [
     },
     {
         id: 74,
-        title: "Pixverse V5 Image Text 360P Hacer Que Estos Ma",
+        title: "Maniquis Bailarines",
         type: "video",
         sector: "moda",
         price: 25.00,

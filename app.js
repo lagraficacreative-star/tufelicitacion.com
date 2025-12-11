@@ -951,7 +951,10 @@ const router = {
                             <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
                             </h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. Descarga tu obra maestra por solo <strong>2,00€</strong></p>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
+                            <div style="background: linear-gradient(to right, #fff, #fdfbf7); padding: 0.8rem; border-left: 3px solid #FFD700; margin-bottom: 1.5rem; font-size: 0.85rem; color: #555;">
+                                <i class="fa-solid fa-crown" style="color: #FFD700;"></i> Para guardar el resultado sin marca de agua, deberás realizar el pago único de <strong>2.00€</strong> al finalizar.
+                            </div>
 
                             <div style="margin-bottom: 1rem; padding: 0.5rem; background: #e8f5e9; border-radius: 0.5rem; color: #2e7d32; font-size: 0.8rem; text-align: center;">
                                 <i class="fa-solid fa-check-circle"></i> IA Activada y lista para usar.
@@ -976,7 +979,11 @@ const router = {
                                 <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
                                     ✨ Generar (Intercambiar Cara)
                                 </button>
-                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
+                                    ✨ Generar (Intercambiar Cara)
+                                </button>
+                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
+                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                                </p>
                             </div>
 
                             <!-- Tab 2: Fondo (Background Swap) -->
@@ -995,7 +1002,11 @@ const router = {
                                 <button type="button" class="btn-outline" onclick="router.handleAIAction('removebg')" style="width: 100%; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                                     <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
                                 </button>
-                                <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
+                                </button>
+                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">
+                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                                </p>
 
                                 <!-- 3. Preset Gallery -->
                                 <label style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; display: block;">3. Elige Escenario</label>
@@ -1027,7 +1038,11 @@ const router = {
                             <button type="button" class="btn-outline" onclick="router.handleAIAction('animate')" style="width: 100%; border-color: #9C27B0; color: #9C27B0;">
                                 <i class="fa-solid fa-film"></i> Generar Animación
                             </button>
-                            <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
+                                <i class="fa-solid fa-film"></i> Generar Animación
+                            </button>
+                            <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
+                                <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                            </p>
                         </div>
 
                         <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
@@ -1045,7 +1060,11 @@ const router = {
                         <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
                             🎨 Generar Nueva Imagen
                         </button>
-                        <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Crea una vista previa. Podrás comprar el resultado final por 2.00€.</p>
+                            🎨 Generar Nueva Imagen
+                        </button>
+                        <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
+                            <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                        </p>
                     </div>
                     ` : ''}
                 </div>

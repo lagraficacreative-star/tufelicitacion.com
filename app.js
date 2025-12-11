@@ -1967,7 +1967,15 @@ const router = {
                     <div class="form-group">
                         <input type="email" id="input-email-collect" class="form-control" placeholder="tu@email.com" required>
                     </div>
-                    <button type="submit" class="cta-button" style="width: 100%;">Continuar</button>
+
+                    <div style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">
+                        <input type="checkbox" id="check-legal-accept" onchange="router.toggleEmailButton()" required style="margin-top: 0.2rem;">
+                        <label for="check-legal-accept" style="line-height: 1.4;">
+                            He leído y acepto la <a href="#" onclick="router.navigate('cookies'); return false;" style="text-decoration: underline;">Política de Privacidad</a> y el <a href="#" onclick="router.navigate('legal'); return false;" style="text-decoration: underline;">Aviso Legal</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" id="btn-submit-email" class="cta-button" style="width: 100%; opacity: 0.5; pointer-events: none;">Continuar</button>
                     <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">
                         No te enviaremos spam. Solo novedades importantes.
                     </p>
@@ -1975,6 +1983,20 @@ const router = {
             </div>
         `;
         document.body.appendChild(modal);
+    },
+
+    toggleEmailButton() {
+        const check = document.getElementById('check-legal-accept');
+        const btn = document.getElementById('btn-submit-email');
+        if (check && btn) {
+            if (check.checked) {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            } else {
+                btn.style.opacity = '0.5';
+                btn.style.pointerEvents = 'none';
+            }
+        }
     },
 
     saveEmailAndContinue() {

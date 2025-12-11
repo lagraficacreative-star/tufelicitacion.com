@@ -2212,6 +2212,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Domain Redirect Logic
+    if (window.location.hostname === 'felicitaciondenavidad.com' || window.location.hostname === 'www.felicitaciondenavidad.com') {
+        if (!savedPage) { // Only force redirect if no saved state (fresh visit)
+            router.currentPage = 'christmas-home';
+        }
+    }
+
     // Start Router
     console.log('App initialized. SECTORS:', typeof SECTORS, 'PRODUCTS:', typeof PRODUCTS);
     try {

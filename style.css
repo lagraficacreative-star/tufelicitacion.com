@@ -771,3 +771,40 @@ footer {
 #cookie-banner .btn-accept:hover {
     opacity: 0.9;
 }
+
+/* Watermark Overlay */
+.watermark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with elements below */
+    z-index: 50; /* Ensure it is on top of everything in the preview */
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+.watermark-pattern {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 4rem;
+    transform: rotate(-30deg);
+}
+
+.watermark-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}

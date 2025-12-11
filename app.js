@@ -869,6 +869,7 @@ const router = {
     renderProductDetail(container) {
         // Use loose equality to handle both string and number inputs for ID
         const product = PRODUCTS.find(p => p.id == this.params.productId);
+        const hasPaid = localStorage.getItem('hasPaid') === 'true';
 
         if (!product) {
             container.innerHTML = '<div class="fade-in"><p style="text-align:center; padding: 2rem;">Producto no encontrado</p></div>';
@@ -906,17 +907,18 @@ const router = {
                             <!-- Main Product Image (Foreground/Subject) -->
                             ${product.type === 'video' ? `
                             <video 
-                                src="${product.image}" 
+                                src="${encodeURI(product.image)}" 
                                 class="preview-image-bg" 
                                 id="main-preview-image" 
                                 loop 
                                 playsinline 
                                 muted 
                                 autoplay 
+                                oncontextmenu="return false;"
                                 style="position: relative; z-index: 1; object-fit: cover; width: 100%; height: 100%;"
                             ></video>
                         ` : `
-                            <img src="${product.image}" alt="${product.title}" class="preview-image-bg" id="main-preview-image" style="position: relative; z-index: 1;" crossorigin="anonymous">
+                            <img src="${encodeURI(product.image)}" alt="${product.title}" class="preview-image-bg" id="main-preview-image" style="position: relative; z-index: 1;" crossorigin="anonymous" oncontextmenu="return false;">
                         `}
 
                             <div id="video-container" style="display:none; width:100%; height:100%; position:absolute; top:0; left:0; z-index: 2;">
@@ -929,6 +931,13 @@ const router = {
                                     <img id="preview-logo" class="preview-logo-img" src="" alt="Logo">
                                 </div>
                             </div>
+                            ${!hasPaid ? `
+                            <div class="watermark-overlay" id="watermark-layer">
+                                <div class="watermark-pattern">
+                                    ${Array(100).fill('<div class="watermark-text">Tu Felicitación</div>').join('')}
+                                </div>
+                            </div>
+                            ` : ''}
                         </div>
 
 
@@ -1166,9 +1175,20 @@ const router = {
                         </div>
                     </div>
 
-                    <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-download"></i> Descargar Gratis
-                    </button>
+                    <div id="action-buttons-container" style="margin-top: 1rem;">
+                        ${!hasPaid ? `
+                            <button class="cta-button" onclick="router.handlePurchase()" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
+                                <i class="fa-solid fa-star"></i> Quitar marca de agua (2€)
+                            </button>
+                            <button class="btn-outline" onclick="router.downloadComposition()" style="width: 100%; border-color: var(--text-muted); color: var(--text-muted);">
+                                <i class="fa-solid fa-download"></i> Descargar (con marca de agua)
+                            </button>
+                        ` : `
+                            <button id="btn-main-action" class="cta-button" onclick="router.downloadComposition()" style="width: 100%; border: none;">
+                                <i class="fa-solid fa-download"></i> Descargar Original
+                            </button>
+                        `}
+                    </div>
                 </div>
             </div>
         </div>
@@ -1840,10 +1860,10 @@ const router = {
             <div class="card ${showPrice ? '' : 'home-product-card'}" onclick="router.navigate('product', {productId: ${product.id}})">
                 <div class="card-image-container">
                     ${product.type === 'video' ? `
-                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.2rem 0.5rem; border-radius: 0.2rem; font-size: 0.7rem;">
+                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.2rem 0.5rem; border-radius: 0.2rem; font-size: 0.7rem; z-index: 2;">
                             <i class="fa-solid fa-video"></i>
                         </div>
-                        <img src="${encodedImage}" loading="lazy" alt="${product.title}" class="card-image">
+                        <video src="${encodedImage}" class="card-image" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
                     ` : `
                         <img src="${encodedImage}" loading="lazy" alt="${product.title}" class="card-image">
                     `}
@@ -1889,9 +1909,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check for payment success
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment_success') === 'true') {
-        alert("¡Pago realizado con éxito! Gracias por tu compra.");
-        // We might want to auto-navigate to a success page or trigger download if we had state persistence
-        // For now, simpler is better.
+        localStorage.setItem('hasPaid', 'true');
+        alert("¡Pago realizado con éxito! La marca de agua ha sido eliminada.");
+        // Clean URL without reloading
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
 
     // Populate Navigation Menus

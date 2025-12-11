@@ -1618,29 +1618,6 @@ const router = {
                     <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago seguro inmediato. <strong>Incluye Bizum y Apple Pay.</strong> Descarga al momento.</p>
                 </div>
 
-                <!-- Method 2: Bizum -->
-                <div style="border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#00D1D6'" onmouseout="this.style.borderColor='#eee'" onclick="router.showBizumInstructions()">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <div style="font-size: 1.5rem; color: #00D1D6;"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                        <h3 style="margin: 0; font-size: 1.1rem;">Bizum</h3>
-                    </div>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago manual a móvil personal. <strong>Requiere espera de confirmación.</strong></p>
-                </div>
-                </div>
-
-                <div id="bizum-instructions" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: #fff; border-radius: 0.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                    <h4 style="margin-bottom: 1rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">Datos para el Bizum:</h4>
-                    
-                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin-bottom: 0.5rem;"><strong>Número:</strong> <span style="font-size: 1.2rem;">639 087 024</span></p>
-                        <p style="margin-bottom: 0.5rem;"><strong>Importe:</strong> <span style="font-size: 1.2rem;">2,00€</span></p>
-                        <p style="margin: 0;"><strong>Concepto:</strong> Navidad IA</p>
-                    </div>
-
-                    <ol style="padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-bottom: 1.5rem;">
-                        <li>Realiza el pago con los datos de arriba.</li>
-                        <li>Una vez verificado el pago (1-2h aprox), recibirás un email con tu felicitación sin marca de agua.</li>
-                    </ol>
                 </div>
             </div>
         `;

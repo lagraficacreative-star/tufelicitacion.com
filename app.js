@@ -916,10 +916,10 @@ const router = {
                                 muted 
                                 autoplay 
                                 oncontextmenu="return false;"
-                                style="position: relative; z-index: 1; object-fit: cover; width: 100%; height: 100%;"
+                                style="position: relative; z-index: 1; object-fit: cover; width: 100%; height: 100%; pointer-events: none; user-select: none; -webkit-user-select: none;"
                             ></video>
                         ` : `
-                            <img src="${encodeURI(product.image)}" alt="${product.title}" class="preview-image-bg" id="main-preview-image" style="position: relative; z-index: 1;" crossorigin="anonymous" oncontextmenu="return false;">
+                            <img src="${encodeURI(product.image)}" alt="${product.title}" class="preview-image-bg" id="main-preview-image" style="position: relative; z-index: 1; pointer-events: none; user-select: none; -webkit-user-select: none;" crossorigin="anonymous" oncontextmenu="return false;">
                         `}
 
                             <div id="video-container" style="display:none; width:100%; height:100%; position:absolute; top:0; left:0; z-index: 2;">
@@ -939,6 +939,9 @@ const router = {
                                 </div>
                             </div>
                             ` : ''}
+                            
+                            <!-- Protection Layer to prevent drag/drop/save -->
+                            <div class="protection-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; opacity: 0;"></div>
                         </div>
 
 

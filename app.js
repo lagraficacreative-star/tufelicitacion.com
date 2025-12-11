@@ -1631,15 +1631,14 @@ const router = {
 
     async handlePurchase() {
         // Keep button finding logic for safety
-        const btn = document.querySelector('#payment-modal .cta-button') || document.querySelector('.cta-button');
-        if (!btn) {
-            console.error("Button not found");
-            return;
-        }
-        const originalText = btn.innerHTML;
-
         // Initialize Stripe with the Live Public Key
         const stripe = Stripe('pk_live_51Scgi9JJut2I3vTZYWiuKIMdQRifeY2G4xNMCi9cEzvbRKD7fD3YLRRZQM9h6mGWG0sU53Osv3D8ljLUwK5yAilG00lY7TLDCQ');
+
+        // Optional visual feedback if button exists
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando...';
+        }
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando con Stripe...';
@@ -1659,8 +1658,10 @@ const router = {
 
             if (session.error) {
                 alert('Error al iniciar pago: ' + session.error);
-                btn.disabled = false;
-                btn.innerHTML = originalText;
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
                 return;
             }
 

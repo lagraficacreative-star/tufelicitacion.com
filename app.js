@@ -1556,7 +1556,7 @@ const router = {
                 // UPDATE MAIN BUTTON TO PAID MODE
                 const mainBtn = document.getElementById('btn-main-action');
                 if (mainBtn) {
-                    mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Comprar Resultado (2.00€)';
+                    mainBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Descargar (2.00€)';
                     mainBtn.onclick = () => router.renderPaymentSelection(this.params.productId);
                     mainBtn.classList.add('pulse-animation'); // Optional: Add a CSS animation to highlight it
                 }
@@ -1604,18 +1604,23 @@ const router = {
                     <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Pago manual. Requiere verificación.</p>
                 </div>
 
-                <div id="bizum-instructions" style="display: none; margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
-                    <h4 style="margin-bottom: 1rem; color: var(--text-color);">Instrucciones Bizum:</h4>
-                    <ol style="padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
-                        <li>Haz un Bizum de <strong>2,00€</strong> al número: <br><strong style="font-size: 1.1rem;">639 087 024</strong></li>
-                        <li>En el concepto escribe: <strong>Navidad IA</strong></li>
-                        <li>Envíanos el comprobante por WhatsApp al mismo número.</li>
+                <div id="bizum-instructions" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: #fff; border-radius: 0.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">Datos para el Bizum:</h4>
+                    
+                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Número:</strong> <span style="font-size: 1.2rem;">639 087 024</span></p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Importe:</strong> <span style="font-size: 1.2rem;">2,00€</span></p>
+                        <p style="margin: 0;"><strong>Concepto:</strong> Navidad IA</p>
+                    </div>
+
+                    <ol style="padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-bottom: 1.5rem;">
+                        <li>Realiza el pago con los datos de arriba.</li>
+                        <li>Haz una captura de pantalla del justificante.</li>
+                        <li>Envíanos la captura por WhatsApp y recibirás tu felicitación sin marca de agua al instante.</li>
                     </ol>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
-                        <i class="fa-solid fa-clock"></i> Una vez verificado (aprox. 1-2h), te enviaremos tu archivo sin marca de agua por WhatsApp.
-                    </p>
-                    <a href="https://wa.me/34639087024" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 1rem; background: #25D366; color: white; border: none;">
-                        <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante
+
+                    <a href="https://wa.me/34639087024" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 1rem; background: #25D366; color: white; border: none; text-decoration: none;">
+                        <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante Ahora
                     </a>
                 </div>
             </div>
@@ -1629,7 +1634,12 @@ const router = {
     },
 
     async handlePurchase() {
-        const btn = document.querySelector('.cta-button');
+        // Keep button finding logic for safety
+        const btn = document.querySelector('#payment-modal .cta-button') || document.querySelector('.cta-button');
+        if (!btn) {
+            console.error("Button not found");
+            return;
+        }
         const originalText = btn.innerHTML;
 
         // Initialize Stripe with the Live Public Key
@@ -1890,30 +1900,55 @@ const router = {
 
     renderAccountShop(container) {
         container.innerHTML = `
-    <div class="section-container fade-in">
-                <h2 class="section-title">Mi Tienda - Colecciones</h2>
-                <div class="grid-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <h3 class="card-title">Mis Favoritos</h3>
+            <div class="section-container fade-in" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+                <h1 class="section-title centered" style="margin-bottom: 2rem;">Tu Cuenta</h1>
+                
+                <div class="grid-2" style="gap: 2rem;">
+                    <!-- Profile Section -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                                <i class="fa-solid fa-user" style="font-size: 2rem; color: #ccc;"></i>
+                            </div>
+                            <h3 style="margin: 0;">Usuario Invitado</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">user@example.com</p>
+                        </div>
+
+                        <div style="border-top: 1px solid #eee; padding-top: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem; font-size: 1rem; color: var(--primary-color);">Mis Datos</h4>
+                            <form onclick="event.preventDefault()">
+                                <div class="form-group">
+                                    <label style="font-size: 0.8rem;">Nombre</label>
+                                    <input type="text" class="form-control" value="Visitante" readonly style="background: #f9f9f9;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 0.8rem;">Email</label>
+                                    <input type="email" class="form-control" value="guest@tufelicitacion.com" readonly style="background: #f9f9f9;">
+                                </div>
+                                <button class="btn-outline" style="width: 100%; font-size: 0.9rem;">Editar Perfil (Próximamente)</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-box-open" style="color: var(--primary-color);"></i> Mis Pedidos
+                        </h3>
+                        
+                        <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
+                            <p style="margin-bottom: 1.5rem;">No tienes pedidos recientes.</p>
+                            <button onclick="router.navigate('home')" class="cta-button" style="font-size: 0.9rem;">Empezar a crear</button>
                         </div>
                     </div>
                 </div>
             </div>
-    `;
+        `;
     },
 
     renderAccountOrders(container) {
-        container.innerHTML = `
-    <div class="section-container fade-in">
-                <h2 class="section-title">Historial de Pedidos</h2>
-                <div style="background: var(--card-bg); border: var(--glass-border); border-radius: 1rem; padding: 2rem; text-align: center;">
-                    <i class="fa-solid fa-box-open" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-                    <p>Aún no has realizado ningún pedido.</p>
-                    <a href="#" onclick="router.navigate('home')" class="btn-outline" style="display: inline-block; width: auto; margin-top: 1rem; padding: 0.5rem 2rem;">Ir a comprar</a>
-                </div>
-            </div >
-    `;
+        // Redirect to Account Shop main view
+        this.renderAccountShop(container);
     },
 
     createProductCard(product, showPrice = true) {

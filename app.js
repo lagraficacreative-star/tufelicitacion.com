@@ -1638,13 +1638,8 @@ const router = {
 
                     <ol style="padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-bottom: 1.5rem;">
                         <li>Realiza el pago con los datos de arriba.</li>
-                        <li>Haz una captura de pantalla del justificante.</li>
-                        <li>Envíanos la captura por WhatsApp y recibirás tu felicitación sin marca de agua al instante.</li>
+                        <li>Una vez verificado el pago (1-2h aprox), recibirás un email con tu felicitación sin marca de agua.</li>
                     </ol>
-
-                    <a href="https://wa.me/34639087024" target="_blank" class="cta-button" style="display: block; text-align: center; margin-top: 1rem; background: #25D366; color: white; border: none; text-decoration: none;">
-                        <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante Ahora
-                    </a>
                 </div>
             </div>
         `;

@@ -493,7 +493,7 @@ const router = {
             container.appendChild(sectorsSection);
 
             // 3.5 Face Swap Special Section (Cambia tu cara)
-            const faceSwapProducts = PRODUCTS.filter(p => p.sector === 'faceswap_special' || p.sector === 'moda');
+            const faceSwapProducts = PRODUCTS.filter(p => (p.sector === 'faceswap_special' || p.sector === 'moda') && p.type !== 'video').slice(0, 4);
             if (faceSwapProducts.length > 0) {
                 const faceSwapSection = document.createElement('section');
                 faceSwapSection.className = 'section-container fade-in';

@@ -933,9 +933,9 @@ const router = {
                                 </div>
                             </div>
                             ${(isMagic && !hasPaid) ? `
-                            <div class="watermark-overlay" id="watermark-layer">
-                                <div class="watermark-pattern">
-                                    ${Array(100).fill('<div class="watermark-text">Tu Felicitación</div>').join('')}
+                            <div class="watermark-overlay" id="watermark-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <div style="font-size: 3rem; font-weight: 800; color: rgba(255, 255, 255, 0.4); transform: rotate(-45deg); white-space: nowrap; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                    PREVISUALIZACIÓN
                                 </div>
                             </div>
                             ` : ''}

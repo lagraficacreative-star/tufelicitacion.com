@@ -1045,7 +1045,6 @@ const router = {
                                 <button class="filter-btn ${defaultTab === 'face' ? 'active' : ''}" id="tab-btn-face" onclick="router.switchAITab('face')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">👤 Rostro${faceCount > 1 ? 's' : ''}</button>
                                 ` : ''}
                                 <button class="filter-btn ${defaultTab === 'bg' ? 'active' : ''}" id="tab-btn-bg" onclick="router.switchAITab('bg')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">🖼️ Fondo</button>
-                                <button class="filter-btn ${defaultTab === 'motion' ? 'active' : ''}" id="tab-btn-motion" onclick="router.switchAITab('motion')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">🎥 Animación</button>
                             </div>
 
                             <!-- Tab: Face Swap -->
@@ -1108,22 +1107,6 @@ const router = {
                                     <i class="fa-solid fa-star"></i> Pagar y Descargar (2.00€)
                                 </button>
                             </div>
-
-                            <!-- Tab: Motion -->
-                            <div id="ai-tab-motion" class="ai-tab-content" style="display: ${defaultTab === 'motion' ? 'block' : 'none'};">
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                                Convierte esta imagen estática en un vídeo corto y dinámico.
-                            </p>
-                            <textarea id="input-animate-prompt" class="form-control" rows="2" placeholder="Describe el movimiento (ej: nieve cayendo, luces parpadeando...)" style="margin-bottom: 0.5rem;"></textarea>
-                            <button type="button" class="btn-outline" onclick="router.handleAIAction('animate')" style="width: 100%; border-color: #9C27B0; color: #9C27B0;">
-                                <i class="fa-solid fa-film"></i> Generar Animación
-                            </button>
-                                <i class="fa-solid fa-film"></i> Generar Animación
-                            </button>
-                            <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
-                                <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
-                            </p>
-                        </div>
 
                         <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
                     </div>
@@ -1501,17 +1484,6 @@ const router = {
                     image: targetImageBase64
                 };
 
-            } else if (action === 'animate') {
-                // Using stability-ai/stable-video-diffusion (SVD) - Faster & Better for this
-                modelVersion = "3f0457e4619daac51203dedb472816f3af3dcc0d68f47ba796a7d430fa4b8e6b";
-
-                inputData = {
-                    input_image: targetImageBase64,
-                    video_length: "14_frames_with_svd_xt",
-                    sizing_strategy: "maintain_aspect_ratio",
-                    frames_per_second: 6,
-                    motion_bucket_id: 127
-                };
             } else if (action === 'generate') {
                 const prompt = document.getElementById('input-generate-prompt').value;
                 if (!prompt) throw new Error('Escribe una descripción para generar la imagen.');

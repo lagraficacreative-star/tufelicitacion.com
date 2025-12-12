@@ -1502,15 +1502,15 @@ const router = {
                 };
 
             } else if (action === 'animate') {
-                // Using ali-vilab/i2vgen-xl (Image-to-Video)
-                modelVersion = "5821a338d00033abaaba89080a17eb8783d9a17ed710a6b4246a18e0900ccad4";
-
-                const prompt = document.getElementById('input-animate-prompt').value || "high quality, moving, cinematic";
+                // Using stability-ai/stable-video-diffusion (SVD) - Faster & Better for this
+                modelVersion = "3f0457e4619daac51203dedb472816f3af3dcc0d68f47ba796a7d430fa4b8e6b";
 
                 inputData = {
-                    image: targetImageBase64,
-                    prompt: prompt,
-                    max_frames: 16
+                    input_image: targetImageBase64,
+                    video_length: "14_frames_with_svd_xt",
+                    sizing_strategy: "maintain_aspect_ratio",
+                    frames_per_second: 6,
+                    motion_bucket_id: 127
                 };
             } else if (action === 'generate') {
                 const prompt = document.getElementById('input-generate-prompt').value;

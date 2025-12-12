@@ -595,7 +595,7 @@ footer {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
     .nav-container {
         display: flex;
         flex-direction: column;
@@ -812,7 +812,7 @@ footer {
     transition: top 0.3s ease;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
     #preview-column-wrapper {
         position: sticky;
         top: 0;
@@ -930,7 +930,7 @@ footer {
     /* Hidden on desktop */
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
     #mobile-preview-toggle {
         display: flex;
         /* Visible on mobile */

@@ -4,10 +4,16 @@ import urllib.error
 import json
 import os
 import ssl
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import datetime
 
 app = Flask(__name__, static_folder=None)
 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN", "r8_WfyFEUjbkNB6oOiQiq0hvGtz3mN5iec2m9jZm")
+EMAIL_USER = os.environ.get("EMAIL_USER", "tufelicitacion@gmail.com")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "") # App Password needed
 
 
 
@@ -88,6 +94,49 @@ def replicate_proxy():
         return jsonify({'error': str(e), 'details': e.read().decode()}), e.code
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/notify-download', methods=['POST'])
+def notify_download():
+    data = request.json
+    try:
+        if not EMAIL_PASSWORD:
+            print("Email notification skipped: No EMAIL_PASSWORD set.")
+            return jsonify({'status': 'skipped', 'reason': 'no_credentials'})
+
+        user_email = data.get('email', 'Anónimo / No facilitado')
+        product_info = data.get('product_info', 'Producto desconocido')
+        is_paid = data.get('is_paid', False)
+        
+        subject = f"Nueva Descarga: {product_info}"
+        
+        body = f"""
+        ¡Nueva descarga registrada!
+        
+        Fecha: {datetime.datetime.now()}
+        Producto: {product_info}
+        Tipo: {'DE PAGO' if is_paid else 'GRATIS'}
+        Usuario (Email): {user_email}
+        
+        El usuario ha aceptado los términos y condiciones al realizar esta acción.
+        """
+
+        msg = MIMEMultipart()
+        msg['From'] = EMAIL_USER
+        msg['To'] = EMAIL_USER
+        msg['Subject'] = subject
+        msg.attach(MIMEText(body, 'plain'))
+
+        # Send email via Gmail SMTP
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(EMAIL_USER, EMAIL_PASSWORD)
+            server.sendmail(EMAIL_USER, EMAIL_USER, msg.as_string())
+            
+        return jsonify({'status': 'success', 'message': 'Email sent'})
+
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+        # Don't fail the request, just log it
+        return jsonify({'status': 'error', 'error': str(e)}), 200
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))

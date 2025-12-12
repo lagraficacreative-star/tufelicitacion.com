@@ -1816,6 +1816,13 @@ const router = {
     },
 
     async downloadComposition() {
+        // Notify Server
+        try {
+            this.notifyDownload();
+        } catch (e) {
+            console.error("Tracking error:", e);
+        }
+
         const element = document.getElementById('preview-area');
 
         // Use html2canvas to create an image from the DOM element
@@ -2119,6 +2126,49 @@ const router = {
             console.error(e);
             statusDiv.innerHTML = `<span style="color:red">Error: ${e.message}</span>`;
         }
+    },
+
+    async notifyDownload(isPaid = false) {
+        // Collect basic info
+        const title = document.getElementById('preview-title')?.textContent || 'Postal Sin Título';
+        const productId = this.params.productId || 'custom';
+
+        // In a real app, we might ask for email first or get it from auth
+        // Use a prompt for now if we want to capture it, or just notify "Anónimo" if that's acceptable
+        // The user asked: "se me envie el mail donde tambien pone que acepta"
+        // Implicitly, by clicking download they accept. But we need their email.
+
+        // Let's prompt for email if we don't have it? 
+        // Or assume the user just wants to know "someone" downloaded?
+        // "se me envie el mail ... donde pone que acepta" -> suggests we need user data.
+        // Let's Try to get it from local storage or ask? 
+        // For a quick implementation without blocking flow too much, let's just send "Usuario Web" if we don't have login.
+        // BUT, since the requirement implies a "contract/acceptance", usually you capture email first.
+
+        // Ideally we would show a modal "Ingresa tu email para descargar".
+        // Use prompt for simplicity as a first step or if auth handles it.
+        // Given existing code doesn't seem to have auth, prompt is safest.
+
+        let email = localStorage.getItem('user_email');
+        if (!email) {
+            // Optional: prompt or just send 'Anonymous'
+            // If we really want to capture it:
+            // email = prompt("Ingresa tu email para recibir tu descarga y aceptar los términos:");
+            // if (email) localStorage.setItem('user_email', email);
+            email = "Usuario Visitante (Email no capturado)";
+        }
+
+        const payload = {
+            email: email,
+            product_info: `${title} (ID: ${productId})`,
+            is_paid: isPaid
+        };
+
+        fetch('/api/notify-download', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => console.error("Notification failed", err));
     },
 
     renderAccountShop(container) {

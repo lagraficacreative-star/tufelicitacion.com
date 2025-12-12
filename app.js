@@ -1111,105 +1111,6 @@ const router = {
                             <!-- Protection Layer to prevent drag/drop/save -->
                             <div class="protection-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; opacity: 0;"></div>
                         </div>
-
-
-                        <!-- AI Studio Section (Tabs: Face, BG, Motion) - Hidden for Videos -->
-                        ${product.type !== 'video' ? `
-                        <div class="form-group" style="background: #ffffff; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-top: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
-                            </h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
-                            <div style="background: linear-gradient(to right, #fff, #fdfbf7); padding: 0.8rem; border-left: 3px solid #FFD700; margin-bottom: 1.5rem; font-size: 0.85rem; color: #555;">
-                                <i class="fa-solid fa-crown" style="color: #FFD700;"></i> Deberás realizar el pago único de <strong>2.00€</strong> al finalizar.
-                            </div>
-
-                            <div style="margin-bottom: 1rem; padding: 0.5rem; background: #e8f5e9; border-radius: 0.5rem; color: #2e7d32; font-size: 0.8rem; text-align: center;">
-                                <i class="fa-solid fa-check-circle"></i> IA Activada y lista para usar.
-                            </div>
-
-                            <div class="ai-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-                                ${showFaceTab ? `
-                                <button class="filter-btn ${defaultTab === 'face' ? 'active' : ''}" id="tab-btn-face" onclick="router.switchAITab('face')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">👤 Rostro${faceCount > 1 ? 's' : ''}</button>
-                                ` : ''}
-                                <button class="filter-btn ${defaultTab === 'bg' ? 'active' : ''}" id="tab-btn-bg" onclick="router.switchAITab('bg')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">🖼️ Fondo</button>
-                            </div>
-
-                            <!-- Tab: Face Swap -->
-                            <div id="ai-tab-face" class="ai-tab-content" style="display: ${defaultTab === 'face' ? 'block' : 'none'};">
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
-                                    ${faceCount > 1 ? `Sube las ${faceCount} fotos en orden para integrarlas.` : 'Sube una foto tuya y la IA la integrará en el personaje.'}
-                                </p>
-                                
-                                ${faceInputsHtml}
-
-                                <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
-                                    Generar (Intercambiar Cara)
-                                </button>
-                                    Generar (Intercambiar Cara)
-                                </button>
-                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
-                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
-                                </p>
-                            </div>
-
-                            <!-- Tab 2: Fondo (Background Swap) -->
-                            <div id="ai-tab-bg" class="ai-tab-content" style="display: ${defaultTab === 'bg' ? 'block' : 'none'};">
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                                    Sube tu foto, quítale el fondo y elige un escenario mágico.
-                                </p>
-
-                                <!-- 1. Upload Subject -->
-                                <div class="form-group">
-                                    <label style="font-size: 0.8rem;">1. Foto Principal (Sujeto)</label>
-                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleMainImageUpload(this)">
-                                </div>
-
-                                <!-- 2. Remove BG Action -->
-                                <button type="button" class="btn-outline" onclick="router.handleAIAction('removebg')" style="width: 100%; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
-                                </button>
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
-                                </button>
-                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">
-                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
-                                </p>
-
-                                <!-- 3. Preset Gallery -->
-                                <label style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; display: block;">3. Elige Escenario</label>
-                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-height: 200px; overflow-y: auto; padding-right: 0.25rem;">
-                                    <!-- Dynamic Presets -->
-                                    ${typeof PRESETS !== 'undefined' ? PRESETS.map(p => `
-                                <div onclick="router.applyPresetBackground('${p.url}')" style="aspect-ratio: 1/1; background: url('${p.url}') center/cover; border-radius: 0.5rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'"></div>
-                             `).join('') : '<p>Cargando fondos...</p>'}
-                                </div>
-
-                                <!-- Custom BG Upload (Legacy/Advanced) -->
-                                <div style="margin-top: 1rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
-                                    <label style="font-size: 0.8rem;">O sube tu propio fondo:</label>
-                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleBackgroundUpload(this)">
-                                </div>
-
-
-                            </div>
-
-                        <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
-                    </div>
-
-                    <!-- Independent Generate Section -->
-                    <div class="form-group" style="background: linear-gradient(to right, #fdfbf7, #fff); padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; margin-top: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                        <h3 style="font-family: var(--font-heading); color: #B76E79; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                            <i class="fa-solid fa-paintbrush"></i> Crea desde cero
-                        </h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;">
-                            ¿Prefieres algo único? Describe tu idea y la IA generará una imagen nueva para ti.
-                        </p>
-                        <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Ej: Un paisaje nevado con un árbol de navidad gigante..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
-                        <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
-                            🎨 Generar Nueva Imagen
-                        </button>
-                    </div>
-                    ` : ''}
                     </div>
                 </div> <!-- End of preview-column-wrapper -->
 
@@ -1341,6 +1242,308 @@ const router = {
                             <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
                         </div>
                     </div>
+
+
+                    <!-- AI Studio Section (Moved to Right Column) -->
+                    ${product.type !== 'video' ? `
+                        <div class="form-group" style="background: #ffffff; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-top: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
+                            <div style="background: linear-gradient(to right, #fff, #fdfbf7); padding: 0.8rem; border-left: 3px solid #FFD700; margin-bottom: 1.5rem; font-size: 0.85rem; color: #555;">
+                                <i class="fa-solid fa-crown" style="color: #FFD700;"></i> Deberás realizar el pago único de <strong>2.00€</strong> al finalizar.
+                            </div>
+
+                            <div style="margin-bottom: 1rem; padding: 0.5rem; background: #e8f5e9; border-radius: 0.5rem; color: #2e7d32; font-size: 0.8rem; text-align: center;">
+                                <i class="fa-solid fa-check-circle"></i> IA Activada y lista para usar.
+                            </div>
+
+                            <div class="ai-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                                ${showFaceTab ? `
+                                <button class="filter-btn ${defaultTab === 'face' ? 'active' : ''}" id="tab-btn-face" onclick="router.switchAITab('face')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">👤 Rostro${faceCount > 1 ? 's' : ''}</button>
+                                ` : ''}
+                                <button class="filter-btn ${defaultTab === 'bg' ? 'active' : ''}" id="tab-btn-bg" onclick="router.switchAITab('bg')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">🖼️ Fondo</button>
+                            </div>
+
+                            <!-- Tab 1: Face Swap -->
+                            <div id="ai-tab-face" class="ai-tab-content" style="display: ${defaultTab === 'face' ? 'block' : 'none'};">
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                                    ${faceCount > 1 ? `Sube las ${faceCount} fotos en orden para integrarlas.` : 'Sube una foto tuya y la IA la integrará en el personaje.'}
+                                </p>
+                                
+                                ${faceInputsHtml}
+
+                                <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
+                                    Generar (Intercambiar Cara)
+                                </button>
+                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
+                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                                </p>
+                            </div>
+
+                            <!-- Tab 2: Fondo (Background Swap) -->
+                            <div id="ai-tab-bg" class="ai-tab-content" style="display: ${defaultTab === 'bg' ? 'block' : 'none'};">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                                    Sube tu foto, quítale el fondo y elige un escenario mágico.
+                                </p>
+
+                                <!-- 1. Upload Subject -->
+                                <div class="form-group">
+                                    <label style="font-size: 0.8rem;">1. Foto Principal (Sujeto)</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleMainImageUpload(this)">
+                                </div>
+
+                                <!-- 2. Remove BG Action -->
+                                <button type="button" class="btn-outline" onclick="router.handleAIAction('removebg')" style="width: 100%; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
+                                </button>
+                                <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: -1rem; margin-bottom: 1.5rem;">
+                                    <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
+                                </p>
+
+                                <!-- 3. Preset Gallery -->
+                                <label style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; display: block;">3. Elige Escenario</label>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-height: 200px; overflow-y: auto; padding-right: 0.25rem;">
+                                    <!-- Dynamic Presets -->
+                                    ${typeof PRESETS !== 'undefined' ? PRESETS.map(p => `
+                                <div onclick="router.applyPresetBackground('${p.url}')" style="aspect-ratio: 1/1; background: url('${p.url}') center/cover; border-radius: 0.5rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'"></div>
+                             `).join('') : '<p>Cargando fondos...</p>'}
+                                </div>
+
+                                <!-- Custom BG Upload (Legacy/Advanced) -->
+                                <div style="margin-top: 1rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                                    <label style="font-size: 0.8rem;">O sube tu propio fondo:</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleBackgroundUpload(this)">
+                                </div>
+
+
+                            </div>
+
+                        <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
+                    </div>
+
+                    <!-- Independent Generate Section -->
+                    <div class="form-group" style="background: linear-gradient(to right, #fdfbf7, #fff); padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; margin-top: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                        <h3 style="font-family: var(--font-heading); color: #B76E79; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-paintbrush"></i> Crea desde cero
+                        </h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;">
+                            ¿Prefieres algo único? Describe tu idea y la IA generará una imagen nueva para ti.
+                        </p>
+                        <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Ej: Un paisaje nevado con un árbol de navidad gigante..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
+                        <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
+                            🎨 Generar Nueva Imagen
+                        </button>
+                    </div>
+                    ` : ''}
+                </div> <!-- End of preview-column-wrapper -->
+
+                <div class="controls-area">
+                    <h2 class="card-title" style="font-size: 2rem;">${product.title}</h2>
+
+                    <!-- Format Selector -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 0.5rem;">Formato:</label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="filter-btn active" id="btn-format-reel" onclick="router.updateFormat('reel')" style="flex: 1; justify-content: center; font-size: 0.8rem;">
+                                <i class="fa-brands fa-instagram"></i> Reel (9:16)
+                            </button>
+                            <button class="filter-btn" id="btn-format-post" onclick="router.updateFormat('post')" style="flex: 1; justify-content: center; font-size: 0.8rem;">
+                                <i class="fa-regular fa-square"></i> Post (1:1)
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="card-price">${product.price.toFixed(2)}€</p>
+
+                    <p style="margin-top: 1rem; margin-bottom: 2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; border-left: 3px solid var(--secondary-color); padding-left: 1rem;">
+                        Personaliza tu postal con nuestras herramientas de diseño y el nuevo <strong>Estudio Magic AI</strong>.
+                    </p>
+
+                    <!-- Title Controls -->
+                    <div class="form-group">
+                        <label>Texto Principal</label>
+                        <input type="text" id="input-title" class="form-control" value="Felices Fiestas" placeholder="Ej: Felices Fiestas" oninput="router.updatePreview()">
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                                <div>
+                                    <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                    <input type="number" id="input-title-top" class="form-control" value="20" min="0" max="100" oninput="router.updatePreview()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                    <input type="range" id="input-title-size" class="form-control" value="32" min="16" max="80" oninput="router.updatePreview()">
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 0.5rem; margin-top: 0.5rem; align-items: center;">
+                                <div>
+                                    <label style="font-size: 0.8rem;">Tipografía</label>
+                                    <select id="select-font" class="form-control" onchange="router.updatePreview()">
+                                        <option value="'Playfair Display', serif">Playfair</option>
+                                        <option value="'Inter', sans-serif">Inter</option>
+                                        <option value="'Cinzel', serif">Cinzel</option>
+                                        <option value="'Great Vibes', cursive">Great Vibes</option>
+                                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                                        <option value="'Dancing Script', cursive">Dancing Script</option>
+                                        <option value="'Lato', sans-serif">Lato</option>
+                                        <option value="'Merriweather', serif">Merriweather</option>
+                                        <option value="'Pacifico', cursive">Pacifico</option>
+                                        <option value="'Satisfy', cursive">Satisfy</option>
+                                        <option value="'Oswald', sans-serif">Oswald</option>
+                                        <option value="'Lobster', cursive">Lobster</option>
+                                        <option value="'Caveat', cursive">Caveat</option>
+                                    </select>
+                                </div>
+                                <div style="text-align: center;">
+                                    <label style="font-size: 0.8rem;">Color</label>
+                                    <input type="color" id="input-title-color" value="#ffffff" oninput="router.updatePreview()" style="width: 40px; height: 38px; padding: 0; border: none; background: none;">
+                                </div>
+                                <div style="text-align: center;">
+                                    <label style="font-size: 0.8rem;">B</label>
+                                    <input type="checkbox" id="input-title-bold" onchange="router.updatePreview()">
+                                </div>
+                                <div style="text-align: center;">
+                                    <label style="font-size: 0.8rem;">I</label>
+                                    <input type="checkbox" id="input-title-italic" onchange="router.updatePreview()">
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- Subtitle Controls -->
+                    <div class="form-group">
+                        <label>Texto Secundario</label>
+                        <textarea id="input-subtitle" class="form-control" rows="2" placeholder="Mensaje personalizado..." oninput="router.updatePreview()">Te deseamos lo mejor</textarea>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                            <div>
+                                <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                <input type="number" id="input-subtitle-top" class="form-control" value="40" min="0" max="100" oninput="router.updatePreview()">
+                            </div>
+                            <div>
+                                <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                <input type="range" id="input-subtitle-size" class="form-control" value="19" min="12" max="60" oninput="router.updatePreview()">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; justify-content: flex-end; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                <label style="font-size: 0.8rem; margin: 0;">Color:</label>
+                                <input type="color" id="input-subtitle-color" value="#ffffff" oninput="router.updatePreview()" style="width: 30px; height: 30px; padding: 0; border: none; background: none;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                <input type="checkbox" id="input-subtitle-bold" onchange="router.updatePreview()">
+                                    <label for="input-subtitle-bold" style="margin:0; font-size: 0.8rem;">Negrita</label>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                <input type="checkbox" id="input-subtitle-italic" onchange="router.updatePreview()">
+                                    <label for="input-subtitle-italic" style="margin:0; font-size: 0.8rem;">Cursiva</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logo/Image Controls -->
+                    <div class="form-group">
+                        <label>Añadir Foto/Logo</label>
+                        <input type="file" id="input-logo" class="form-control" accept="image/*" onchange="router.handleLogoUpload(this)">
+                    </div>
+
+                    <div class="form-group" id="logo-controls" style="display: none;">
+                        <label>Opciones de Imagen</label>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                <input type="number" id="input-logo-top" class="form-control" value="80" min="0" max="100" oninput="router.updatePreview()">
+                            </div>
+                            <div>
+                                <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                <input type="number" id="input-logo-size" class="form-control" value="100" min="50" max="300" oninput="router.updatePreview()">
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.05); padding: 0.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                            <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; margin:0; flex-grow: 1;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
+                            </button>
+                            <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
+                        </div>
+                    </div>
+
+
+                    <!-- AI Studio Section (Moved to Right Column) -->
+                    ${product.type !== 'video' ? `
+                        <div class="form-group" style="background: #ffffff; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-top: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
+                            <!-- Payment Info (Visible only if Paid mode, but logic inside handles it) -->
+                            
+                            <div class="ai-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                                ${showFaceTab ? `
+                                <button class="filter-btn ${defaultTab === 'face' ? 'active' : ''}" id="tab-btn-face" onclick="router.switchAITab('face')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">👤 Rostro${faceCount > 1 ? 's' : ''}</button>
+                                ` : ''}
+                                <button class="filter-btn ${defaultTab === 'bg' ? 'active' : ''}" id="tab-btn-bg" onclick="router.switchAITab('bg')" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;">🖼️ Fondo</button>
+                            </div>
+
+                            <!-- Tab 1: Face Swap -->
+                            <div id="ai-tab-face" class="ai-tab-content" style="display: ${defaultTab === 'face' ? 'block' : 'none'};">
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                                    ${faceCount > 1 ? `Sube las ${faceCount} fotos en orden para integrarlas.` : 'Sube una foto tuya y la IA la integrará en el personaje.'}
+                                </p>
+                                
+                                ${faceInputsHtml}
+
+                                <button type="button" class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; margin-top: 0.5rem; border-color: var(--secondary-color); color: var(--secondary-color);">
+                                    Generar (Intercambiar Cara)
+                                </button>
+                            </div>
+
+                            <!-- Tab 2: Fondo (Background Swap) -->
+                            <div id="ai-tab-bg" class="ai-tab-content" style="display: ${defaultTab === 'bg' ? 'block' : 'none'};">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                                    Sube tu foto, quítale el fondo y elige un escenario mágico.
+                                </p>
+
+                                <!-- 1. Upload Subject -->
+                                <div class="form-group">
+                                    <label style="font-size: 0.8rem;">1. Foto Principal (Sujeto)</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleMainImageUpload(this)">
+                                </div>
+
+                                <!-- 2. Remove BG Action -->
+                                <button type="button" class="btn-outline" onclick="router.handleAIAction('removebg')" style="width: 100%; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Quitar Fondo (IA)
+                                </button>
+
+                                <!-- 3. Preset Gallery -->
+                                <label style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; display: block;">3. Elige Escenario</label>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-height: 200px; overflow-y: auto; padding-right: 0.25rem;">
+                                    ${typeof PRESETS !== 'undefined' ? PRESETS.map(p => `
+                                <div onclick="router.applyPresetBackground('${p.url}')" style="aspect-ratio: 1/1; background: url('${p.url}') center/cover; border-radius: 0.5rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'"></div>
+                             `).join('') : '<p>Cargando fondos...</p>'}
+                                </div>
+
+                                <!-- Custom BG Upload -->
+                                <div style="margin-top: 1rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                                    <label style="font-size: 0.8rem;">O sube tu propio fondo:</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="router.handleBackgroundUpload(this)">
+                                </div>
+                            </div>
+
+                            <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
+                        </div>
+
+                        <!-- Independent Generate Section -->
+                        <div class="form-group" style="background: linear-gradient(to right, #fdfbf7, #fff); padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; margin-top: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                            <h3 style="font-family: var(--font-heading); color: #B76E79; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fa-solid fa-paintbrush"></i> Crea desde cero
+                            </h3>
+                            <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Describe tu idea..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
+                            <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
+                                🎨 Generar Nueva Imagen
+                            </button>
+                        </div>
+                    ` : ''}
 
                     <div id="action-buttons-container" style="margin-top: 1rem;">
                         ${isMagic ? (`

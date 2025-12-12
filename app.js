@@ -7,16 +7,103 @@ const router = {
     currentPage: 'home',
     params: {},
 
+    routes: {
+        '/': { page: 'home' },
+        '/navidad': { page: 'christmas-home' },
+        '/ano-nuevo': { page: 'new-year' },
+        '/reyes-magos': { page: 'kings-day' },
+        '/postales-navidad': { page: 'postcards' },
+        '/videos-navidad': { page: 'videos' },
+        '/sectores': { page: 'sectors' },
+        '/otros-eventos': { page: 'other-events' },
+        '/creatividad-ia': { page: 'ai-creativity' },
+        '/buscar': { page: 'search' },
+        '/nosotros': { page: 'about' },
+        '/contacto': { page: 'contact' },
+        '/cookies': { page: 'cookies' },
+        '/aviso-legal': { page: 'legal-notice' },
+        '/terminos': { page: 'terms' },
+        '/privacidad': { page: 'privacy' },
+        '/cuenta': { page: 'account-shop' },
+        '/pedidos': { page: 'account-orders' }
+    },
+
+    init() {
+        // Handle back/forward buttons
+        window.addEventListener('popstate', () => {
+            this.handleLocation();
+        });
+
+        // Initialize from current URL
+        this.handleLocation();
+    },
+
     navigate(page, params = {}) {
         this.currentPage = page;
         this.params = params;
 
-        // Persist state
-        localStorage.setItem('christmas_app_page', page);
-        localStorage.setItem('christmas_app_params', JSON.stringify(params));
+        // Construct URL based on page
+        let url = '/';
+        const reverseRoutes = Object.entries(this.routes).find(([, val]) => val.page === page);
 
+        if (reverseRoutes) {
+            url = reverseRoutes[0];
+            // Append params if needed (e.g., sector filters for catalogs)
+            if (params.sectorFilter && params.sectorFilter !== 'all') {
+                url += `?sector=${params.sectorFilter}`;
+            }
+        } else if (page === 'sector-detail' && params.sectorId) {
+            url = `/${params.sectorId}`; // e.g., /peluqueria
+        } else if (page === 'product' && params.productId) {
+            url = `/producto/${params.productId}`;
+        }
+
+        window.history.pushState({}, '', url);
         this.render();
         window.scrollTo(0, 0);
+    },
+
+    handleLocation() {
+        const path = window.location.pathname;
+        const searchParams = new URLSearchParams(window.location.search);
+
+        // 1. Check Static Routes
+        if (this.routes[path]) {
+            this.currentPage = this.routes[path].page;
+            this.params = {};
+
+            // Handle query params for catalogs
+            if (searchParams.has('sector')) {
+                this.params.sectorFilter = searchParams.get('sector');
+            }
+        }
+        // 2. Check Product Route (/producto/123)
+        else if (path.startsWith('/producto/')) {
+            const productId = path.split('/')[2];
+            this.currentPage = 'product';
+            this.params = { productId: productId };
+        }
+        // 3. Check Sector Route (treat root paths as sectors if they match a known sector ID)
+        else {
+            // Remove leading slash
+            const potentialSector = path.substring(1).toLowerCase();
+            const sectorExists = SECTORS.some(s => s.id === potentialSector);
+
+            if (sectorExists) {
+                this.currentPage = 'sector-detail';
+                this.params = { sectorId: potentialSector };
+            } else {
+                // Default to Home if not found
+                this.currentPage = 'home';
+                // Check Domain Redirect if at Root
+                if (path === '/' && (window.location.hostname === 'felicitaciondenavidad.com' || window.location.hostname === 'www.felicitaciondenavidad.com')) {
+                    this.currentPage = 'christmas-home';
+                }
+                this.params = {};
+            }
+        }
+
+        this.render();
     },
 
     render() {

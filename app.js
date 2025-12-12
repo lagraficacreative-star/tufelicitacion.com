@@ -2247,35 +2247,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Cookie Banner
     initCookieBanner();
 
-    // Start Router with persisted state if available
-    const savedPage = localStorage.getItem('christmas_app_page');
-    const savedParams = localStorage.getItem('christmas_app_params');
-
-    if (savedPage) {
-        router.currentPage = savedPage;
-        if (savedParams) {
-            try {
-                router.params = JSON.parse(savedParams);
-            } catch (e) {
-                console.error("Error loading router params", e);
-            }
-        }
-    }
-
-    // Domain Redirect Logic
-    if (window.location.hostname === 'felicitaciondenavidad.com' || window.location.hostname === 'www.felicitaciondenavidad.com') {
-        if (!savedPage) { // Only force redirect if no saved state (fresh visit)
-            router.currentPage = 'christmas-home';
-        }
-    }
-
     // Start Router
     console.log('App initialized. SECTORS:', typeof SECTORS, 'PRODUCTS:', typeof PRODUCTS);
-    try {
-        router.render();
-    } catch (e) {
-        console.error('Error rendering app:', e);
-    }
+    router.init();
 
     // Check protocol
     if (window.location.protocol === 'file:') {

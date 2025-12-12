@@ -2279,7 +2279,7 @@ const PRODUCTS = [
         type: "postcard",
         sector: "moda",
         price: 0.00,
-        image: "sectores/moda imagenes/vestido chocolate Nino.jpg",
+        image: "sectores/moda imagenes/vestido_chocolate_nino.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
     },
@@ -2309,7 +2309,7 @@ const PRODUCTS = [
         type: "postcard",
         sector: "moda",
         price: 0.00,
-        image: "sectores/moda imagenes/Turron regalo .jpg",
+        image: "sectores/moda imagenes/Turron_regalo.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
     },

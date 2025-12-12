@@ -1361,120 +1361,140 @@ const router = {
                         Personaliza tu postal con nuestras herramientas de diseño y el nuevo <strong>Estudio Magic AI</strong>.
                     </p>
 
-                    <!-- Title Controls -->
-                    <div class="form-group">
-                        <label>Texto Principal</label>
-                        <input type="text" id="input-title" class="form-control" value="Felices Fiestas" placeholder="Ej: Felices Fiestas" oninput="router.updatePreview()">
-
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
-                                <div>
-                                    <label style="font-size: 0.8rem;">Posición Vertical %</label>
-                                    <input type="number" id="input-title-top" class="form-control" value="20" min="0" max="100" oninput="router.updatePreview()">
+                    <!-- Title Controls (Accordion) -->
+                    <div class="accordion-item active">
+                        <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                            <span><i class="fa-solid fa-heading"></i> Texto Principal</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <input type="text" id="input-title" class="form-control" value="Felices Fiestas" placeholder="Ej: Felices Fiestas" oninput="router.updatePreview()">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                        <input type="number" id="input-title-top" class="form-control" value="20" min="0" max="100" oninput="router.updatePreview()">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                        <input type="range" id="input-title-size" class="form-control" value="32" min="16" max="80" oninput="router.updatePreview()">
+                                    </div>
                                 </div>
-                                <div>
-                                    <label style="font-size: 0.8rem;">Tamaño (px)</label>
-                                    <input type="range" id="input-title-size" class="form-control" value="32" min="16" max="80" oninput="router.updatePreview()">
+                                <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 0.5rem; margin-top: 0.5rem; align-items: center;">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Tipografía</label>
+                                        <select id="select-font" class="form-control" onchange="router.updatePreview()">
+                                            <option value="'Playfair Display', serif">Playfair</option>
+                                            <option value="'Inter', sans-serif">Inter</option>
+                                            <option value="'Cinzel', serif">Cinzel</option>
+                                            <option value="'Great Vibes', cursive">Great Vibes</option>
+                                            <option value="'Montserrat', sans-serif">Montserrat</option>
+                                            <option value="'Dancing Script', cursive">Dancing Script</option>
+                                            <option value="'Lato', sans-serif">Lato</option>
+                                            <option value="'Merriweather', serif">Merriweather</option>
+                                            <option value="'Pacifico', cursive">Pacifico</option>
+                                            <option value="'Satisfy', cursive">Satisfy</option>
+                                            <option value="'Oswald', sans-serif">Oswald</option>
+                                            <option value="'Lobster', cursive">Lobster</option>
+                                            <option value="'Caveat', cursive">Caveat</option>
+                                        </select>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <label style="font-size: 0.8rem;">Color</label>
+                                        <input type="color" id="input-title-color" value="#ffffff" oninput="router.updatePreview()" style="width: 40px; height: 38px; padding: 0; border: none; background: none;">
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <label style="font-size: 0.8rem;">B</label>
+                                        <input type="checkbox" id="input-title-bold" onchange="router.updatePreview()">
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <label style="font-size: 0.8rem;">I</label>
+                                        <input type="checkbox" id="input-title-italic" onchange="router.updatePreview()">
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 0.5rem; margin-top: 0.5rem; align-items: center;">
-                                <div>
-                                    <label style="font-size: 0.8rem;">Tipografía</label>
-                                    <select id="select-font" class="form-control" onchange="router.updatePreview()">
-                                        <option value="'Playfair Display', serif">Playfair</option>
-                                        <option value="'Inter', sans-serif">Inter</option>
-                                        <option value="'Cinzel', serif">Cinzel</option>
-                                        <option value="'Great Vibes', cursive">Great Vibes</option>
-                                        <option value="'Montserrat', sans-serif">Montserrat</option>
-                                        <option value="'Dancing Script', cursive">Dancing Script</option>
-                                        <option value="'Lato', sans-serif">Lato</option>
-                                        <option value="'Merriweather', serif">Merriweather</option>
-                                        <option value="'Pacifico', cursive">Pacifico</option>
-                                        <option value="'Satisfy', cursive">Satisfy</option>
-                                        <option value="'Oswald', sans-serif">Oswald</option>
-                                        <option value="'Lobster', cursive">Lobster</option>
-                                        <option value="'Caveat', cursive">Caveat</option>
-                                    </select>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Color</label>
-                                    <input type="color" id="input-title-color" value="#ffffff" oninput="router.updatePreview()" style="width: 40px; height: 38px; padding: 0; border: none; background: none;">
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">B</label>
-                                    <input type="checkbox" id="input-title-bold" onchange="router.updatePreview()">
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">I</label>
-                                    <input type="checkbox" id="input-title-italic" onchange="router.updatePreview()">
-                                </div>
-                            </div>
-                    </div>
-
-                    <!-- Subtitle Controls -->
-                    <div class="form-group">
-                        <label>Texto Secundario</label>
-                        <textarea id="input-subtitle" class="form-control" rows="2" placeholder="Mensaje personalizado..." oninput="router.updatePreview()">Te deseamos lo mejor</textarea>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
-                            <div>
-                                <label style="font-size: 0.8rem;">Posición Vertical %</label>
-                                <input type="number" id="input-subtitle-top" class="form-control" value="40" min="0" max="100" oninput="router.updatePreview()">
-                            </div>
-                            <div>
-                                <label style="font-size: 0.8rem;">Tamaño (px)</label>
-                                <input type="range" id="input-subtitle-size" class="form-control" value="19" min="12" max="60" oninput="router.updatePreview()">
-                            </div>
-                        </div>
-                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; justify-content: flex-end; align-items: center;">
-                            <div style="display: flex; align-items: center; gap: 0.25rem;">
-                                <label style="font-size: 0.8rem; margin: 0;">Color:</label>
-                                <input type="color" id="input-subtitle-color" value="#ffffff" oninput="router.updatePreview()" style="width: 30px; height: 30px; padding: 0; border: none; background: none;">
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.25rem;">
-                                <input type="checkbox" id="input-subtitle-bold" onchange="router.updatePreview()">
-                                    <label for="input-subtitle-bold" style="margin:0; font-size: 0.8rem;">Negrita</label>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.25rem;">
-                                <input type="checkbox" id="input-subtitle-italic" onchange="router.updatePreview()">
-                                    <label for="input-subtitle-italic" style="margin:0; font-size: 0.8rem;">Cursiva</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Logo/Image Controls -->
-                    <div class="form-group">
-                        <label>Añadir Foto/Logo</label>
-                        <input type="file" id="input-logo" class="form-control" accept="image/*" onchange="router.handleLogoUpload(this)">
-                    </div>
-
-                    <div class="form-group" id="logo-controls" style="display: none;">
-                        <label>Opciones de Imagen</label>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
-                            <div>
-                                <label style="font-size: 0.8rem;">Posición Vertical %</label>
-                                <input type="number" id="input-logo-top" class="form-control" value="80" min="0" max="100" oninput="router.updatePreview()">
-                            </div>
-                            <div>
-                                <label style="font-size: 0.8rem;">Tamaño (px)</label>
-                                <input type="number" id="input-logo-size" class="form-control" value="100" min="50" max="300" oninput="router.updatePreview()">
+                    <!-- Subtitle Controls (Accordion) -->
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                            <span><i class="fa-solid fa-align-left"></i> Texto Secundario</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <textarea id="input-subtitle" class="form-control" rows="2" placeholder="Mensaje personalizado..." oninput="router.updatePreview()">Te deseamos lo mejor</textarea>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                        <input type="number" id="input-subtitle-top" class="form-control" value="40" min="0" max="100" oninput="router.updatePreview()">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                        <input type="range" id="input-subtitle-size" class="form-control" value="19" min="12" max="60" oninput="router.updatePreview()">
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 1rem; margin-top: 0.5rem; justify-content: flex-end; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                        <label style="font-size: 0.8rem; margin: 0;">Color:</label>
+                                        <input type="color" id="input-subtitle-color" value="#ffffff" oninput="router.updatePreview()" style="width: 30px; height: 30px; padding: 0; border: none; background: none;">
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                        <input type="checkbox" id="input-subtitle-bold" onchange="router.updatePreview()">
+                                            <label for="input-subtitle-bold" style="margin:0; font-size: 0.8rem;">Negrita</label>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                        <input type="checkbox" id="input-subtitle-italic" onchange="router.updatePreview()">
+                                            <label for="input-subtitle-italic" style="margin:0; font-size: 0.8rem;">Cursiva</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div style="background: rgba(0,0,0,0.05); padding: 0.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                            <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; margin:0; flex-grow: 1;">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
-                            </button>
-                            <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
+                    <!-- Logo Controls (Accordion) -->
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                            <span><i class="fa-solid fa-image"></i> Logo / Imagen</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="form-group">
+                                <label>Añadir Foto/Logo</label>
+                                <input type="file" id="input-logo" class="form-control" accept="image/*" onchange="router.handleLogoUpload(this)">
+                            </div>
+                            <!-- Logo Controls Hidden by default, shown via JS ID toggle or just keep here if simplified -->
+                            <div id="logo-controls" style="display: none;">
+                                <label style="margin-top:1rem; display:block;">Opciones de Imagen</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Posición Vertical %</label>
+                                        <input type="number" id="input-logo-top" class="form-control" value="80" min="0" max="100" oninput="router.updatePreview()">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Tamaño (px)</label>
+                                        <input type="number" id="input-logo-size" class="form-control" value="100" min="50" max="300" oninput="router.updatePreview()">
+                                    </div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.05); padding: 0.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                                    <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; margin:0; flex-grow: 1;">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
+                                    </button>
+                                    <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-
-                    <!-- AI Studio Section (Moved to Right Column) -->
+                    <!-- AI Studio Section (Accordion) -->
                     ${product.type !== 'video' ? `
-                        <div class="form-group" style="background: #ffffff; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-top: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <h3 style="font-family: var(--font-heading); color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI
-                            </h3>
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                            <span style="display: flex; align-items: center; gap: 0.5rem; color: var(--secondary-color);"><i class="fa-solid fa-wand-magic-sparkles"></i> Estudio Magic AI</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
                             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Prueba gratis. <strong>Descarga tu obra maestra por solo 2,00€</strong></p>
                             <!-- Payment Info (Visible only if Paid mode, but logic inside handles it) -->
                             
@@ -1533,16 +1553,23 @@ const router = {
                             <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
                         </div>
 
-                        <!-- Independent Generate Section -->
-                        <div class="form-group" style="background: linear-gradient(to right, #fdfbf7, #fff); padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0; margin-top: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                            <h3 style="font-family: var(--font-heading); color: #B76E79; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fa-solid fa-paintbrush"></i> Crea desde cero
-                            </h3>
-                            <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Describe tu idea..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
-                            <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
-                                🎨 Generar Nueva Imagen
+                        <!-- Independent Generate Section (Accordion) -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                                <span style="display: flex; align-items: center; gap: 0.5rem; color: #B76E79;"><i class="fa-solid fa-paintbrush"></i> Crea desde cero</span>
+                                <i class="fa-solid fa-chevron-down"></i>
                             </button>
+                            <div class="accordion-content">
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;">
+                                    ¿Prefieres algo único? Describe tu idea y la IA generará una imagen nueva para ti.
+                                </p>
+                                <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Describe tu idea..." style="margin-bottom: 0.5rem; border-color: #B76E79;"></textarea>
+                                <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
+                                    🎨 Generar Nueva Imagen
+                                </button>
+                            </div>
                         </div>
+                    </div>
                     ` : ''}
 
                     <div id="action-buttons-container" style="margin-top: 1rem;">
@@ -2015,6 +2042,18 @@ const router = {
             alert('Hubo un error de conexión.');
             btn.disabled = false;
             btn.innerHTML = originalText;
+        }
+    },
+
+    toggleAccordion(header) {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Optional: Close others (True Accordion)
+        document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+
+        if (!isActive) {
+            item.classList.add('active');
         }
     },
 

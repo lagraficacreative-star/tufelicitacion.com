@@ -1276,7 +1276,10 @@ const router = {
                                     <label for="input-logo-remove-bg" style="margin: 0; font-size: 0.9rem; color: var(--secondary-color); cursor: pointer;">Quitar Fondo (IA)</label>
                             </div>
                             <p style="font-size: 0.7rem; color: var(--text-muted);">Elimina automáticamente el fondo de tu imagen.</p>
-                        <div id="action-buttons-container" style="margin-top: 1rem;">
+                        </div>
+                    </div>
+
+                    <div id="action-buttons-container" style="margin-top: 1rem;">
                         ${isMagic ? (`
                             ${!hasPaid ? `
                             <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-bottom: 1rem; border: none; background: #FFD700; color: #000;">
@@ -1297,7 +1300,6 @@ const router = {
                         `)}
                     </div>
                 </div>
-            </div>
         </div>
 `;
 

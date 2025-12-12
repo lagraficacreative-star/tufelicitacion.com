@@ -1102,10 +1102,7 @@ const router = {
                                     <input type="file" class="form-control" accept="image/*" onchange="router.handleBackgroundUpload(this)">
                                 </div>
 
-                                <!-- 4. Download Result -->
-                                <button id="btn-download-composite" type="button" class="btn-outline" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; margin-top: 1.5rem; border-color: #FFD700; color: #000; background-color: #FFF8E1;">
-                                    <i class="fa-solid fa-star"></i> Pagar y Descargar (2.00€)
-                                </button>
+
                             </div>
 
                         <div id="ai-status-msg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); display: none;"></div>
@@ -1123,11 +1120,6 @@ const router = {
                         <button type="button" class="btn-outline" onclick="router.handleAIAction('generate')" style="width: 100%; border-color: #B76E79; color: #B76E79;">
                             🎨 Generar Nueva Imagen
                         </button>
-                            🎨 Generar Nueva Imagen
-                        </button>
-                        <p style="font-size: 0.8rem; color: #444; font-weight: 500; text-align: center; margin-top: 0.5rem;">
-                            <i class="fa-solid fa-cart-shopping"></i> Descargar resultado final: <strong>2.00€</strong>
-                        </p>
                     </div>
                     ` : ''}
                 </div>

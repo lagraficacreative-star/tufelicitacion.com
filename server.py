@@ -19,8 +19,8 @@ def index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    # If the file exists, serve it
-    if os.path.exists(path):
+    # If the file exists and is a file (not a directory), serve it
+    if os.path.isfile(path):
         response = send_from_directory('.', path)
         # Add cache headers for images and css
         if path.endswith(('.jpg', '.jpeg', '.png', '.webp', '.css', '.js')):

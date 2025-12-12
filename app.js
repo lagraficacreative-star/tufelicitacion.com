@@ -618,7 +618,7 @@ const router = {
     <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones de Navidad personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
-            <button class="cta-button app-btn-success" onclick="document.getElementById('postcards-sectors-menu').scrollIntoView({behavior: 'smooth'})">Empieza a personalizar</button>
+            <button class="cta-button app-btn-success" onclick="router.navigate('postcards')">Empieza a personalizar</button>
         </div>
 `;
         container.appendChild(hero);

@@ -5,7 +5,7 @@ import json
 import os
 import ssl
 
-app = Flask(__name__, static_folder='.', static_url_path='')
+app = Flask(__name__, static_folder=None)
 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN", "r8_WfyFEUjbkNB6oOiQiq0hvGtz3mN5iec2m9jZm")
 
@@ -30,6 +30,10 @@ def serve_static(path):
     else:
         # Otherwise serve index.html (SPA handling)
         return send_from_directory('.', 'index.html')
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory('.', 'index.html')
 
 @app.route('/api/poll', methods=['GET'])
 def poll():

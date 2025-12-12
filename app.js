@@ -408,7 +408,7 @@ const router = {
                     <p>No nos hacemos responsables del mal uso de las imágenes generadas ni de la calidad de la imagen si la foto original proporcionada por el usuario es de baja calidad.</p>
                     <br>
                     <h3>7. Contacto</h3>
-                    <p>Para cualquier duda legal, puedes contactarnos en: info@tufelicitacion.com</p>
+                    <p>Para cualquier duda legal, puedes contactarnos en: tufelicitacion@gmail.com</p>
                 </div>
             </div>
         `;
@@ -421,7 +421,7 @@ const router = {
                 
                 <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                     <h3>1. Responsable del Tratamiento</h3>
-                    <p>El responsable de los datos es Montse Torrelles (Tu Felicitación).<br>Correo de contacto: info@tufelicitacion.com</p>
+                    <p>El responsable de los datos es Montse Torrelles (Tu Felicitación).<br>Correo de contacto: tufelicitacion@gmail.com</p>
                     <br>
                     <h3>2. Datos que Recopilamos</h3>
                     <p>Recopilamos la siguiente información:</p>
@@ -438,7 +438,7 @@ const router = {
                     <p>Utilizamos cookies de Google Analytics para analizar el tráfico. Puedes desactivarlas en la configuración de tu navegador.</p>
                     <br>
                     <h3>5. Tus Derechos</h3>
-                    <p>Tienes derecho a acceder, rectificar y suprimir tus datos. Para ejercer estos derechos, envíanos un email a info@tufelicitacion.com.</p>
+                    <p>Tienes derecho a acceder, rectificar y suprimir tus datos. Para ejercer estos derechos, envíanos un email a tufelicitacion@gmail.com.</p>
                 </div>
             </div>
         `;
@@ -470,7 +470,7 @@ const router = {
                     <h3>Datos Identificativos</h3>
                     <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, se reflejan los siguientes datos:</p>
                     <p><strong>Titular:</strong> Montse Torrelles (Tu Felicitación)</p>
-                    <p><strong>Correo electrónico:</strong> info@tufelicitacion.com</p>
+                    <p><strong>Correo electrónico:</strong> tufelicitacion@gmail.com</p>
                     <p><strong>Actividad:</strong> Diseño gráfico y servicios digitales.</p>
                 </div>
             </div>
@@ -1334,10 +1334,11 @@ const router = {
 
                         <div style="background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 0.5rem;">
                             <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
-                                <input type="checkbox" id="input-logo-remove-bg" onchange="router.updatePreview()">
-                                    <label for="input-logo-remove-bg" style="margin: 0; font-size: 0.9rem; color: var(--secondary-color); cursor: pointer;">Quitar Fondo (IA)</label>
+                                <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; width: 100%;">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo al Logo (IA)
+                                </button>
                             </div>
-                            <p style="font-size: 0.7rem; color: var(--text-muted);">Elimina automáticamente el fondo de tu imagen.</p>
+                            <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
                         </div>
                     </div>
 
@@ -1929,7 +1930,7 @@ const router = {
 
         const logoTop = document.getElementById('input-logo-top')?.value;
         const logoSize = document.getElementById('input-logo-size')?.value;
-        const removeBg = document.getElementById('input-logo-remove-bg')?.checked;
+        const removeBg = false; // Checkbox removed
 
         const previewTitle = document.getElementById('preview-title');
         const previewSubtitle = document.getElementById('preview-subtitle');
@@ -1974,8 +1975,9 @@ const router = {
             }
 
             if (removeBg) {
-                // Simulate AI background removal
-                previewLogo.style.mixBlendMode = 'multiply';
+                // Legacy: this was the CSS hack, now removed or waiting for re-implementation if needed for legacy support
+                // But since we removed the checkbox, we can remove this block or leave it as no-op.
+                // previewLogo.style.mixBlendMode = 'multiply'; 
             } else {
                 previewLogo.style.mixBlendMode = 'normal';
             }
@@ -2022,6 +2024,100 @@ const router = {
                 router.updatePreview();
             }
             reader.readAsDataURL(input.files[0]);
+        }
+    },
+
+    async handleLogoRemoveBg() {
+        const logoImg = document.getElementById('preview-logo');
+        const statusDiv = document.getElementById('logo-ai-status');
+
+        if (!logoImg || !logoImg.src) {
+            alert("Primero sube un logo.");
+            return;
+        }
+
+        statusDiv.style.display = 'block';
+        statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
+
+        try {
+            // Get Base64 from Image Element
+            const getBase64FromElement = (imgElement) => {
+                return new Promise((resolve, reject) => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        // Use original size for logos to preserve quality, or limit if too huge
+                        let width = imgElement.naturalWidth || imgElement.width;
+                        let height = imgElement.naturalHeight || imgElement.height;
+
+                        // Limit to moderate size for API speed
+                        const MAX_SIZE = 1024;
+                        if (width > MAX_SIZE || height > MAX_SIZE) {
+                            if (width > height) {
+                                height *= MAX_SIZE / width;
+                                width = MAX_SIZE;
+                            } else {
+                                width *= MAX_SIZE / height;
+                                height = MAX_SIZE;
+                            }
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(imgElement, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/png'));
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            };
+
+            const logoBase64 = await getBase64FromElement(logoImg);
+
+            // Using rembg model
+            const modelVersion = "fb8af171cfa1616ddcf1242c093f9c46bcada5ad4cf6f2fbe8b81b330ec5c003";
+            const inputData = {
+                image: logoBase64
+            };
+
+            const res = await fetch('/api/replicate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ version: modelVersion, input: inputData })
+            });
+
+            if (!res.ok) throw new Error('Error al conectar con el servidor.');
+
+            let data = await res.json();
+
+            // Polling if needed
+            if (data.id && !data.output) {
+                statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Eliminando fondo...';
+
+                const pollPrediction = async (id) => {
+                    while (true) {
+                        const pollRes = await fetch(`/api/poll?id=${id}`);
+                        const pollData = await pollRes.json();
+                        if (pollData.status === 'succeeded') return pollData;
+                        if (pollData.status === 'failed') throw new Error('Falló la generación.');
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                };
+
+                data = await pollPrediction(data.id);
+            }
+
+            if (data.output) {
+                // Update Logo with result
+                logoImg.src = data.output;
+                statusDiv.innerHTML = '<i class="fa-solid fa-check"></i> Fondo eliminado';
+            } else {
+                throw new Error('No se recibió imagen.');
+            }
+
+        } catch (e) {
+            console.error(e);
+            statusDiv.innerHTML = `<span style="color:red">Error: ${e.message}</span>`;
         }
     },
 

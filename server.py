@@ -25,7 +25,7 @@ def serve_static(path):
         # Add cache headers for images and css
         if path.endswith(('.jpg', '.jpeg', '.png', '.webp', '.css', '.js')):
             # Disable cache for development/debugging
-        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         return response
     else:
         # Otherwise serve index.html (SPA handling)

@@ -2273,16 +2273,7 @@ const PRODUCTS = [
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
     },
-    {
-        id: 222,
-        title: "Vestido Chocolate Niño",
-        type: "postcard",
-        sector: "moda",
-        price: 0.00,
-        image: "sectores/moda imagenes/vestido_chocolate_nino.jpg",
-        description: "Felicitación navideña exclusiva para el sector moda.",
-        faceCount: 1
-    },
+
     {
         id: 223,
         title: "Vestido Arbol Chico",

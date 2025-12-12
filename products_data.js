@@ -10,7 +10,7 @@ const SECTORS = [
     { id: 'estetica', name: 'Estética', icon: 'fa-spa', image: 'sectores/estetica imagenes/chicamaquillajenav.jpg' },
     { id: 'ferreteria', name: 'Ferretería', icon: 'fa-tools', image: 'sectores/ferreteria imagenes/arbolherramientas ferreria.jpg' },
     { id: 'formacion', name: 'Formación', icon: 'fa-graduation-cap', image: 'sectores/formacion imagenes/lapiceronavidad.jpg' },
-    { id: 'humor', name: 'Humor', icon: 'fa-face-laugh-beam', image: 'sectores/humor imagenes/perronavideño.jpg' },
+    { id: 'humor', name: 'Humor', icon: 'fa-face-laugh-beam', image: 'sectores/humor imagenes/perronavideno.jpg' },
     { id: 'industria', name: 'Industria', icon: 'fa-industry', image: 'sectores/industriales/bombillanavidad.jpg' },
     { id: 'inmobiliaria', name: 'Inmobiliaria', icon: 'fa-house', image: 'sectores/inmobiliaria imagenes/edificioluces.webp' },
     { id: 'limpieza', name: 'Limpieza', icon: 'fa-broom', image: 'sectores/limpieza imagenes/unnamed-15.jpg' },
@@ -305,11 +305,11 @@ const PRODUCTS = [
     },
     {
         id: 25,
-        title: "ManzanamontañA",
+        title: "Manzana Montaña",
         type: "postcard",
         sector: "alimentacion",
         price: 0.00,
-        image: "sectores/alimentacionimagenes/manzanamontaña.png",
+        image: "sectores/alimentacionimagenes/manzanamontana.png",
         description: "Felicitación navideña exclusiva para el sector alimentacion.",
         faceCount: 0
     },
@@ -365,11 +365,11 @@ const PRODUCTS = [
     },
     {
         id: 31,
-        title: "PeluqueriamuñEca",
+        title: "Peluquería Muñeca",
         type: "postcard",
         sector: "peluqueria",
         price: 0.00,
-        image: "sectores/peluqueria imagenes/peluqueriamuñeca.jpg",
+        image: "sectores/peluqueria imagenes/peluqueriamuneca.jpg",
         description: "Felicitación navideña exclusiva para el sector peluqueria.",
         faceCount: 0
     },
@@ -465,11 +465,11 @@ const PRODUCTS = [
     },
     {
         id: 41,
-        title: "PestañAnavidad",
+        title: "Pestaña Navidad",
         type: "postcard",
         sector: "opticas",
         price: 0.00,
-        image: "sectores/opticaimagenes/pestañanavidad.jpg",
+        image: "sectores/opticaimagenes/pestananavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector opticas.",
         faceCount: 0
     },
@@ -675,21 +675,21 @@ const PRODUCTS = [
     },
     {
         id: 62,
-        title: "PerronavideñO",
+        title: "Perro Navideño",
         type: "postcard",
         sector: "humor",
         price: 0.00,
-        image: "sectores/humor imagenes/perronavideño.jpg",
+        image: "sectores/humor imagenes/perronavideno.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
     },
     {
         id: 63,
-        title: "Oso NavideñO",
+        title: "Oso Navideño",
         type: "postcard",
         sector: "humor",
         price: 0.00,
-        image: "sectores/humor imagenes/oso navideño.jpg",
+        image: "sectores/humor imagenes/oso navideno.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
     },
@@ -705,11 +705,11 @@ const PRODUCTS = [
     },
     {
         id: 65,
-        title: "Gato NavideñO",
+        title: "Gato Navideño",
         type: "postcard",
         sector: "humor",
         price: 0.00,
-        image: "sectores/humor imagenes/gato navideño.jpg",
+        image: "sectores/humor imagenes/gato navideno.jpg",
         description: "Felicitación navideña exclusiva para el sector humor.",
         faceCount: 0
     },
@@ -1005,11 +1005,11 @@ const PRODUCTS = [
     },
     {
         id: 95,
-        title: "UñAsnavidad",
+        title: "Uñas Navidad",
         type: "postcard",
         sector: "estetica",
         price: 0.00,
-        image: "sectores/estetica imagenes/uñasnavidad.jpg",
+        image: "sectores/estetica imagenes/unasnavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
     },
@@ -1135,11 +1135,11 @@ const PRODUCTS = [
     },
     {
         id: 108,
-        title: "UñAsadvientonavidad",
+        title: "Uñas Adviento",
         type: "postcard",
         sector: "estetica",
         price: 0.00,
-        image: "sectores/estetica imagenes/uñasadvientonavidad.jpg",
+        image: "sectores/estetica imagenes/unasadvientonavidad.jpg",
         description: "Felicitación navideña exclusiva para el sector estetica.",
         faceCount: 0
     },
@@ -1805,21 +1805,21 @@ const PRODUCTS = [
     },
     {
         id: 175,
-        title: "EstrellaniñOs",
+        title: "Estrella Niños",
         type: "postcard",
         sector: "formacion",
         price: 0.00,
-        image: "sectores/formacion imagenes/estrellaniños.jpg",
+        image: "sectores/formacion imagenes/estrellaninos.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
     },
     {
         id: 176,
-        title: "SantaclausniñOs",
+        title: "Santa Claus Niños",
         type: "postcard",
         sector: "formacion",
         price: 0.00,
-        image: "sectores/formacion imagenes/santaclausniños.jpg",
+        image: "sectores/formacion imagenes/santaclausninos.jpg",
         description: "Felicitación navideña exclusiva para el sector formacion.",
         faceCount: 0
     },
@@ -1995,11 +1995,11 @@ const PRODUCTS = [
     },
     {
         id: 194,
-        title: "SantaclausyniñOs",
+        title: "Santa Claus y Niños",
         type: "postcard",
         sector: "particulares",
         price: 0.00,
-        image: "sectores/particular imagenes/santaclausyniños.jpg",
+        image: "sectores/particular imagenes/santaclausyninos.jpg",
         description: "Felicitación navideña exclusiva para el sector particulares.",
         faceCount: 0
     },
@@ -2275,11 +2275,11 @@ const PRODUCTS = [
     },
     {
         id: 222,
-        title: "Vestido Chocolate NiñO",
+        title: "Vestido Chocolate Niño",
         type: "postcard",
         sector: "moda",
         price: 0.00,
-        image: "sectores/moda imagenes/vestido chocolate Niño.jpg",
+        image: "sectores/moda imagenes/vestido chocolate Nino.jpg",
         description: "Felicitación navideña exclusiva para el sector moda.",
         faceCount: 1
     },
@@ -2339,7 +2339,7 @@ const PRODUCTS = [
         type: "video",
         sector: "peluqueria",
         price: 0.00,
-        image: "sectores/peluqueria videos/chicamoño.mp4",
+        image: "sectores/peluqueria videos/chicamono.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
     },
@@ -2349,7 +2349,7 @@ const PRODUCTS = [
         type: "video",
         sector: "peluqueria",
         price: 0.00,
-        image: "sectores/peluqueria videos/chicamoño3.mp4",
+        image: "sectores/peluqueria videos/chicamono3.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
     },
@@ -2359,7 +2359,7 @@ const PRODUCTS = [
         type: "video",
         sector: "peluqueria",
         price: 0.00,
-        image: "sectores/peluqueria videos/chicamoño2.mp4",
+        image: "sectores/peluqueria videos/chicamono2.mp4",
         description: "Vídeo navideño exclusiva para el sector peluqueria.",
         faceCount: 0
     },
@@ -2765,11 +2765,11 @@ const PRODUCTS = [
     },
     {
         id: 271,
-        title: "ConstruccionmuñEcos",
+        title: "Construcción Muñecos",
         type: "postcard",
         sector: "construccion",
         price: 0.00,
-        image: "sectores/construccion imagenes/construccionmuñecos.jpg",
+        image: "sectores/construccion imagenes/construccionmunecos.jpg",
         description: "Felicitación navideña exclusiva para el sector construccion.",
         faceCount: 0
     },
@@ -2895,11 +2895,11 @@ const PRODUCTS = [
     },
     {
         id: 284,
-        title: "Vestido Chocolate NiñO",
+        title: "Vestido Chocolate Niño",
         type: "postcard",
         sector: "faceswap_special",
         price: 0.00,
-        image: "canvia tu cara/vestido chocolate Niño.jpg",
+        image: "canvia tu cara/vestido chocolate Nino.jpg",
         description: "Felicitación navideña exclusiva para el sector faceswap_special.",
         faceCount: 1
     },

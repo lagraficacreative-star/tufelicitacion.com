@@ -796,12 +796,27 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    /* Allow interaction with elements below */
     z-index: 50;
     /* Ensure it is on top of everything in the preview */
     overflow: hidden;
     opacity: 0.3;
+}
+
+/* UX Improvements */
+#preview-column-wrapper {
+    position: sticky;
+    top: 6rem;
+    /* Stick below the header */
+    align-self: start;
+    /* Required for sticky inside grid */
+    transition: top 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    #preview-column-wrapper {
+        position: relative;
+        top: 0;
+    }
 }
 
 .watermark-pattern {

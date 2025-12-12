@@ -1066,9 +1066,10 @@ const router = {
         container.innerHTML = `
             <div class="section-container fade-in">
                 <div class="customizer-container">
-                    <div class="left-column">
-                        <div class="preview-area" id="preview-area">
-                            <!-- Custom Background Layer -->
+                    <!-- Left Column: Customizer & Preview -->
+                <div id="preview-column-wrapper">
+                    <div class="preview-area format-reel" id="preview-area" style="position: relative;">
+                        <!-- Background Layer -->
                             <!-- Used for preset background or uploaded background -->
                             <div id="preview-bg-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
 
@@ -1209,7 +1210,8 @@ const router = {
                         </button>
                     </div>
                     ` : ''}
-                </div>
+                    </div>
+                </div> <!-- End of preview-column-wrapper -->
 
                 <div class="controls-area">
                     <h2 class="card-title" style="font-size: 2rem;">${product.title}</h2>
@@ -1332,12 +1334,10 @@ const router = {
                             </div>
                         </div>
 
-                        <div style="background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 0.5rem;">
-                            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
-                                <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; width: 100%;">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo al Logo (IA)
-                                </button>
-                            </div>
+                        <div style="background: rgba(0,0,0,0.05); padding: 0.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                            <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; margin:0; flex-grow: 1;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
+                            </button>
                             <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); display: none;"></div>
                         </div>
                     </div>

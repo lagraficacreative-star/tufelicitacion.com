@@ -1097,7 +1097,7 @@ const router = {
                             <div id="video-container" style="display:none; width:100%; height:100%; position:absolute; top:0; left:0; z-index: 2;">
                                 <video id="main-preview-video" loop playsinline muted autoplay style="width:100%; height:100%; object-fit:cover;"></video>
                             </div>
-                            <div class="preview-overlay" id="preview-overlay" style="z-index: 3;">
+                            <div class="preview-overlay" id="preview-overlay" style="z-index: 120;">
                                 <h2 id="preview-title" class="preview-text-title draggable" data-type="title"></h2>
                                 <h3 id="preview-subtitle" class="preview-text-subtitle draggable" data-type="subtitle"></h3>
                                 <div id="preview-logo-container" class="preview-logo-container draggable" data-type="logo" style="display: none;">

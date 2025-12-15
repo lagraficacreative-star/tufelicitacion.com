@@ -1858,27 +1858,54 @@ const router = {
 
     setupDraggable() {
         const overlay = document.getElementById('preview-overlay');
+        const container = document.getElementById('preview-column-wrapper'); // Or the specific container
+
         let activeElement = null;
         let initialX, initialY;
         let initialLeft, initialTop;
 
+        // --- TOUCH PINCH VARIABLES ---
+        let initialPinchDistance = null;
+        let initialElementSize = null; // fontSize (px) or width (px)
+        let isPinching = false;
+
+        // --- HELPER: UPDATE INPUTS ---
+        const updatePosInputs = (element, topPercent) => {
+            const type = element.dataset.type;
+            let inputId = '';
+            if (type === 'title') inputId = 'input-title-top';
+            else if (type === 'subtitle') inputId = 'input-subtitle-top';
+            else if (type === 'logo') inputId = 'input-logo-top';
+
+            if (inputId) {
+                const input = document.getElementById(inputId);
+                if (input) input.value = Math.round(topPercent);
+            }
+        };
+
+        const updateSizeInputs = (element, sizeVal) => {
+            const type = element.dataset.type;
+            let inputId = '';
+            if (type === 'title') inputId = 'input-title-size';
+            else if (type === 'subtitle') inputId = 'input-subtitle-size';
+            else if (type === 'logo') inputId = 'input-logo-size';
+
+            if (inputId) {
+                const input = document.getElementById(inputId);
+                if (input) input.value = Math.round(sizeVal);
+            }
+        };
+
+        // --- MOUSE DRAG ---
         overlay.addEventListener('mousedown', (e) => {
             const draggableElement = e.target.closest('.draggable');
-
             if (draggableElement) {
-                e.preventDefault(); // Prevent default drag behavior (especially for images)
+                e.preventDefault();
                 activeElement = draggableElement;
                 initialX = e.clientX;
                 initialY = e.clientY;
-
-                // Get current percentage positions
-                const rect = activeElement.getBoundingClientRect();
-                const parentRect = overlay.getBoundingClientRect();
-
-                // Calculate current left/top relative to parent
                 initialLeft = activeElement.offsetLeft;
                 initialTop = activeElement.offsetTop;
-
                 activeElement.style.cursor = 'grabbing';
             }
         });
@@ -1891,42 +1918,143 @@ const router = {
             const currentY = e.clientY;
             const dx = currentX - initialX;
             const dy = currentY - initialY;
-
             const parentRect = overlay.getBoundingClientRect();
 
-            // Calculate new position in pixels
             let newLeft = initialLeft + dx;
             let newTop = initialTop + dy;
 
-            // Convert to percentage for responsiveness
+            // Clamp / percentages
             let leftPercent = (newLeft / parentRect.width) * 100;
             let topPercent = (newTop / parentRect.height) * 100;
 
-            // Clamp values to keep inside container (optional, but good for UX)
-            // leftPercent = Math.max(0, Math.min(100, leftPercent));
-            // topPercent = Math.max(0, Math.min(100, topPercent));
+            activeElement.style.left = `${leftPercent}%`;
+            activeElement.style.top = `${topPercent}%`;
 
-            activeElement.style.left = `${leftPercent}% `;
-            activeElement.style.top = `${topPercent}% `;
-
-            // Update inputs if they exist
-            const type = activeElement.dataset.type;
-            if (type === 'title') {
-                const input = document.getElementById('input-title-top');
-                if (input) input.value = Math.round(topPercent);
-            } else if (type === 'subtitle') {
-                const input = document.getElementById('input-subtitle-top');
-                if (input) input.value = Math.round(topPercent);
-            } else if (type === 'logo') {
-                const input = document.getElementById('input-logo-top');
-                if (input) input.value = Math.round(topPercent);
-            }
+            updatePosInputs(activeElement, topPercent);
         });
 
         window.addEventListener('mouseup', () => {
             if (activeElement) {
                 activeElement.style.cursor = 'move';
                 activeElement = null;
+            }
+        });
+
+        // --- MOUSE WHEEL RESIZE ---
+        overlay.addEventListener('wheel', (e) => {
+            const target = e.target.closest('.draggable');
+            if (target) {
+                e.preventDefault();
+                const type = target.dataset.type;
+                // Determine direction
+                const delta = Math.sign(e.deltaY) * -1; // Up = +1 (Zoom In), Down = -1 (Zoom Out)
+                const step = 2; // px per tick
+
+                if (type === 'title' || type === 'subtitle') {
+                    let currentSize = parseFloat(window.getComputedStyle(target).fontSize);
+                    let newSize = Math.max(10, Math.min(150, currentSize + (delta * step)));
+                    target.style.fontSize = `${newSize}px`;
+                    updateSizeInputs(target, newSize);
+                } else if (type === 'logo') {
+                    // Logo container width
+                    let currentSize = parseFloat(window.getComputedStyle(target).width);
+                    let newSize = Math.max(20, Math.min(500, currentSize + (delta * step * 2)));
+                    target.style.width = `${newSize}px`;
+                    target.style.height = `${newSize}px`;
+                    updateSizeInputs(target, newSize);
+                }
+            }
+        }, { passive: false });
+
+        // --- TOUCH SUPPORT (DRAG + PINCH) ---
+        overlay.addEventListener('touchstart', (e) => {
+            const target = e.target.closest('.draggable');
+            if (!target) return;
+
+            // e.preventDefault(); // Stop scroll ONLY if we are interacting
+
+            if (e.touches.length === 1) {
+                // Drag Start
+                activeElement = target;
+                initialX = e.touches[0].clientX;
+                initialY = e.touches[0].clientY;
+                initialLeft = activeElement.offsetLeft;
+                initialTop = activeElement.offsetTop;
+                isPinching = false;
+            } else if (e.touches.length === 2) {
+                // Pinch Start
+                isPinching = true;
+                activeElement = target;
+                // Calculate initial distance
+                initialPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+
+                // Get initial size
+                if (target.dataset.type === 'logo') {
+                    initialElementSize = parseFloat(window.getComputedStyle(target).width);
+                } else {
+                    initialElementSize = parseFloat(window.getComputedStyle(target).fontSize);
+                }
+            }
+        }, { passive: false });
+
+        overlay.addEventListener('touchmove', (e) => {
+            if (!activeElement) return;
+            // Prevent scrolling page while manipulating
+            if (e.cancelable) e.preventDefault();
+
+            if (e.touches.length === 1 && !isPinching) {
+                // DRAG LOGIC
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const dx = currentX - initialX;
+                const dy = currentY - initialY;
+                const parentRect = overlay.getBoundingClientRect();
+
+                let newLeft = initialLeft + dx;
+                let newTop = initialTop + dy;
+
+                let leftPercent = (newLeft / parentRect.width) * 100;
+                let topPercent = (newTop / parentRect.height) * 100;
+
+                activeElement.style.left = `${leftPercent}%`;
+                activeElement.style.top = `${topPercent}%`;
+                updatePosInputs(activeElement, topPercent);
+
+            } else if (e.touches.length === 2 && isPinching) {
+                // PINCH LOGIC
+                const currentDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+
+                if (initialPinchDistance > 0) {
+                    const scaleFactor = currentDistance / initialPinchDistance;
+                    let newSize = initialElementSize * scaleFactor;
+                    const type = activeElement.dataset.type;
+
+                    if (type === 'logo') {
+                        newSize = Math.max(20, Math.min(500, newSize));
+                        activeElement.style.width = `${newSize}px`;
+                        activeElement.style.height = `${newSize}px`;
+                        updateSizeInputs(activeElement, newSize);
+                    } else {
+                        // Text
+                        newSize = Math.max(10, Math.min(150, newSize));
+                        activeElement.style.fontSize = `${newSize}px`;
+                        updateSizeInputs(activeElement, newSize);
+                    }
+                }
+            }
+        }, { passive: false });
+
+        overlay.addEventListener('touchend', (e) => {
+            // Reset
+            if (e.touches.length === 0) {
+                activeElement = null;
+                isPinching = false;
             }
         });
     },

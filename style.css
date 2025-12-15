@@ -470,9 +470,26 @@ footer {
 /* Product Customizer */
 .customizer-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 400px;
+    /* Left: Flexible (Canvas), Right: Fixed 400px (Menu) */
+    gap: 3rem;
     align-items: start;
+    position: relative;
+    /* Ensure it doesn't overflow horizontally */
+    max-width: 100%;
+}
+
+/* Left Column: Preview / Canvas */
+/* Since we want it 'always visible' or sticky, let's make the wrapper sticky */
+#preview-column-wrapper {
+    position: sticky;
+    top: 6rem;
+    /* Adjust based on header height */
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
 }
 
 .preview-area {
@@ -484,7 +501,6 @@ footer {
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    /* Smooth transition for resizing */
 }
 
 /* Format Modifiers */
@@ -557,14 +573,52 @@ footer {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Right Column: Controls Panel */
 .controls-area {
     background: #ffffff;
-    padding: 2rem;
     border: 1px solid var(--border-color);
     border-radius: 1rem;
     position: sticky;
-    top: 6rem;
-    /* Sticky when scrolling */
+    top: 2rem;
+    /* Fits screen height minus margins */
+    max-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Internal scrolling handled by content */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.controls-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+    /* Custom Scrollbar for sleek look */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+.controls-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.controls-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.controls-content::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 20px;
+}
+
+.controls-sticky-footer {
+    padding: 1.5rem;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .form-group {
@@ -595,7 +649,7 @@ footer {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-container {
         display: flex;
         flex-direction: column;
@@ -643,11 +697,18 @@ footer {
 
     .customizer-container {
         grid-template-columns: 1fr;
+        /* Stack on mobile */
         gap: 2rem;
     }
 
     .controls-area {
         position: static;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .controls-content {
+        overflow: visible;
     }
 }
 
@@ -660,8 +721,14 @@ footer {
         left: 0;
         right: 0;
         background: white;
-        padding: 1rem;
+        padding: 2rem;
+        /* Increased padding */
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        height: 100vh;
+        /* Full screen menu feeling */
+        align-items: center;
+        /* Center items */
     }
 
     .nav-links.active {
@@ -669,7 +736,16 @@ footer {
     }
 
     .nav-links li {
-        margin: 0.5rem 0;
+        margin: 1.5rem 0;
+        /* More spacing */
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem !important;
+        /* Larger font size */
+        font-weight: 500;
     }
 
     .hero {
@@ -812,7 +888,7 @@ footer {
     transition: top 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #preview-column-wrapper {
         position: sticky;
         top: 0;
@@ -930,7 +1006,7 @@ footer {
     /* Hidden on desktop */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #mobile-preview-toggle {
         display: flex;
         /* Visible on mobile */

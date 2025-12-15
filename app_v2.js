@@ -1043,6 +1043,10 @@ const router = {
             return;
         }
 
+        console.log("DEBUG: Rendering Product Detail v2 with Fixed Layout");
+        // Force scroll to top
+        window.scrollTo(0, 0);
+
         // Determine which AI tabs to show
         const faceCount = product.faceCount || 0;
         const showFaceTab = faceCount > 0;

@@ -21,7 +21,9 @@ EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "") # App Password needed
 
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    response = send_from_directory('.', 'index.html')
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return response
 
 @app.route('/<path:path>')
 def serve_static(path):

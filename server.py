@@ -140,6 +140,50 @@ def notify_download():
         # Don't fail the request, just log it
         return jsonify({'status': 'error', 'error': str(e)}), 200
 
+@app.route('/api/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        data = request.json
+        product_id = data.get('productId')
+        
+        # In a real app, look up product details by ID. 
+        # For this specific requirement (Magic AI price), we hardcode 2.00 EUR
+        # Verify if it's a "Magic" transaction? 
+        # Ideally, we should receive a 'type' or look up the product.
+        # But user requested "Magic AI costs 2 euros". 
+        # If the frontend calls this, it implies a purchase intent.
+        
+        # Product Name construction
+        product_name = f"Descarga Premium - Diseño #{product_id}"
+
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'], # 'bizum' requires special activation in Stripe Dashboard, keeping 'card' for now which includes Google/Apple Pay
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'eur',
+                        'product_data': {
+                            'name': product_name,
+                            'description': 'Descarga en alta calidad sin marca de agua (Magic AI)',
+                        },
+                        'unit_amount': 200, # 2.00 EUR (in cents)
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=DOMAIN_URL + '/?payment_success=true&product_id=' + str(product_id),
+            cancel_url=DOMAIN_URL + '/?payment_canceled=true',
+            metadata={
+                'product_id': product_id,
+                'email': 'user_provided_via_checkout' # Stripe collects email
+            }
+        )
+        return jsonify({'id': checkout_session.id})
+    except Exception as e:
+        print(f"Stripe Error: {e}")
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)

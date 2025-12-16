@@ -1293,7 +1293,7 @@ const router = {
                 <div style="text-align: center; margin-bottom: 3rem;">
                     <h2 class="section-title centered" style="margin-bottom: 1rem;">Estudio Magic AI ✨</h2>
                     <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                        Lleva tu felicitación al siguiente nivel con nuestras herramientas de Inteligencia Artificial.
+                        Lleva tu felicitación al siguiente nivel con nuestras herramientas de Inteligencia Artificial. (Paga 2€ por descarga solo en Magic AI).
                     </p>
                 </div>
 
@@ -1327,7 +1327,7 @@ const router = {
                         </div>
                         <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Fondo y Escenario</h3>
                         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Sube tu foto, quita el fondo automáticamente y colócala en un escenario navideño.
+                            Elige un escenario o fondo para tu felicitación. (Tu imagen principal se mantendrá).
                         </p>
                         
                         <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">

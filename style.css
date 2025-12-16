@@ -1033,7 +1033,8 @@ footer {
     }
 
     #cookie-banner .btn-accept {
-        background: var(--primary-color);
+        background: var(--secondary-color);
+        /* Christmas RED */
         color: white;
         padding: 0.5rem 1.5rem;
         border: none;
@@ -1041,79 +1042,7 @@ footer {
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
-    }
-
-    #cookie-banner .btn-accept:hover {
-        opacity: 0.9;
-    }
-
-    /* Watermark Overlay */
-    .watermark-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 50;
-        /* Ensure it is on top of everything in the preview */
-        overflow: hidden;
-        opacity: 0.3;
-    }
-
-    /* UX Improvements */
-    #preview-column-wrapper {
-        position: sticky;
-        top: 6rem;
-        /* Stick below the header */
-        align-self: start;
-        /* Required for sticky inside grid */
-        transition: top 0.3s ease;
-    }
-
-    @media (max-width: 1024px) {
-        #preview-column-wrapper {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: white;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            /* Limit height so controls are visible below */
-            max-height: 45vh;
-            overflow: hidden;
-        }
-
-        .preview-area {
-            /* Scale down image on mobile to fit in sticky header */
-            max-height: 40vh;
-            width: auto;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        /* Mobile Preview Overlay Mode */
-        #preview-column-wrapper.mobile-overlay-active {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem;
-            backdrop-filter: blur(5px);
-        }
-
-        #preview-column-wrapper.mobile-overlay-active .preview-area {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            max-height: 70vh;
-            width: auto;
-            max-width: 100%;
-            margin: 0 auto;
-        }
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     /* Accordion Styles */
@@ -1131,18 +1060,21 @@ footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #f8fafc;
-        border: none;
+        background: #f1f5f9;
+        /* Distinct gray */
+        border: 1px solid transparent;
+        /* Reserve space */
         cursor: pointer;
         font-family: var(--font-body);
         font-weight: 600;
         color: var(--text-color);
         text-align: left;
-        transition: background 0.2s;
+        transition: all 0.2s;
     }
 
     .accordion-header:hover {
-        background: #f1f5f9;
+        background: #e2e8f0;
+        color: var(--primary-color);
     }
 
     .accordion-content {

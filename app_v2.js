@@ -59,6 +59,13 @@ const router = {
         }
 
         window.history.pushState({}, '', url);
+
+        // Close mobile menu if open
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+
         this.render();
         window.scrollTo(0, 0);
     },

@@ -57,15 +57,18 @@
             <div class="nav-container">
                 <!-- Left: Links -->
                 <ul class="nav-links">
-                    <li><a href="#" onclick="router.navigate('home')">Inicio</a></li>
-                    <li><a href="#" onclick="router.navigate('christmas-home')">Navidad</a></li>
-                    <li><a href="#" onclick="router.navigate('coming-soon', { title: 'Año Nuevo' })">Año Nuevo</a></li>
-                    <li><a href="#" onclick="router.navigate('coming-soon', { title: 'Reyes Magos' })">Reyes Magos</a>
+                    <li><a href="#" onclick="router.navigate('home'); return false;">Inicio</a></li>
+                    <li><a href="#" onclick="router.navigate('christmas-home'); return false;">Navidad</a></li>
+                    <li><a href="#" onclick="router.navigate('coming-soon', { title: 'Año Nuevo' }); return false;">Año
+                            Nuevo</a></li>
+                    <li><a href="#"
+                            onclick="router.navigate('coming-soon', { title: 'Reyes Magos' }); return false;">Reyes
+                            Magos</a>
                     </li>
-                    <li><a href="#" onclick="router.navigate('other-events')">Otros Eventos</a></li>
-                    <li><a href="#" onclick="router.navigate('ai-creativity')">Creatividad IA</a></li>
-                    <li><a href="#" onclick="router.navigate('about')">Sobre nosotros</a></li>
-                    <li><a href="#" onclick="router.navigate('contact')">Contacto</a></li>
+                    <li><a href="#" onclick="router.navigate('other-events'); return false;">Otros Eventos</a></li>
+                    <li><a href="#" onclick="router.navigate('ai-creativity'); return false;">Creatividad IA</a></li>
+                    <li><a href="#" onclick="router.navigate('about'); return false;">Sobre nosotros</a></li>
+                    <li><a href="#" onclick="router.navigate('contact'); return false;">Contacto</a></li>
                 </ul>
 
                 <!-- Center: Logo -->
@@ -154,7 +157,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="products_data.js"></script>
-    <script src="app_v2.js?v=38"></script>
+    <script src="app_v2.js?v=39"></script>
 </body>
 
 </html>

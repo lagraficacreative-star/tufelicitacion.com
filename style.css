@@ -724,16 +724,23 @@ footer {
         /* Smooth scrolling on iOS */
     }
 
-    .nav-links a {
-        font-size: 1.1rem;
-        /* Bigger font for mobile */
-        padding: 0.5rem 0;
-        /* Easier to tap */
-    }
-
     /* Hide scrollbar for cleaner look */
     .nav-links::-webkit-scrollbar {
         display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+        /* Force show on mobile */
+        font-size: 2rem !important;
+        /* Make icon bigger */
+        padding: 0.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        /* Revert to valid size */
+        padding: 0.5rem 0;
     }
 
     .grid-3,

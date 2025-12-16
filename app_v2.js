@@ -2694,9 +2694,6 @@ const router = {
     }
 };
 
-// Expose router globally
-window.router = router;
-
 // Make router globally available for inline onclick handlers
 window.router = router;
 

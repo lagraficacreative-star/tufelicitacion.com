@@ -93,6 +93,8 @@ ul {
     color: var(--text-color);
     text-align: center;
     letter-spacing: -0.5px;
+    margin-right: 4rem;
+    /* Increased spacing */
 }
 
 .user-actions {
@@ -720,6 +722,13 @@ footer {
         gap: 1.5rem;
         -webkit-overflow-scrolling: touch;
         /* Smooth scrolling on iOS */
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        /* Bigger font for mobile */
+        padding: 0.5rem 0;
+        /* Easier to tap */
     }
 
     /* Hide scrollbar for cleaner look */

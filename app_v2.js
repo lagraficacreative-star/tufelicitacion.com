@@ -1308,7 +1308,7 @@ const router = {
                         </div>
                         <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Intercambio de Caras</h3>
                         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Conviértete en el protagonista. Sube tu foto y la IA te integrará perfectamente en el personaje.
+                            Conviértete en el protagonista. Sube tu foto y la IA te integrará perfectamente en el personaje. <strong>(2€/descarga)</strong>
                         </p>
                         
                          <div style="margin-bottom: 1.5rem;">
@@ -1327,7 +1327,7 @@ const router = {
                         </div>
                         <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Fondo y Escenario</h3>
                         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Elige un escenario o fondo para tu felicitación. (Tu imagen principal se mantendrá).
+                            Elige un escenario o fondo para tu felicitación. (Tu imagen principal se mantendrá). <strong>(2€/descarga)</strong>
                         </p>
                         
                         <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">

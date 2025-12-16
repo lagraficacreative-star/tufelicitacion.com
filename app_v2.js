@@ -1259,7 +1259,7 @@ const router = {
 
                         <!-- Sticky Footer (CTA) -->
                         <div class="controls-sticky-footer">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; ${!isMagic ? 'display: none !important;' : ''}">
                                 <span style="font-size: 0.9rem; color: var(--text-muted);">Precio final</span>
                                 <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-color);">${product.price.toFixed(2)}€</span>
                             </div>
@@ -1990,6 +1990,7 @@ const router = {
     },
 
     toggleAccordion(header) {
+        console.log("Toggle Accordion Clicked", header);
         const item = header.parentElement;
         const isActive = item.classList.contains('active');
 
@@ -2696,57 +2697,62 @@ const router = {
 // Expose router globally
 window.router = router;
 
+// Make router globally available for inline onclick handlers
+window.router = router;
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    // Check for payment success
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('payment_success') === 'true') {
-        localStorage.setItem('hasPaid', 'true');
-        alert("¡Pago realizado con éxito! La marca de agua ha sido eliminada.");
-        // Clean URL without reloading
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-
-    // Populate Navigation Menus
-    const populateMenu = (elementId, filterType) => {
-        const menu = document.getElementById(elementId);
-        if (!menu) return;
-
-        SECTORS.forEach(sector => {
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = sector.name;
-            a.onclick = (e) => {
-                e.preventDefault();
-                // If filtering by type, we might want to filter by both sector and type in the future
-                // For now, just go to sector detail
-                router.navigate('sector-detail', { sectorId: sector.id });
-            };
-            menu.appendChild(a);
-        });
-    };
-
-    populateMenu('postcards-sectors-menu');
-    populateMenu('videos-sectors-menu');
-    populateMenu('all-sectors-menu');
-
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
-
-    // Initialize Cookie Banner
-    initCookieBanner();
-
-    // Start Router
-    console.log('App initialized. SECTORS:', typeof SECTORS, 'PRODUCTS:', typeof PRODUCTS);
     router.init();
+});
+// Check for payment success
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('payment_success') === 'true') {
+    localStorage.setItem('hasPaid', 'true');
+    alert("¡Pago realizado con éxito! La marca de agua ha sido eliminada.");
+    // Clean URL without reloading
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
 
-    // Check protocol
-    if (window.location.protocol === 'file:') {
-        const warning = document.createElement('div');
-        warning.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; background: #d32f2f; color: white; padding: 1rem; text-align: center; z-index: 9999; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.3);';
-        warning.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Estás abriendo la web como archivo (file://). Las funciones de IA no funcionarán por seguridad.<br>Por favor, usa el servidor local: <u>http://localhost:8080</u>';
-        document.body.appendChild(warning);
-    }
+// Populate Navigation Menus
+const populateMenu = (elementId, filterType) => {
+    const menu = document.getElementById(elementId);
+    if (!menu) return;
+
+    SECTORS.forEach(sector => {
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = sector.name;
+        a.onclick = (e) => {
+            e.preventDefault();
+            // If filtering by type, we might want to filter by both sector and type in the future
+            // For now, just go to sector detail
+            router.navigate('sector-detail', { sectorId: sector.id });
+        };
+        menu.appendChild(a);
+    });
+};
+
+populateMenu('postcards-sectors-menu');
+populateMenu('videos-sectors-menu');
+populateMenu('all-sectors-menu');
+
+// Scroll to top on page load
+window.scrollTo(0, 0);
+
+// Initialize Cookie Banner
+initCookieBanner();
+
+// Start Router
+console.log('App initialized. SECTORS:', typeof SECTORS, 'PRODUCTS:', typeof PRODUCTS);
+router.init();
+
+// Check protocol
+if (window.location.protocol === 'file:') {
+    const warning = document.createElement('div');
+    warning.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; background: #d32f2f; color: white; padding: 1rem; text-align: center; z-index: 9999; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.3);';
+    warning.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Estás abriendo la web como archivo (file://). Las funciones de IA no funcionarán por seguridad.<br>Por favor, usa el servidor local: <u>http://localhost:8080</u>';
+    document.body.appendChild(warning);
+}
 });
 
 function initCookieBanner() {

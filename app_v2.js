@@ -1034,14 +1034,20 @@ const router = {
     },
 
     renderProductDetail(container) {
+
+        console.log("DEBUG: Render Product Detail Start");
+        // alert("Debug: Iniciando render v25"); // Commented out to avoid spam, uncomment if needed
+
         // Use loose equality to handle both string and number inputs for ID
         const product = PRODUCTS.find(p => p.id == this.params.productId);
         const hasPaid = localStorage.getItem('hasPaid') === 'true';
 
         if (!product) {
-            container.innerHTML = '<div class="fade-in"><p style="text-align:center; padding: 2rem;">Producto no encontrado</p></div>';
+            console.error("Product not found for ID:", this.params.productId);
+            container.innerHTML = '<div class="fade-in"><p style="text-align:center; padding: 2rem;">Producto no encontrado (ID inválido)</p></div>';
             return;
         }
+
 
         console.log("DEBUG: Rendering Product Detail v2 with Fixed Layout");
         // Force scroll to top
@@ -1115,15 +1121,260 @@ const router = {
                             <div class="protection-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; opacity: 0;" onclick="router.clearSelection(event)"></div>
                         </div>
                     </div>
-                    <!-- ... -->
-                </div>
+                    <!-- Right Column: Controls Panel -->
+                    <div class="controls-area">
+                        <!-- Scrollable Content -->
+                        <div class="controls-content">
+                            <h2 class="card-title" style="font-size: 1.5rem; margin-bottom: 1.5rem;">${product.title}</h2>
+
+                            <!-- 1. Format Selector -->
+                            <div style="margin-bottom: 2rem;">
+                                <label style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: block; margin-bottom: 0.75rem;">Formato</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="filter-btn active" id="btn-format-reel" onclick="router.updateFormat('reel')" style="flex: 1; justify-content: center; font-size: 0.85rem; padding: 0.6rem;">
+                                        <i class="fa-brands fa-instagram"></i> Reel (9:16)
+                                    </button>
+                                    <button class="filter-btn" id="btn-format-post" onclick="router.updateFormat('post')" style="flex: 1; justify-content: center; font-size: 0.85rem; padding: 0.6rem;">
+                                        <i class="fa-regular fa-square"></i> Post (1:1)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 2. Main Text -->
+                            <div class="accordion-item active" style="margin-bottom: 1rem;">
+                                <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                                    <span><i class="fa-solid fa-heading"></i> Texto Principal</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <input type="text" id="input-title" class="form-control" value="Felices Fiestas" placeholder="Ej: Felices Fiestas" oninput="router.updatePreview()">
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem;">
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Posición Y</label>
+                                                <input type="number" id="input-title-top" class="form-control" value="20" min="0" max="100" oninput="router.updatePreview()">
+                                            </div>
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Tamaño</label>
+                                                <input type="number" id="input-title-size" class="form-control" value="32" min="16" max="120" oninput="router.updatePreview()">
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="margin-top: 0.75rem;">
+                                             <label style="font-size: 0.75rem;">Tipografía</label>
+                                            <select id="select-font" class="form-control" onchange="router.updatePreview()">
+                                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                                <option value="'Inter', sans-serif">Inter</option>
+                                                <option value="'Cinzel', serif">Cinzel</option>
+                                                <option value="'Great Vibes', cursive">Great Vibes</option>
+                                                <option value="'Montserrat', sans-serif">Montserrat</option>
+                                                <option value="'Dancing Script', cursive">Dancing Script</option>
+                                                <option value="'Lato', sans-serif">Lato</option>
+                                                <option value="'Pacifico', cursive">Pacifico</option>
+                                                <option value="'Caveat', cursive">Caveat</option>
+                                            </select>
+                                        </div>
+
+                                        <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem; align-items: center; justify-content: space-between;">
+                                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                                 <input type="color" id="input-title-color" value="#ffffff" oninput="router.updatePreview()" style="width: 36px; height: 36px; padding: 0; border: none; background: none; cursor: pointer;">
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <label class="btn-outline" style="margin:0; padding: 0.4rem 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
+                                                    <input type="checkbox" id="input-title-bold" onchange="router.updatePreview()" style="display: none;"> <span id="span-bold">B</span>
+                                                </label>
+                                                <label class="btn-outline" style="margin:0; padding: 0.4rem 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
+                                                    <input type="checkbox" id="input-title-italic" onchange="router.updatePreview()" style="display: none;"> <span id="span-italic">I</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Secondary Text -->
+                            <div class="accordion-item" style="margin-bottom: 1rem;">
+                                <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                                    <span><i class="fa-solid fa-align-left"></i> Texto Secundario</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <textarea id="input-subtitle" class="form-control" rows="2" placeholder="Mensaje..." oninput="router.updatePreview()">Te deseamos lo mejor</textarea>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem;">
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Posición Y</label>
+                                                <input type="number" id="input-subtitle-top" class="form-control" value="40" min="0" max="100" oninput="router.updatePreview()">
+                                            </div>
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Tamaño</label>
+                                                <input type="number" id="input-subtitle-size" class="form-control" value="19" min="10" max="80" oninput="router.updatePreview()">
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
+                                             <input type="color" id="input-subtitle-color" value="#ffffff" oninput="router.updatePreview()" style="width: 36px; height: 36px; padding: 0; border: none; background: none; cursor: pointer;">
+                                             <div style="display: flex; gap: 0.5rem;">
+                                                <label class="btn-outline" style="margin:0; padding: 0.4rem 0.8rem; cursor: pointer;">
+                                                    <input type="checkbox" id="input-subtitle-bold" onchange="router.updatePreview()" style="display: none;"> B
+                                                </label>
+                                                <label class="btn-outline" style="margin:0; padding: 0.4rem 0.8rem; cursor: pointer;">
+                                                    <input type="checkbox" id="input-subtitle-italic" onchange="router.updatePreview()" style="display: none;"> I
+                                                </label>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Logo/Image -->
+                            <div class="accordion-item">
+                                <button class="accordion-header" onclick="router.toggleAccordion(this)">
+                                    <span><i class="fa-solid fa-image"></i> Logo / Imagen</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="form-group">
+                                        <label>Subir Archivo</label>
+                                        <input type="file" id="input-logo" class="form-control" accept="image/*" onchange="router.handleLogoUpload(this)">
+                                    </div>
+                                    <div id="logo-controls" style="display: none;">
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Posición Y</label>
+                                                <input type="number" id="input-logo-top" class="form-control" value="80" min="0" max="100" oninput="router.updatePreview()">
+                                            </div>
+                                            <div>
+                                                <label style="font-size: 0.75rem;">Tamaño</label>
+                                                <input type="number" id="input-logo-size" class="form-control" value="100" min="20" max="400" oninput="router.updatePreview()">
+                                            </div>
+                                        </div>
+                                        <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="width: 100%; text-align: center; justify-content: center; display: flex; gap: 0.5rem; align-items: center;">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
+                                        </button>
+                                        <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center; display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End controls-content -->
+
+                        <!-- Sticky Footer (CTA) -->
+                        <div class="controls-sticky-footer">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem;">
+                                <span style="font-size: 0.9rem; color: var(--text-muted);">Precio final</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-color);">${product.price.toFixed(2)}€</span>
+                            </div>
+
+                            ${isMagic ? (`
+                                ${!hasPaid ? `
+                                <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; border: none; background: var(--primary-color); color: #fff; display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 1.1rem; padding: 1rem;">
+                                    Continuar <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <div style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                    Prueba gratis · Descarga final 2,00 €
+                                </div>
+                                ` : `
+                                <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none; background: #25D366;">
+                                    <i class="fa-solid fa-download"></i> Descargar Original
+                                </button>
+                                `}
+                            `) : (`
+                                <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none; background: var(--success-color, #25D366); color: #fff; padding: 1rem; font-size: 1.1rem;">
+                                    <i class="fa-solid fa-download"></i> Descargar GRATIS
+                                </button>
+                            `)}
+                        </div>
+                    </div>
+                </div> <!-- End of customizer-container -->
             </div>
-            <!-- ... -->
+
+            <!-- NEW FULL-WIDTH MAGIC AI SECTION (BELOW) -->
+            ${product.type !== 'video' ? `
+            <div class="section-container fade-in" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h2 class="section-title centered" style="margin-bottom: 1rem;">Estudio Magic AI ✨</h2>
+                    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                        Lleva tu felicitación al siguiente nivel con nuestras herramientas de Inteligencia Artificial.
+                    </p>
+                </div>
+
+                <!-- Magic AI Blocks Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    
+                    <!-- Block 1: Face Swap -->
+                    ${showFaceTab ? `
+                    <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                        <div style="width: 50px; height: 50px; background: #FFF0F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #D42426; font-size: 1.5rem;">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Intercambio de Caras</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            Conviértete en el protagonista. Sube tu foto y la IA te integrará perfectamente en el personaje.
+                        </p>
+                        
+                         <div style="margin-bottom: 1.5rem;">
+                            ${faceInputsHtml}
+                        </div>
+                         <button class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; text-align: center; padding: 0.8rem;">
+                            Generar Caras
+                        </button>
+                    </div>
+                    ` : ''}
+
+                    <!-- Block 2: Remove BG & Scene -->
+                    <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                         <div style="width: 50px; height: 50px; background: #F0F9FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #0284c7; font-size: 1.5rem;">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Fondo y Escenario</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            Sube tu foto, quita el fondo automáticamente y colócala en un escenario navideño.
+                        </p>
+                        
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                             <button class="btn-outline" onclick="document.getElementById('input-main-img-ai').click()" style="flex: 1; font-size: 0.8rem;">
+                                <i class="fa-solid fa-upload"></i> Subir Foto
+                            </button>
+                            <input type="file" id="input-main-img-ai" style="display:none;" accept="image/*" onchange="router.handleMainImageUpload(this)">
+                             <button class="btn-outline" onclick="router.handleAIAction('removebg')" style="flex: 1; font-size: 0.8rem;">
+                                <i class="fa-solid fa-eraser"></i> Quitar Fondo
+                            </button>
+                        </div>
+                        
+                        <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">Elegir Escenario:</label>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; max-height: 120px; overflow-y: auto;">
+                             ${typeof PRESETS !== 'undefined' ? PRESETS.map(p => `
+                                <div onclick="router.applyPresetBackground('${p.url}')" style="aspect-ratio: 1/1; background: url('${p.url}') center/cover; border-radius: 0.4rem; cursor: pointer; border: 2px solid transparent;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'"></div>
+                            `).join('') : ''}
+                        </div>
+                    </div>
+
+                    <!-- Block 3: Creative Mode -->
+                    <div style="background: #fff; border: 1px dashed #D4AF37; border-radius: 1rem; padding: 2rem; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; right: 0; background: #D4AF37; color: white; font-size: 0.7rem; padding: 0.2rem 0.8rem; border-bottom-left-radius: 0.5rem;">BETA</div>
+                         <div style="width: 50px; height: 50px; background: #FFFBEB; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #D4AF37; font-size: 1.5rem;">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Crear desde Cero</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            Describe lo que imaginas y la IA lo creará para ti.
+                        </p>
+                        <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Un Papá Noel surfista en Hawaii..." style="margin-bottom: 1rem; font-size: 0.9rem;"></textarea>
+                        <button class="cta-button" onclick="router.handleAIAction('generate')" style="width: 100%; background: #D4AF37;">
+                            <i class="fa-solid fa-paintbrush"></i> Generar Imagen
+                        </button>
+                    </div>
+
+                </div>
+                <div id="ai-status-msg" style="margin-top: 2rem; font-size: 1.2rem; text-align: center; font-weight: 600; color: var(--primary-color); display: none;"></div>
+            </div>
+            ` : ''}
         `;
+
 
         this.setupDraggable();
         this.updatePreview();
         this.updateFormat('reel');
+
     },
 
     clearSelection(e) {

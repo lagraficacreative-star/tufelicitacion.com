@@ -42,7 +42,8 @@ ul {
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1100;
+    /* Increased to stay above controls */
     padding: 1.2rem 0;
 }
 
@@ -484,6 +485,7 @@ footer {
 #preview-column-wrapper {
     position: sticky;
     top: 6rem;
+    /* Ensures it starts below navbar */
     /* Adjust based on header height */
     height: fit-content;
     display: flex;
@@ -617,9 +619,10 @@ footer {
     border: 1px solid var(--border-color);
     border-radius: 1rem;
     position: sticky;
-    top: 2rem;
+    top: 6rem;
+    /* Ensures it starts below navbar */
     /* Fits screen height minus margins */
-    max-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 8rem);
     display: flex;
     flex-direction: column;
     overflow: hidden;

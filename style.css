@@ -1033,8 +1033,8 @@ footer {
     }
 
     #cookie-banner .btn-accept {
-        background: var(--secondary-color);
-        /* Christmas RED */
+        background: #25D366;
+        /* WhatsApp Green / Success */
         color: white;
         padding: 0.5rem 1.5rem;
         border: none;
@@ -1042,7 +1042,15 @@ footer {
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #cookie-banner .btn-accept:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        background: #128C7E;
+        /* Darker Green */
     }
 
     /* Accordion Styles */

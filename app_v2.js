@@ -38,7 +38,8 @@ const router = {
         this.handleLocation();
     },
 
-    navigate(page, params = {}) {
+    navigate(page, params = {}, event = null) {
+        if (event) event.preventDefault();
         this.currentPage = page;
         this.params = params;
 

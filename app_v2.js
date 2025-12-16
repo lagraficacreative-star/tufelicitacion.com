@@ -67,8 +67,27 @@ const router = {
             navLinks.classList.remove('active');
         }
 
+        // Google Analytics (SPA Tracking)
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-BSRLEM3WSL', {
+                'page_path': url,
+                'page_title': document.title
+            });
+        }
+
         this.render();
         window.scrollTo(0, 0);
+    },
+
+    updateMeta(title, description) {
+        document.title = title || "Tu Felicitación - Personalizada con IA";
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.name = "description";
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.content = description || "Crea y personaliza tus postales de Navidad, vídeos y felicitaciones con Inteligencia Artificial.";
     },
 
     handleLocation() {
@@ -198,6 +217,10 @@ const router = {
     },
 
     renderOtherEvents(container) {
+        this.updateMeta(
+            "Otros Eventos - Tu Felicitación",
+            "Felicitaciones para cumpleaños, bodas, aniversarios y momentos especiales."
+        );
         container.innerHTML = `
             <div class="section-container fade-in" style="text-align: center; padding: 4rem 2rem;">
                 <h1 class="section-title">Otros Eventos</h1>
@@ -239,6 +262,10 @@ const router = {
     },
 
     renderAiCreativity(container) {
+        this.updateMeta(
+            "Creatividad IA - Tu Felicitación",
+            "Potencia tu creatividad con Inteligencia Artificial. Face Swap, borrado de fondos y más."
+        );
         container.innerHTML = `
             <div class="section-container fade-in">
                 <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
@@ -329,6 +356,10 @@ const router = {
     },
 
     renderAbout(container) {
+        this.updateMeta(
+            "Sobre Nosotros - Tu Felicitación",
+            "Estudio de diseño gráfico especializado en Inteligencia Artificial. Innovación y creatividad."
+        );
         container.innerHTML = `
             <div class="fade-in section-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
                 <h1 class="section-title centered" style="margin-bottom: 3rem;">Sobre Nosotros</h1>
@@ -367,6 +398,10 @@ const router = {
     },
 
     renderContact(container) {
+        this.updateMeta(
+            "Contacto - Tu Felicitación",
+            "Contacta con nosotros por WhatsApp para pedidos personalizados o soporte."
+        );
         container.innerHTML = `
             <div class="fade-in section-container" style="max-width: 600px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
                 <h1 class="section-title centered" style="margin-bottom: 2rem;">Hablemos</h1>
@@ -501,6 +536,10 @@ const router = {
     },
 
     renderHome(container) {
+        this.updateMeta(
+            "Tu Felicitación - Personalizada con IA",
+            "Crea felicitaciones de Navidad únicas con IA. Postales, vídeos y Face Swap personalizados."
+        );
         console.log('Rendering Home...');
         try {
             // 1. Hero Section
@@ -703,6 +742,10 @@ const router = {
     },
 
     renderChristmasHome(container) {
+        this.updateMeta(
+            "Felicitaciones de Navidad - Tu Felicitación",
+            "Las mejores felicitaciones de Navidad personalizadas para empresas y particulares."
+        );
         // Hero Section
         const hero = document.createElement('section');
         hero.className = 'hero fade-in';
@@ -1025,6 +1068,13 @@ const router = {
         const sector = SECTORS.find(s => s.id === sectorId);
         const sectorProducts = PRODUCTS.filter(p => p.sector === sectorId);
 
+        if (sector) {
+            this.updateMeta(
+                `${sector.name} - Tu Felicitación`,
+                `Descubre nuestra colección de felicitaciones para ${sector.name}. Personalizables y originales.`
+            );
+        }
+
         container.innerHTML = `
             <div class="section-container fade-in">
                 <h2 class="section-title">Colección: ${sector.name}</h2>
@@ -1056,6 +1106,10 @@ const router = {
             return;
         }
 
+        this.updateMeta(
+            `${product.title} - Tu Felicitación`,
+            "Personaliza este diseño con tus fotos y textos. Crea una felicitación única en segundos."
+        );
 
         console.log("DEBUG: Rendering Product Detail v2 with Fixed Layout");
         // Force scroll to top

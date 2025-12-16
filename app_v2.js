@@ -1261,7 +1261,7 @@ const router = {
                         <div class="controls-sticky-footer">
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; ${!isMagic ? 'display: none !important;' : ''}">
                                 <span style="font-size: 0.9rem; color: var(--text-muted);">Precio final</span>
-                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-color);">${product.price.toFixed(2)}€</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-color);">${isMagic ? '2.00' : product.price.toFixed(2)}€</span>
                             </div>
 
                             ${isMagic ? (`

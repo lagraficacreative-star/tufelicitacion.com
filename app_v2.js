@@ -80,14 +80,14 @@ const router = {
     },
 
     updateMeta(title, description) {
-        document.title = title || "Tu Felicitación - Personalizada con IA";
+        document.title = title || "Tu Felicitación - Personalizada Gratis";
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
             metaDesc = document.createElement('meta');
             metaDesc.name = "description";
             document.head.appendChild(metaDesc);
         }
-        metaDesc.content = description || "Crea y personaliza tus postales de Navidad, vídeos y felicitaciones con Inteligencia Artificial.";
+        metaDesc.content = description || "Crea y personaliza tus postales de Navidad, vídeos y felicitaciones gratis.";
     },
 
     handleLocation() {
@@ -303,12 +303,12 @@ const router = {
                 <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin-bottom: 3rem;">
                     <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1.5rem;">Innovación y Diseño</h3>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1.5rem;">
-                        Somos un <strong>estudio de diseño gráfico especializado en Inteligencia Artificial</strong>. 
-                        Nuestra misión es fusionar la creatividad artística tradicional con las herramientas tecnológicas más avanzadas para crear experiencias visuales únicas.
+                        Somos un <strong>estudio de diseño gráfico y animación</strong>. 
+                        Combinamos la creatividad artística con las herramientas tecnológicas más avanzadas para crear experiencias visuales únicas.
                     </p>
                     <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color);">
                         No solo creamos imágenes; diseñamos soluciones personalizadas que permiten a empresas y particulares comunicar sus mensajes de una forma impactante, moderna y eficiente. 
-                        Creemos que la IA es el pincel del futuro, y nosotros somos los artistas que saben cómo usarlo.
+                        Creemos que la tecnología es el pincel del futuro, y nosotros somos los artistas que saben cómo usarlo.
                     </p>
                 </div>
 
@@ -320,7 +320,7 @@ const router = {
                     </div>
                     <div style="text-align: center;">
                         <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-brain"></i></div>
-                        <h4 style="font-weight: 600;'>Tecnología IA</h4>
+                        <h4 style="font-weight: 600;">Tecnología Digital</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted);">Generación y edición avanzada.</p>
                     </div>
                     <div style="text-align: center;">
@@ -473,8 +473,8 @@ const router = {
 
     renderHome(container) {
         this.updateMeta(
-            "Tu Felicitación - Personalizada con IA",
-            "Crea felicitaciones de Navidad únicas con IA. Postales, vídeos y Face Swap personalizados."
+            "Tu Felicitación - Personalizada Gratis",
+            "Crea felicitaciones de Navidad únicas. Postales y vídeos personalizados."
         );
         console.log('Rendering Home...');
         try {
@@ -487,7 +487,7 @@ const router = {
             hero.innerHTML = `
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Descarga al instante</span></h1>
             <button class="cta-button app-btn-success" onclick="router.navigate('postcards')">Empieza a personalizar</button>
         </div>
     `;
@@ -623,7 +623,7 @@ const router = {
         hero.innerHTML = `
     <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones de Navidad personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Paga solo por la IA (2€)</span></h1>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Felicitaciones de Navidad personalizadas GRATIS<br><span style="font-size: 1.5rem; font-weight: normal;">Descarga al instante</span></h1>
             <button class="cta-button app-btn-success" onclick="router.navigate('postcards')">Empieza a personalizar</button>
         </div>
 `;
@@ -708,14 +708,14 @@ const router = {
                 </ul>
             </div>
 
-            <!-- Feature 2: AI Magic -->
-            <div style="background: linear-gradient(135deg, #fff5f5 0%, #fff 100%); padding: 2rem; border-radius: 1rem; border: 1px solid #ffd7d7; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #ff4081;">🪄</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Estudio Magic AI (Compra créditos)</h3>
+            <!-- Feature 2: Instant Download -->
+            <div style="background: linear-gradient(135deg, #f0fdf4 0%, #fff 100%); padding: 2rem; border-radius: 1rem; border: 1px solid #dcfce7; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #16a34a;">⚡</div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem;">Descarga Instantánea</h3>
                 <ul style="text-align: left; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color: #ff4081; margin-right: 0.5rem;"></i> <strong>Cambio de Cara</strong>: ¡Sé el protagonista!</li>
-                    <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-image" style="color: #ff4081; margin-right: 0.5rem;"></i> <strong>Cambio de Fondo</strong>: Elige escenario o sube el tuyo.</li>
-                    <li><i class="fa-solid fa-film" style="color: #ff4081; margin-right: 0.5rem;"></i> <strong>Animación</strong>: Da vida y movimiento a la foto.</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-bolt" style="color: #16a34a; margin-right: 0.5rem;"></i> <strong>Sin esperas</strong>: Tu postal lista en segundos.</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-share-nodes" style="color: #16a34a; margin-right: 0.5rem;"></i> <strong>Comparte fácil</strong>: WhatsApp, Instagram o Email.</li>
+                    <li><i class="fa-solid fa-download" style="color: #16a34a; margin-right: 0.5rem;"></i> <strong>Calidad HD</strong>: Perfecto para móviles.</li>
                 </ul>
             </div>
 
@@ -1179,7 +1179,7 @@ const router = {
                                             </div>
                                         </div>
                                         <button class="btn-outline" onclick="router.handleLogoRemoveBg()" style="width: 100%; text-align: center; justify-content: center; display: flex; gap: 0.5rem; align-items: center;">
-                                            <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo (IA)
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i> Quitar Fondo
                                         </button>
                                         <div id="logo-ai-status" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center; display: none;"></div>
                                     </div>
@@ -2555,7 +2555,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'currency': 'EUR',
                 'items': [{
                     'item_id': paidProductId,
-                    'item_name': 'Magic AI Download'
+                    'item_name': 'Digital Download'
                 }]
             });
             // Specific Ads Conversion Event (Optional/Backup if 'purchase' isn't auto-linked)

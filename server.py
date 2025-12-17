@@ -193,7 +193,7 @@ def create_checkout_session():
                         'currency': 'eur',
                         'product_data': {
                             'name': product_name,
-                            'description': 'Descarga en alta calidad sin marca de agua (Magic AI)',
+                            'description': 'Descarga en alta calidad',
                         },
                         'unit_amount': 200, # 2.00 EUR (in cents)
                     },

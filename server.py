@@ -13,7 +13,7 @@ app = Flask(__name__, static_folder=None)
 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN", "r8_WfyFEUjbkNB6oOiQiq0hvGtz3mN5iec2m9jZm")
 EMAIL_USER = os.environ.get("EMAIL_USER", "tufelicitacion@gmail.com")
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "") # App Password needed
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "tufelicitacion@LG25")
 
 
 
@@ -122,16 +122,45 @@ def notify_download():
         El usuario ha aceptado los términos y condiciones al realizar esta acción.
         """
 
-        msg = MIMEMultipart()
-        msg['From'] = EMAIL_USER
-        msg['To'] = EMAIL_USER
-        msg['Subject'] = subject
-        msg.attach(MIMEText(body, 'plain'))
+        # 1. Send Admin Notification
+        msg_admin = MIMEMultipart()
+        msg_admin['From'] = EMAIL_USER
+        msg_admin['To'] = EMAIL_USER
+        msg_admin['Subject'] = subject
+        msg_admin.attach(MIMEText(body, 'plain'))
 
-        # Send email via Gmail SMTP
+        # 2. Send User Confirmation (if email provided)
+        msg_user = None
+        if user_email and '@' in user_email and 'no_email' not in user_email:
+            subject_user = "Tu descarga personalizada - Tu Felicitación 🎅"
+            body_user = f"""
+Hola,
+
+¡Gracias por usar Tu Felicitación!
+
+Tu diseño ({product_info}) se ha generado correctamente.
+Esperamos que disfrutes compartiéndolo con tus amigos y familiares.
+
+Si te ha gustado, ¡vuelve pronto para crear más felicitaciones mágicas!
+
+Atentamente,
+El equipo de Tu Felicitación
+https://tufelicitacion.com
+            """
+            msg_user = MIMEMultipart()
+            msg_user['From'] = EMAIL_USER
+            msg_user['To'] = user_email
+            msg_user['Subject'] = subject_user
+            msg_user.attach(MIMEText(body_user, 'plain'))
+
+        # Send emails via Gmail SMTP
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(EMAIL_USER, EMAIL_PASSWORD)
-            server.sendmail(EMAIL_USER, EMAIL_USER, msg.as_string())
+            # Send to Admin
+            server.sendmail(EMAIL_USER, EMAIL_USER, msg_admin.as_string())
+            # Send to User (if applicable)
+            if msg_user:
+                 server.sendmail(EMAIL_USER, user_email, msg_user.as_string())
             
         return jsonify({'status': 'success', 'message': 'Email sent'})
 

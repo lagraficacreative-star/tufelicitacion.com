@@ -1321,29 +1321,30 @@ const router = {
 
                         <!-- Sticky Footer (CTA) -->
                         <div class="controls-sticky-footer">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; ${!isMagic ? 'display: none !important;' : ''}">
-                                <span style="font-size: 0.9rem; color: var(--text-muted);">Precio final</span>
-                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-color);">${isMagic ? '2.00' : product.price.toFixed(2)}€</span>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; display: none !important;">
+                                <!-- Hidden Price Row, buttons are self-explanatory -->
                             </div>
 
-                            ${isMagic ? (`
-                                ${!hasPaid ? `
-                                <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="width: 100%; border: none; background: var(--primary-color); color: #fff; display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 1.1rem; padding: 1rem;">
-                                    Continuar <i class="fa-solid fa-arrow-right"></i>
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <!-- Left: Free Download -->
+                                <button class="cta-button" onclick="router.downloadComposite()" style="flex: 1; border: 1px solid var(--primary-color); background: #fff; color: var(--primary-color); padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
+                                    <i class="fa-solid fa-download" style="font-size: 1.2rem;"></i> 
+                                    <span>Descargar GRATIS</span>
                                 </button>
-                                <div style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                                    Prueba gratis · Descarga final 2,00 €
-                                </div>
+
+                                <!-- Right: Paid/Magic Download -->
+                                ${!hasPaid ? `
+                                <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="flex: 1; border: none; background: linear-gradient(135deg, #FFD700, #FFC107); color: #000; padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
+                                    <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 1.2rem;"></i>
+                                    <span>Magic Download (2€)</span>
+                                </button>
                                 ` : `
-                                <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none; background: #25D366;">
-                                    <i class="fa-solid fa-download"></i> Descargar Original
+                                <button class="cta-button" onclick="router.downloadComposite()" style="flex: 1; border: none; background: #25D366; color: white; padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
+                                    <i class="fa-solid fa-check" style="font-size: 1.2rem;"></i>
+                                    <span>Magic Descargado</span>
                                 </button>
                                 `}
-                            `) : (`
-                                <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none; background: var(--success-color, #25D366); color: #fff; padding: 1rem; font-size: 1.1rem;">
-                                    <i class="fa-solid fa-download"></i> Descargar GRATIS
-                                </button>
-                            `)}
+                            </div>
                         </div>
                     </div>
                 </div> <!-- End of customizer-container -->
@@ -2741,6 +2742,9 @@ const router = {
             link.href = canvas.toDataURL('image/png');
             link.click();
 
+            // Notify server to send emails
+            router.notifyDownload(false);
+
             if (btn) {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -2765,6 +2769,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment_success') === 'true') {
         localStorage.setItem('hasPaid', 'true');
+
+        // Google Ads Conversion Tracking
+        if (typeof gtag !== 'undefined') {
+            const paidProductId = urlParams.get('product_id') || 'unknown';
+            gtag('event', 'purchase', {
+                'transaction_id': 'tx_' + Date.now(), // Unique ID per transaction
+                'value': 2.00,
+                'currency': 'EUR',
+                'items': [{
+                    'item_id': paidProductId,
+                    'item_name': 'Magic AI Download'
+                }]
+            });
+            // Specific Ads Conversion Event (Optional/Backup if 'purchase' isn't auto-linked)
+            // gtag('event', 'conversion', {'send_to': 'AW-17808951951/label_if_provided', ...});
+            console.log("Ads Conversion Tracked: Purchase 2.00 EUR");
+        }
+
         alert("¡Pago realizado con éxito! La marca de agua ha sido eliminada.");
         // Clean URL without reloading
         window.history.replaceState({}, document.title, window.location.pathname);

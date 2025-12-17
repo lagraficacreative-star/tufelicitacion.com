@@ -2541,6 +2541,17 @@ const router = {
             // Notify server to send emails
             router.notifyDownload(false);
 
+            // Helpful Debug/Reset UI for User Testing
+            if (!document.getElementById('reset-email-link')) {
+                const resetLink = document.createElement('div');
+                resetLink.id = 'reset-email-link';
+                resetLink.style.textAlign = 'center';
+                resetLink.style.marginTop = '1rem';
+                resetLink.innerHTML = '<small><a href="#" onclick="localStorage.removeItem(\'user_email\'); alert(\'Email olvidado. Vuelve a descargar para probar el registro.\'); return false;" style="color: #999;">[Test] Resetear Email</a></small>';
+                const container = document.querySelector('.controls-sticky-footer');
+                if (container) container.appendChild(resetLink);
+            }
+
             if (btn) {
                 btn.innerHTML = originalText;
                 btn.disabled = false;

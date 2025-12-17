@@ -1180,4 +1180,14 @@ footer {
         text-transform: uppercase;
         text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         user-select: none;
-    }}
+    }
+
+    /* Ensure resize handles are visible on hover for desktop discovery */
+    .draggable:hover .resize-handle {
+        display: block !important;
+    }
+
+    /* Make handles always visible on touch devices if easy way found, or rely on selection */
+    .draggable.active-selection .resize-handle {
+        display: block !important;
+    }

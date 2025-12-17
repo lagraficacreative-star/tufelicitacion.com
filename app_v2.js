@@ -577,75 +577,7 @@ const router = {
             `;
             container.appendChild(sectorsSection);
 
-            // 3.5 Face Swap Special Section (Cambia tu cara)
-            const faceSwapProducts = PRODUCTS.filter(p => (p.sector === 'faceswap_special' || p.sector === 'moda') && p.type !== 'video').slice(0, 4);
-            if (faceSwapProducts.length > 0) {
-                const faceSwapSection = document.createElement('section');
-                faceSwapSection.className = 'section-container fade-in';
-                faceSwapSection.innerHTML = `
-                    <h2 class="section-title centered" style="margin-top: 4rem;">Cambia tu cara</h2>
-                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
-                        Sube tu foto y conviértete en el protagonista de la navidad.
-                    </p>
-                    <div class="grid-4">
-                        ${faceSwapProducts.map(p => this.createProductCard(p)).join('')}
-                    </div>
-                `;
-                container.appendChild(faceSwapSection);
-            }
 
-            // 4. AI Demo Section
-            const aiSection = document.createElement('section');
-            aiSection.className = 'section-container fade-in';
-            aiSection.style.background = '#f8fafc';
-            aiSection.style.padding = '4rem 2rem';
-            aiSection.style.borderRadius = '1rem';
-            aiSection.style.marginTop = '4rem';
-            aiSection.innerHTML = `
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-            <div>
-                <h2 class="section-title" style="margin-bottom: 1.5rem;">Potencia tu creatividad con IA</h2>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <div style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </div>
-                        <div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Eliminar fondo automáticamente</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Integra tu logo perfectamente en cualquier postal.</p>
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <div style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <i class="fa-regular fa-face-smile"></i>
-                        </div>
-                        <div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Cambiar caras en fotos</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Sube tu foto y conviértete en el protagonista de la felicitación.</p>
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <div style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <i class="fa-solid fa-video"></i>
-                        </div>
-                        <div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Generar vídeos animados</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Da vida a tus imágenes estáticas con un solo clic.</p>
-                        </div>
-                    </li>
-                </ul>
-                <button class="cta-button" onclick="router.navigate('postcards')" style="margin-top: 1rem;">Probar ahora</button>
-            </div>
-            <div style="position: relative;">
-                <img src="sectores/particular imagenes/pastanavidad.png" style="width: 100%; border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);" alt="Demo IA">
-                <div style="position: absolute; bottom: -20px; right: -20px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); display: flex; align-items: center; gap: 0.5rem;">
-                    <div style="width: 10px; height: 10px; background: #4CAF50; border-radius: 50%;"></div>
-                    <span style="font-weight: 600; font-size: 0.8rem;">IA Activa</span>
-                </div>
-            </div>
-        </div >
-    `;
-            container.appendChild(aiSection);
 
             // 5. Testimonials
             const testimonialsSection = document.createElement('section');

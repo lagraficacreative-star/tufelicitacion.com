@@ -1978,7 +1978,7 @@ const router = {
                 <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">Elige tu método de pago</h2>
                 
                 <!-- Method 1: Card/Stripe -->
-                <div style="margin-bottom: 1.5rem; border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#eee'" onclick="router.handlePurchase()">
+                <div style="margin-bottom: 1.5rem; border: 1px solid #eee; padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#eee'" onclick="router.handlePurchase(this, '${productId}')">
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
                         <div style="font-size: 1.5rem; color: #6772e5;"><i class="fa-brands fa-stripe"></i></div>
                         <h3 style="margin: 0; font-size: 1.1rem;">Tarjeta / Bizum Automático</h3>
@@ -1997,19 +1997,19 @@ const router = {
         if (el) el.style.display = 'block';
     },
 
-    async handlePurchase() {
-        // Keep button finding logic for safety
+    async handlePurchase(btnElement, productIdOverride) {
+        const targetId = productIdOverride || this.params.productId;
+
         // Initialize Stripe with the Live Public Key
         const stripe = Stripe('pk_live_51Scgi9JJut2I3vTZYWiuKIMdQRifeY2G4xNMCi9cEzvbRKD7fD3YLRRZQM9h6mGWG0sU53Osv3D8ljLUwK5yAilG00lY7TLDCQ');
 
-        // Optional visual feedback if button exists
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando...';
+        let originalContent = '';
+        if (btnElement) {
+            btnElement.style.pointerEvents = 'none';
+            btnElement.style.opacity = '0.7';
+            originalContent = btnElement.innerHTML;
+            btnElement.innerHTML = '<div style="text-align:center; padding: 1rem;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i><p style="margin-top:0.5rem;">Conectando con Stripe...</p></div>';
         }
-
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando con Stripe...';
 
         try {
             const response = await fetch('/api/create-checkout-session', {
@@ -2018,7 +2018,7 @@ const router = {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    productId: this.params.productId
+                    productId: targetId
                 }),
             });
 
@@ -2026,9 +2026,10 @@ const router = {
 
             if (session.error) {
                 alert('Error al iniciar pago: ' + session.error);
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = originalText;
+                if (btnElement) {
+                    btnElement.style.pointerEvents = 'auto';
+                    btnElement.style.opacity = '1';
+                    btnElement.innerHTML = originalContent;
                 }
                 return;
             }
@@ -2040,15 +2041,21 @@ const router = {
 
             if (result.error) {
                 alert(result.error.message);
-                btn.disabled = false;
-                btn.innerHTML = originalText;
+                if (btnElement) {
+                    btnElement.style.pointerEvents = 'auto';
+                    btnElement.style.opacity = '1';
+                    btnElement.innerHTML = originalContent;
+                }
             }
 
         } catch (error) {
             console.error('Error:', error);
             alert('Hubo un error de conexión.');
-            btn.disabled = false;
-            btn.innerHTML = originalText;
+            if (btnElement) {
+                btnElement.style.pointerEvents = 'auto';
+                btnElement.style.opacity = '1';
+                btnElement.innerHTML = originalContent;
+            }
         }
     },
 

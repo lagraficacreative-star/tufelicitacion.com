@@ -571,22 +571,25 @@ footer {
 }
 
 .resize-handle {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     background: #fff;
-    border: 2px solid #000;
+    border: 3px solid var(--primary-color);
     border-radius: 50%;
     position: absolute;
-    bottom: -12px;
-    right: -12px;
+    bottom: -16px;
+    right: -16px;
     cursor: nwse-resize;
     display: none;
     z-index: 130;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Improve touch target */
+    touch-action: none;
 }
 
 .draggable.active-selection .resize-handle {
     display: block;
+    animation: fadeIn 0.1s ease;
 }
 
 .preview-text-title {

@@ -16,7 +16,7 @@ const router = {
         '/videos-navidad': { page: 'videos' },
         '/sectores': { page: 'sectors' },
         '/otros-eventos': { page: 'other-events' },
-        '/creatividad-ia': { page: 'ai-creativity' },
+
         '/buscar': { page: 'search' },
         '/nosotros': { page: 'about' },
         '/contacto': { page: 'contact' },
@@ -169,9 +169,7 @@ const router = {
             case 'other-events':
                 this.renderOtherEvents(mainContent);
                 break;
-            case 'ai-creativity':
-                this.renderAiCreativity(mainContent);
-                break;
+
             case 'search':
                 this.renderSearch(main);
                 break;
@@ -261,69 +259,7 @@ const router = {
         `;
     },
 
-    renderAiCreativity(container) {
-        this.updateMeta(
-            "Creatividad IA - Tu Felicitación",
-            "Potencia tu creatividad con Inteligencia Artificial. Face Swap, borrado de fondos y más."
-        );
-        container.innerHTML = `
-            <div class="section-container fade-in">
-                <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
-                    <h1 class="section-title">Potencia tu Creatividad con IA</h1>
-                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color);">
-                        Descubre cómo nuestra tecnología de Inteligencia Artificial puede transformar tus ideas en realidad. 
-                        Sin complicaciones, sin software caro, directo desde tu navegador.
-                    </p>
-                </div>
 
-                <div class="grid-3" style="gap: 2rem;">
-                    <!-- Feature 1 -->
-                    <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); text-align: center;">
-                        <div style="font-size: 3rem; margin-bottom: 1.5rem; color: #FF4081;">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </div>
-                        <h3 style="margin-bottom: 1rem;">Eliminación de Fondo</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                            Sube cualquier foto y extrae el sujeto principal automáticamente. Perfecto para integrar productos o personas en nuevos escenarios.
-                        </p>
-                        <button class="btn-outline" onclick="router.navigate('postcards')">Probar ahora</button>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); text-align: center;">
-                        <div style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--primary-color);">
-                            <i class="fa-regular fa-face-smile"></i>
-                        </div>
-                        <h3 style="margin-bottom: 1rem;">Face Swap (Cambio de Cara)</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                            ¿Quieres ser Santa Claus o un Elfo? Nuestra IA intercambia las caras manteniendo la iluminación y expresión original.
-                        </p>
-                        <button class="btn-outline" onclick="router.navigate('sector-detail', {sectorId: 'faceswap_special'})">Ver ejemplos</button>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); text-align: center;">
-                        <div style="font-size: 3rem; margin-bottom: 1.5rem; color: #9C27B0;">
-                            <i class="fa-solid fa-film"></i>
-                        </div>
-                        <h3 style="margin-bottom: 1rem;">Imagen a Vídeo</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                            Haz que la nieve caiga, que las luces parpadeen o que los personajes cobren vida. Convierte lo estático en dinámico.
-                        </p>
-                        <button class="btn-outline" onclick="router.navigate('videos')">Crear vídeo</button>
-                    </div>
-                </div>
-
-                <div style="margin-top: 4rem; background: #f8fafc; padding: 3rem; border-radius: 1rem; text-align: center;">
-                    <h2 style="margin-bottom: 1.5rem;">¿Eres una empresa?</h2>
-                    <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted);">
-                        Podemos integrar estas herramientas en tu flujo de trabajo o crear campañas masivas personalizadas para tus clientes.
-                    </p>
-                    <button class="cta-button" onclick="router.navigate('contact')">Contactar para Business</button>
-                </div>
-            </div>
-        `;
-    },
 
     renderSearch(container) {
         container.innerHTML = `

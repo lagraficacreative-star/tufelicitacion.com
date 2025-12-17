@@ -1217,7 +1217,17 @@ const router = {
     },
 
     setupDraggable() {
+        // Cleanup old listeners if they exist
+        if (this.dragHandlers) {
+            window.removeEventListener('mousemove', this.dragHandlers.move);
+            window.removeEventListener('touchmove', this.dragHandlers.move);
+            window.removeEventListener('mouseup', this.dragHandlers.end);
+            window.removeEventListener('touchend', this.dragHandlers.end);
+        }
+
         const overlay = document.getElementById('preview-overlay');
+        if (!overlay) return;
+
         let activeElement = null;
         let isResizing = false;
 
@@ -1269,13 +1279,14 @@ const router = {
         };
 
         const handleStart = (e) => {
+            // Check if clicking resize handle
             const handle = e.target.closest('.resize-handle');
             const draggable = e.target.closest('.draggable');
 
             if (handle) {
                 // RESIZE START
                 e.preventDefault();
-                e.stopPropagation(); // prevent drag start
+                e.stopPropagation(); // prevent drag start logic from firing if nested
                 isResizing = true;
                 activeElement = handle.parentElement; // The draggable div
 
@@ -1284,9 +1295,9 @@ const router = {
                 startY = pos.y;
 
                 if (activeElement.dataset.type === 'logo') {
-                    initialSize = activeElement.offsetWidth;
+                    initialSize = activeElement.offsetWidth; // Start with current width
                 } else {
-                    initialSize = parseFloat(window.getComputedStyle(activeElement).fontSize);
+                    initialSize = parseFloat(window.getComputedStyle(activeElement).fontSize); // Start with current font size
                 }
 
                 return;
@@ -1296,7 +1307,7 @@ const router = {
                 // DRAG START + SELECTION
                 e.preventDefault();
 
-                // Handle Selection
+                // Handle Selection UI
                 document.querySelectorAll('.draggable').forEach(el => el.classList.remove('active-selection'));
                 draggable.classList.add('active-selection');
 
@@ -1312,7 +1323,7 @@ const router = {
 
         const handleMove = (e) => {
             if (!activeElement) return;
-            e.preventDefault();
+            e.preventDefault(); // Prevent scrolling while dragging/resizing
             const pos = getEventPos(e);
 
             if (isResizing) {
@@ -1321,19 +1332,22 @@ const router = {
                 const deltaX = pos.x - startX;
                 const deltaY = pos.y - startY;
 
-                // Use the larger delta to drive resize
+                // Use the larger delta to drive resize (support dragging down or right to increase)
+                // For better UX, maybe just use Y or X depending on handle position? 
+                // Bottom-right handle: implies increasing X and Y.
+                // Let's use average or max.
                 const delta = (Math.abs(deltaX) > Math.abs(deltaY)) ? deltaX : deltaY;
 
                 let newSize = initialSize + delta;
 
                 if (activeElement.dataset.type === 'logo') {
-                    newSize = Math.max(20, Math.min(500, newSize));
+                    newSize = Math.max(20, Math.min(500, newSize)); // Limits
                     activeElement.style.width = `${newSize}px`;
                     activeElement.style.height = `${newSize}px`;
                 } else {
-                    newSize = Math.max(10, Math.min(150, newSize)); // scale down sensitivity for text?
-                    // For text, pixels map 1:1 roughly to font size updates, might need scaling factor
-                    // Let's try 0.5 factor for smoother text resize
+                    // Text resize
+                    newSize = Math.max(10, Math.min(150, newSize));
+                    // Make text resize slower/smoother
                     newSize = initialSize + (delta * 0.5);
                     activeElement.style.fontSize = `${newSize}px`;
                 }
@@ -1367,15 +1381,21 @@ const router = {
             isResizing = false;
         };
 
-        // Attach Events
+        // Attach Events to Overlay (for Start)
         overlay.addEventListener('mousedown', handleStart);
         overlay.addEventListener('touchstart', handleStart, { passive: false });
 
+        // Attach Events to Window (for Move/End)
         window.addEventListener('mousemove', handleMove);
         window.addEventListener('touchmove', handleMove, { passive: false });
-
         window.addEventListener('mouseup', handleEnd);
         window.addEventListener('touchend', handleEnd);
+
+        // Save handlers for cleanup
+        this.dragHandlers = {
+            move: handleMove,
+            end: handleEnd
+        };
     },
 
     handleMainImageUpload(input) {

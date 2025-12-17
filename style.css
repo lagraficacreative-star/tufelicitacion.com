@@ -571,18 +571,18 @@ footer {
 }
 
 .resize-handle {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     background: #fff;
     border: 3px solid var(--primary-color);
     border-radius: 50%;
     position: absolute;
-    bottom: -16px;
-    right: -16px;
+    bottom: -18px;
+    right: -18px;
     cursor: nwse-resize;
     display: none;
-    z-index: 130;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 200;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     /* Improve touch target */
     touch-action: none;
 }
@@ -1180,4 +1180,4 @@ footer {
         text-transform: uppercase;
         text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         user-select: none;
-    }
+    }}

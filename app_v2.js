@@ -2367,11 +2367,20 @@ const router = {
             is_paid: isPaid
         };
 
+        console.log("Sending notify-download payload:", payload);
         fetch('/api/notify-download', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-        }).catch(err => console.error("Notification failed", err));
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Email API response:", data);
+                if (data.status === 'error') {
+                    console.error("Server reported email error:", data.error);
+                }
+            })
+            .catch(err => console.error("Notification failed (Network):", err));
     },
 
     renderAccountShop(container) {

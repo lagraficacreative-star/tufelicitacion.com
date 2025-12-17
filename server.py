@@ -154,20 +154,33 @@ https://tufelicitacion.com
             msg_user.attach(MIMEText(body_user, 'plain'))
 
         # Send emails via Gmail SMTP
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(EMAIL_USER, EMAIL_PASSWORD)
-            # Send to Admin
-            server.sendmail(EMAIL_USER, EMAIL_USER, msg_admin.as_string())
-            # Send to User (if applicable)
-            if msg_user:
-                 server.sendmail(EMAIL_USER, user_email, msg_user.as_string())
+        print(f"--- ATTEMPTING EMAIL SEND to {user_email} (User) and {EMAIL_USER} (Admin) ---")
+        try:
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                server.login(EMAIL_USER, EMAIL_PASSWORD)
+                print("--- SMTP LOGIN SUCCESSFUL ---")
+                
+                # Send to Admin
+                server.sendmail(EMAIL_USER, EMAIL_USER, msg_admin.as_string())
+                print("--- ADMIN EMAIL SENT ---")
+                
+                # Send to User (if applicable)
+                if msg_user:
+                     server.sendmail(EMAIL_USER, user_email, msg_user.as_string())
+                     print("--- USER EMAIL SENT ---")
+                
+            return jsonify({'status': 'success', 'message': 'Email sent'})
             
-        return jsonify({'status': 'success', 'message': 'Email sent'})
+        except smtplib.SMTPAuthenticationError as e:
+            print(f"!!! SMTP AUTH ERROR: {e} - Check Email/Password/App Password !!!")
+            return jsonify({'status': 'error', 'error': 'Auth failed', 'details': str(e)}), 500
+        except Exception as e:
+             print(f"!!! SMTP GENERAL ERROR: {e} !!!")
+             return jsonify({'status': 'error', 'error': str(e)}), 500
 
     except Exception as e:
-        print(f"Failed to send email: {e}")
-        # Don't fail the request, just log it
-        return jsonify({'status': 'error', 'error': str(e)}), 200
+        print(f"Failed to send email (Global): {e}")
+        return jsonify({'status': 'error', 'error': str(e)}), 500
 
 @app.route('/api/create-checkout-session', methods=['POST'])
 def create_checkout_session():

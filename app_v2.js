@@ -1319,118 +1319,19 @@ const router = {
                             </div>
                         </div> <!-- End controls-content -->
 
-                        <!-- Sticky Footer (CTA) -->
-                        <div class="controls-sticky-footer">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; display: none !important;">
-                                <!-- Hidden Price Row, buttons are self-explanatory -->
-                            </div>
-
                             <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                <!-- Left: Free Download -->
-                                <button class="cta-button" onclick="router.downloadComposite()" style="flex: 1; border: 1px solid var(--primary-color); background: #fff; color: var(--primary-color); padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
-                                    <i class="fa-solid fa-download" style="font-size: 1.2rem;"></i> 
-                                    <span>Descargar GRATIS</span>
+                                <!-- Single Free Download Button -->
+                                <button id="btn-main-action" class="cta-button" onclick="router.downloadComposite()" style="width: 100%; border: none; background: var(--success-color, #25D366); color: #fff; padding: 1rem; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <i class="fa-solid fa-download"></i> Descargar GRATIS
                                 </button>
-
-                                <!-- Right: Paid/Magic Download -->
-                                ${!hasPaid ? `
-                                <button class="cta-button" onclick="router.renderPaymentSelection('${product.id}')" style="flex: 1; border: none; background: linear-gradient(135deg, #FFD700, #FFC107); color: #000; padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
-                                    <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 1.2rem;"></i>
-                                    <span>Magic Download (2€)</span>
-                                </button>
-                                ` : `
-                                <button class="cta-button" onclick="router.downloadComposite()" style="flex: 1; border: none; background: #25D366; color: white; padding: 0.8rem; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;">
-                                    <i class="fa-solid fa-check" style="font-size: 1.2rem;"></i>
-                                    <span>Magic Descargado</span>
-                                </button>
-                                `}
                             </div>
                         </div>
                     </div>
                 </div> <!-- End of customizer-container -->
             </div>
 
-            <!-- NEW FULL-WIDTH MAGIC AI SECTION (BELOW) -->
-            ${product.type !== 'video' ? `
-            <div class="section-container fade-in" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <h2 class="section-title centered" style="margin-bottom: 1rem;">Estudio Magic AI ✨</h2>
-                    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                        Lleva tu felicitación al siguiente nivel con nuestras herramientas de Inteligencia Artificial. (Paga 2€ por descarga solo en Magic AI).
-                    </p>
-                </div>
-
-                <!-- Magic AI Blocks Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    
-                    <!-- Block 1: Face Swap -->
-                    ${showFaceTab ? `
-                    <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                        <div style="width: 50px; height: 50px; background: #FFF0F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #D42426; font-size: 1.5rem;">
-                            <i class="fa-regular fa-face-smile"></i>
-                        </div>
-                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Intercambio de Caras</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Conviértete en el protagonista. Sube tu foto y la IA te integrará perfectamente en el personaje. <strong>(2€/descarga)</strong>
-                        </p>
-                        
-                         <div style="margin-bottom: 1.5rem;">
-                            ${faceInputsHtml}
-                        </div>
-                         <button class="btn-outline" onclick="router.handleAIAction('faceswap')" style="width: 100%; text-align: center; padding: 0.8rem;">
-                            Generar Caras
-                        </button>
-                    </div>
-                    ` : ''}
-
-                    <!-- Block 2: Remove BG & Scene -->
-                    <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                         <div style="width: 50px; height: 50px; background: #F0F9FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #0284c7; font-size: 1.5rem;">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Fondo y Escenario</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Elige un escenario o fondo para tu felicitación. (Tu imagen principal se mantendrá). <strong>(2€/descarga)</strong>
-                        </p>
-                        
-                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                             <button class="btn-outline" onclick="document.getElementById('input-main-img-ai').click()" style="flex: 1; font-size: 0.8rem;">
-                                <i class="fa-solid fa-upload"></i> Subir Foto
-                            </button>
-                            <input type="file" id="input-main-img-ai" style="display:none;" accept="image/*" onchange="router.handleMainImageUpload(this)">
-                             <button class="btn-outline" onclick="router.handleAIAction('removebg')" style="flex: 1; font-size: 0.8rem;">
-                                <i class="fa-solid fa-eraser"></i> Quitar Fondo
-                            </button>
-                        </div>
-                        
-                        <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">Elegir Escenario:</label>
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; max-height: 120px; overflow-y: auto;">
-                             ${typeof PRESETS !== 'undefined' ? PRESETS.map(p => `
-                                <div onclick="router.applyPresetBackground('${p.url}')" style="aspect-ratio: 1/1; background: url('${p.url}') center/cover; border-radius: 0.4rem; cursor: pointer; border: 2px solid transparent;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'"></div>
-                            `).join('') : ''}
-                        </div>
-                    </div>
-
-                    <!-- Block 3: Creative Mode -->
-                    <div style="background: #fff; border: 1px dashed #D4AF37; border-radius: 1rem; padding: 2rem; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; right: 0; background: #D4AF37; color: white; font-size: 0.7rem; padding: 0.2rem 0.8rem; border-bottom-left-radius: 0.5rem;">BETA</div>
-                         <div style="width: 50px; height: 50px; background: #FFFBEB; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #D4AF37; font-size: 1.5rem;">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </div>
-                        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Crear desde Cero</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Describe lo que imaginas y la IA lo creará para ti.
-                        </p>
-                        <textarea id="input-generate-prompt" class="form-control" rows="3" placeholder="Un Papá Noel surfista en Hawaii..." style="margin-bottom: 1rem; font-size: 0.9rem;"></textarea>
-                        <button class="cta-button" onclick="router.handleAIAction('generate')" style="width: 100%; background: #D4AF37;">
-                            <i class="fa-solid fa-paintbrush"></i> Generar Imagen
-                        </button>
-                    </div>
-
-                </div>
-                <div id="ai-status-msg" style="margin-top: 2rem; font-size: 1.2rem; text-align: center; font-weight: 600; color: var(--primary-color); display: none;"></div>
-            </div>
-            ` : ''}
+            <!-- MAGIC AI SECTION REMOVED/HIDDEN AS PER USER REQUEST (DEC 2025) -->
+            <!-- To restore, uncomment the block previously here or check git history -->
         `;
 
 

@@ -694,7 +694,7 @@ const router = {
         const featuresSection = document.createElement('section');
         featuresSection.className = 'section-container fade-in';
         featuresSection.innerHTML = `
-    <h2 class="section-title centered">Herramientas de Personalización</h2>
+    <h2 class="section-title centered">Editor</h2>
         <div class="grid-3" style="gap: 2rem;">
             <!-- Feature 1: Design -->
             <div style="background: #fff; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">

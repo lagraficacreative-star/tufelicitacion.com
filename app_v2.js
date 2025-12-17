@@ -1230,11 +1230,13 @@ const router = {
 
         let activeElement = null;
         let isResizing = false;
+        let isPinching = false; // New state for pinch
 
         let initialX, initialY;
         let initialLeft, initialTop;
         let initialSize = 0; // fontSize or width
         let startX, startY; // needed for resizing calc
+        let initialPinchDistance = 0; // for pinch
 
         // helper
         const getEventPos = (e) => {
@@ -1242,6 +1244,17 @@ const router = {
                 return { x: e.touches[0].clientX, y: e.touches[0].clientY };
             }
             return { x: e.clientX, y: e.clientY };
+        };
+
+        // helper for pinch distance
+        const getPinchDistance = (e) => {
+            if (e.touches && e.touches.length === 2) {
+                return Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+            return 0;
         };
 
         const updateInputs = (element) => {
@@ -1279,6 +1292,24 @@ const router = {
         };
 
         const handleStart = (e) => {
+            // Handle Pinch Start
+            if (e.touches && e.touches.length === 2) {
+                const draggable = e.target.closest('.draggable');
+                if (draggable && draggable.classList.contains('active-selection')) {
+                    e.preventDefault();
+                    isPinching = true;
+                    activeElement = draggable;
+                    initialPinchDistance = getPinchDistance(e);
+
+                    if (activeElement.dataset.type === 'logo') {
+                        initialSize = activeElement.offsetWidth;
+                    } else {
+                        initialSize = parseFloat(window.getComputedStyle(activeElement).fontSize);
+                    }
+                    return;
+                }
+            }
+
             // Check if clicking resize handle
             const handle = e.target.closest('.resize-handle');
             const draggable = e.target.closest('.draggable');
@@ -1305,7 +1336,10 @@ const router = {
 
             if (draggable) {
                 // DRAG START + SELECTION
-                e.preventDefault();
+                // Only prevent default if not pinching (though pinch handled above usually)
+                if ((!e.touches) || (e.touches && e.touches.length === 1)) {
+                    e.preventDefault();
+                }
 
                 // Handle Selection UI
                 document.querySelectorAll('.draggable').forEach(el => el.classList.remove('active-selection'));
@@ -1324,10 +1358,31 @@ const router = {
         const handleMove = (e) => {
             if (!activeElement) return;
             e.preventDefault(); // Prevent scrolling while dragging/resizing
+
+            // PINCH LOGIC
+            if (isPinching && e.touches && e.touches.length === 2) {
+                const currentDist = getPinchDistance(e);
+                if (initialPinchDistance > 0) {
+                    const scale = currentDist / initialPinchDistance;
+                    let newSize = initialSize * scale;
+
+                    if (activeElement.dataset.type === 'logo') {
+                        newSize = Math.max(20, Math.min(500, newSize));
+                        activeElement.style.width = `${newSize}px`;
+                        activeElement.style.height = `${newSize}px`;
+                    } else {
+                        newSize = Math.max(10, Math.min(150, newSize));
+                        activeElement.style.fontSize = `${newSize}px`;
+                    }
+                    updateInputs(activeElement);
+                }
+                return;
+            }
+
             const pos = getEventPos(e);
 
             if (isResizing) {
-                // RESIZING LOGIC
+                // RESIZING LOGIC (Handle)
                 // Calculate diagonal movement for intuitive feel, or max of x/y
                 const deltaX = pos.x - startX;
                 const deltaY = pos.y - startY;
@@ -1356,20 +1411,22 @@ const router = {
 
             } else {
                 // DRAGGING LOGIC
-                const dx = pos.x - initialX;
-                const dy = pos.y - initialY;
-                const parentRect = overlay.getBoundingClientRect();
+                if ((!e.touches) || (e.touches && e.touches.length === 1)) {
+                    const dx = pos.x - initialX;
+                    const dy = pos.y - initialY;
+                    const parentRect = overlay.getBoundingClientRect();
 
-                let newLeft = initialLeft + dx;
-                let newTop = initialTop + dy;
+                    let newLeft = initialLeft + dx;
+                    let newTop = initialTop + dy;
 
-                let leftPercent = (newLeft / parentRect.width) * 100;
-                let topPercent = (newTop / parentRect.height) * 100;
+                    let leftPercent = (newLeft / parentRect.width) * 100;
+                    let topPercent = (newTop / parentRect.height) * 100;
 
-                activeElement.style.left = `${leftPercent}%`;
-                activeElement.style.top = `${topPercent}%`;
+                    activeElement.style.left = `${leftPercent}%`;
+                    activeElement.style.top = `${topPercent}%`;
 
-                updateInputs(activeElement);
+                    updateInputs(activeElement);
+                }
             }
         };
 
@@ -1379,6 +1436,7 @@ const router = {
             }
             activeElement = null;
             isResizing = false;
+            isPinching = false;
         };
 
         // Attach Events to Overlay (for Start)
